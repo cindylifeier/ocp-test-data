@@ -2,5 +2,9 @@ package gov.samhsa.ocp.ocpfis;
 
 public class DataConstants {
 
-    public static final String serverUrl = "http://localhost:8444/";
+    public static String serverUrl;
+    public static String valueSetDir;
+    public static String xlsxFile;
+    public static String scriptsDir;
 }
+

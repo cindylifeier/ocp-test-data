@@ -18,7 +18,7 @@ public class RolesUAAHelper {
 
     private static void runScript(int choice) {
         try {
-            ProcessBuilder pb = new ProcessBuilder("/bin/bash", "./create-role-with-scope.sh");
+            ProcessBuilder pb = new ProcessBuilder("/bin/bash", DataConstants.scriptsDir + "/create-role-with-scope.sh");
             System.out.println("created processbuilder..");
 
             final Process process = pb.start();
