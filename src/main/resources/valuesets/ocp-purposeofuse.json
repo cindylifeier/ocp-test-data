@@ -1,0 +1,217 @@
+{
+    "resourceType": "ValueSet",
+    "id": "ocp-purposeofuse",
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> <h2> Purpose of Use value set </h2> <div> <p>This value set supports communication of purpose of use at a general level</p> </div> <p> This purpose of use value set includes codes from the following code systems:</p> <ul> <li> This value set includes codes from the following code systems: \n            http://hl7.org/fhir/v3/ActReason </li> </ul> <h3> This value set defines purpose of use and value sets may be updated later based on the requirements. </h3> <p> Release Date: 2016-11-11</p> <table class=\"grid\"> <tr> <td> <b><code>PurposeOfUse</code></b></td><td><b><display>purpose of use</display></b></td></tr> <tr> <td> <b><code>HMARKT</code></b></td><td><b><display>healthcare marketing</display></b></td></tr> <tr> <td> <b><code>HOPERAT</code></b></td><td><b><display>healthcare operations</display></b></td></tr> <tr> <td> <b><code>DONAT</code></b></td><td><b><display>donation</display></b></td></tr> <tr> <td> <b><code>FRAUD</code></b></td><td><b><display>fraud</display></b></td></tr> <tr> <td> <b><code>GOV</code></b></td><td><b><display>government</display></b></td></tr> <tr> <td> <b><code>HACCRED</code></b></td><td><b><display>health accreditation</display></b></td></tr> <tr> <td> <b><code>HCOMPL</code></b></td><td><b><display>health compliance</display></b></td></tr> <tr> <td> <b><code>HDECD</code></b></td><td><b><display>decedent</display></b></td></tr> <tr> <td> <b><code>HDIRECT</code></b></td><td><b><display>directory</display></b></td></tr> <tr> <td> <b><code>HLEGAL</code></b></td><td><b><display>legal</display></b></td></tr> <tr> <td> <b><code>HOUTCOMS</code></b></td><td><b><display>health outcome measure</display></b></td></tr> <tr> <td> <b><code>HPRGRP</code></b></td><td><b><display>health program reporting</display></b></td></tr> <tr> <td> <b><code>HQUALIMP</code></b></td><td><b><display>health quality improvement</display></b></td></tr> <tr> <td> <b><code>HSYSADMIN</code></b></td><td><b><display>health system administration</display></b></td></tr> <tr> <td> <b><code>MEMADMIN</code></b></td><td><b><display>member administration</display></b></td></tr> <tr> <td> <b><code>PATADMIN</code></b></td><td><b><display>patient administration</display></b></td></tr> <tr> <td> <b><code>PATSFTY</code></b></td><td><b><display>patient safety</display></b></td></tr> <tr> <td> <b><code>PERFMSR</code></b></td><td><b><display>performance measure</display></b></td></tr> <tr> <td> <b><code>RECORDMGT</code></b></td><td><b><display>records management</display></b></td></tr> <tr> <td> <b><code>TRAIN</code></b></td><td><b><display>training</display></b></td></tr> <tr> <td> <b><code>HPAYMT</code></b></td><td><b><display>healthcare payment</display></b></td></tr> <tr> <td> <b><code>CLMATTCH</code></b></td><td><b><display>claim attachment</display></b></td></tr> <tr> <td> <b><code>COVAUTH</code></b></td><td><b><display>coverage authorization</display></b></td></tr> <tr> <td> <b><code>COVERAGE</code></b></td><td><b><display>coverage under policy or program</display></b></td></tr> <tr> <td> <b><code>ELIGDTRM</code></b></td><td><b><display>eligibility determination</display></b></td></tr> <tr> <td> <b><code>ELIGVER</code></b></td><td><b><display>eligibility verification</display></b></td></tr> <tr> <td> <b><code>ENROLLM</code></b></td><td><b><display>enrollment</display></b></td></tr> <tr> <td> <b><code>REMITADV</code></b></td><td><b><display>remittance advice</display></b></td></tr> <tr> <td> <b><code>HRESCH</code></b></td><td><b><display>healthcare research</display></b></td></tr> <tr> <td> <b><code>CLINTRCH</code></b></td><td><b><display>clinical trial research</display></b></td></tr> <tr> <td> <b><code>PATRQT</code></b></td><td><b><display>patient requested</display></b></td></tr> <tr> <td> <b><code>FAMRQT</code></b></td><td><b><display>family requested</display></b></td></tr> <tr> <td> <b><code>PWATRNY</code></b></td><td><b><display>power of attorney</display></b></td></tr> <tr> <td> <b><code>SUPNWK</code></b></td><td><b><display>support network</display></b></td></tr> <tr> <td> <b><code>PUBHLTH</code></b></td><td><b><display>public health</display></b></td></tr> <tr> <td> <b><code>DISASTER</code></b></td><td><b><display>disaster</display></b></td></tr> <tr> <td> <b><code>THREAT</code></b></td><td><b><display>threat</display></b></td></tr> <tr> <td> <b><code>TREAT</code></b></td><td><b><display>treatment</display></b></td></tr> <tr> <td> <b><code>CAREMGT</code></b></td><td><b><display>Care Management</display></b></td></tr> <tr> <td> <b><code>CLINTRL</code></b></td><td><b><display>clinical trial</display></b></td></tr> <tr> <td> <b><code>ETREAT</code></b></td><td><b><display>Emergency Treatment</display></b></td></tr> <tr> <td> <b><code>POPHLTH</code></b></td><td><b><display>population health</display></b></td></tr> </table> </div>"
+    },
+    "url": "http://hl7.org/fhir/ValueSet/v3-PurposeOfUse",
+    "version": "1.1.0",
+    "name": "Purpose of code value set",
+    "status": "draft",
+    "experimental": true,
+    "date": "2017-04-19T07:44:43+10:00",
+    "publisher": "HL7 US Realm Steering Committee",
+    "contact": [
+        {
+            "telecom": [
+                {
+                    "system": "url",
+                    "value": "http://hl7.org/fhir"
+                }
+            ]
+        }
+    ],
+    "description": "This value set (http://hl7.org/fhir/ValueSet/v3-PurposeOfUse) is defined as part of HL7 v3. This value set includes codes from the following code systems: Include codes from http://hl7.org/fhir/v3/ActReason where concept is-a PurposeOfUse",
+    "jurisdiction": [
+        {
+            "coding": [
+                {
+                    "system": "http://hl7.org/fhir/ValueSet/v3-PurposeOfUse",
+                    "code": "US"
+                }
+            ]
+        }
+    ],
+    "compose": {
+        "include": [
+            {
+                "system": "http://hl7.org/fhir/ValueSet/v3-PurposeOfUse",
+                "concept": [
+                    {
+                        "code": "PurposeOfUse",
+                        "display": "purpose of use"
+                    },
+                    {
+                        "code": "HMARKT",
+                        "display": "healthcare marketing"
+                    },
+                    {
+                        "code": "HOPERAT",
+                        "display": "healthcare operations"
+                    },
+                    {
+                        "code": "DONAT",
+                        "display": "donation"
+                    },
+                    {
+                        "code": "FRAUD",
+                        "display": "fraud"
+                    },
+                    {
+                        "code": "GOV",
+                        "display": "government"
+                    },
+                    {
+                        "code": "HACCRED",
+                        "display": "health accreditation"
+                    },
+                    {
+                        "code": "HCOMPL",
+                        "display": "health compliance"
+                    },
+                    {
+                        "code": "HDECD",
+                        "display": "decedent"
+                    },
+                    {
+                        "code": "HDIRECT",
+                        "display": "directory"
+                    },
+                    {
+                        "code": "HLEGAL",
+                        "display": "legal"
+                    },
+                    {
+                        "code": "HOUTCOMS",
+                        "display": "health outcome measure"
+                    },
+                    {
+                        "code": "HPRGRP",
+                        "display": "health program reporting"
+                    },
+                    {
+                        "code": "HQUALIMP",
+                        "display": "health quality improvement"
+                    },
+                    {
+                        "code": "HSYSADMIN",
+                        "display": "health system administration"
+                    },
+                    {
+                        "code": "MEMADMIN",
+                        "display": "member administration"
+                    },
+                    {
+                        "code": "PATADMIN",
+                        "display": "patient administration"
+                    },
+                    {
+                        "code": "PATSFTY",
+                        "display": "patient safety"
+                    },
+                    {
+                        "code": "PERFMSR",
+                        "display": "performance measure"
+                    },
+                    {
+                        "code": "RECORDMGT",
+                        "display": "records management"
+                    },
+                    {
+                        "code": "TRAIN",
+                        "display": "training"
+                    },
+                    {
+                        "code": "HPAYMT",
+                        "display": "healthcare payment"
+                    },
+                    {
+                        "code": "CLMATTCH",
+                        "display": "claim attachment"
+                    },
+                    {
+                        "code": "COVAUTH",
+                        "display": "coverage authorization"
+                    },
+                    {
+                        "code": "COVERAGE",
+                        "display": "coverage under policy or program"
+                    },
+                    {
+                        "code": "ELIGDTRM",
+                        "display": "eligibility determination"
+                    },
+                    {
+                        "code": "ELIGVER",
+                        "display": "eligibility verification"
+                    },
+                    {
+                        "code": "ENROLLM",
+                        "display": "enrollment"
+                    },
+                    {
+                        "code": "REMITADV",
+                        "display": "remittance advice"
+                    },
+                    {
+                        "code": "HRESCH",
+                        "display": "healthcare research"
+                    },
+                    {
+                        "code": "CLINTRCH",
+                        "display": "clinical trial research"
+                    },
+                    {
+                        "code": "PATRQT",
+                        "display": "patient requested"
+                    },
+                    {
+                        "code": "FAMRQT",
+                        "display": "family requested"
+                    },
+                    {
+                        "code": "PWATRNY",
+                        "display": "power of attorney"
+                    },
+                    {
+                        "code": "SUPNWK",
+                        "display": "support network"
+                    },
+                    {
+                        "code": "PUBHLTH",
+                        "display": "public health"
+                    },
+                    {
+                        "code": "DISASTER",
+                        "display": "disaster"
+                    },
+                    {
+                        "code": "THREAT",
+                        "display": "threat"
+                    },
+                    {
+                        "code": "TREAT",
+                        "display": "treatment"
+                    },
+                    {
+                        "code": "CAREMGT",
+                        "display": "Care Management"
+                    },
+                    {
+                        "code": "CLINTRL",
+                        "display": "clinical trial"
+                    },
+                    {
+                        "code": "ETREAT",
+                        "display": "Emergency Treatment"
+                    },
+                    {
+                        "code": "POPHLTH",
+                        "display": "population health"
+                    }
+                ]
+            }
+        ]
+    }
+}

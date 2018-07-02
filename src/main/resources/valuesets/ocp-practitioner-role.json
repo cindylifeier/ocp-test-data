@@ -1,0 +1,225 @@
+{
+    "resourceType": "ValueSet",
+    "id": "ocp-practitioner-role",
+     "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> <h2> Subset of NUCC Provider Directory Provider Roles (NUCC) and Administrator Role Codes </h2> <div> <p> This value set defines subset of provider specialty role codes which are composed of the NUCC Health Care Provider Taxonomy Code Set for providers and Administrator Role Codes.</p> </div> <p> This value set includes codes from the following code systems:</p> <ul> <li> Include subset of the NUCC codes defined in \n            http://nucc.org/provider-taxonomy </li> </ul> <h3> This is a subset of NUCC Provider Taxonomy Codes and Administrator Role Codes value sets, and value sets may be updated later. </h3> <p> Release Date: 2016-11-11</p> <table class=\"grid\"> <tr> <td> <b><code>101Y00000X</code></b></td><td><b><display> Counselor</display></b></td></tr> <tr> <td> <b><code>101YA0400X</code></b></td><td><b><display>Addiction (Substance Use Disorder) Counselor</display></b></td></tr> <tr> <td> <b><code>101YM0800X</code></b></td><td><b><display>Mental Health Counselor</display></b></td></tr> <tr> <td> <b><code>101YP1600X</code></b></td><td><b><display>Pastoral Counselor</display></b></td></tr> <tr> <td> <b><code>101YP2500X</code></b></td><td><b><display>Professional Counselor</display></b></td></tr> <tr> <td> <b><code>101YS0200X</code></b></td><td><b><display>School Counselor</display></b></td></tr> <tr> <td> <b><code>102L00000X</code></b></td><td><b><display>Psychoanalyst</display></b></td></tr> <tr> <td> <b><code>102X00000X</code></b></td><td><b><display>Poetry Therapist</display></b></td></tr> <tr> <td> <b><code>103G00000X</code></b></td><td><b><display>Clinical Neuropsychologist</display></b></td></tr> <tr> <td> <b><code>103GC0700X</code></b></td><td><b><display>Clinical Clinical Neuropsychologist</display></b></td></tr> <tr> <td> <b><code>103K00000X</code></b></td><td><b><display>Behavioral Analyst</display></b></td></tr> <tr> <td> <b><code>103T00000X</code></b></td><td><b><display>Psychologist</display></b></td></tr> <tr> <td> <b><code>103TA0400X</code></b></td><td><b><display>Addiction (Substance Use Disorder) Psychologist</display></b></td></tr> <tr> <td> <b><code>103TA0700X</code></b></td><td><b><display>Adult Development &amp; Aging Psychologist</display></b></td></tr> <tr> <td> <b><code>103TB0200X</code></b></td><td><b><display>Cognitive &amp; Behavioral Psychologist</display></b></td></tr> <tr> <td> <b><code>103TC0700X</code></b></td><td><b><display>Clinical Psychologist</display></b></td></tr> <tr> <td> <b><code>103TC1900X</code></b></td><td><b><display>Counseling Psychologist</display></b></td></tr> <tr> <td> <b><code>103TC2200X</code></b></td><td><b><display>Clinical Child &amp; Adolescent Psychologist</display></b></td></tr> <tr> <td> <b><code>103TE1000X</code></b></td><td><b><display>Educational Psychologist</display></b></td></tr> <tr> <td> <b><code>103TE1100X</code></b></td><td><b><display>Exercise &amp; Sports Psychologist</display></b></td></tr> <tr> <td> <b><code>103TF0000X</code></b></td><td><b><display>Family Psychologist</display></b></td></tr> <tr> <td> <b><code>103TF0200X</code></b></td><td><b><display>Forensic Psychologist</display></b></td></tr> <tr> <td> <b><code>103TH0004X</code></b></td><td><b><display>Health Psychologist</display></b></td></tr> <tr> <td> <b><code>103TH0100X</code></b></td><td><b><display>Health Service Psychologist</display></b></td></tr> <tr> <td> <b><code>103TM1700X</code></b></td><td><b><display>Men &amp; Masculinity Psychologist</display></b></td></tr> <tr> <td> <b><code>103TM1800X</code></b></td><td><b><display>Mental Retardation &amp; Developmental Disabilities Psychologist</display></b></td></tr> <tr> <td> <b><code>103TP0016X</code></b></td><td><b><display>Prescribing (Medical) Psychologist</display></b></td></tr> <tr> <td> <b><code>103TP0814X</code></b></td><td><b><display>Psychoanalysis Psychologist</display></b></td></tr> <tr> <td> <b><code>103TP2700X</code></b></td><td><b><display>Psychotherapy Psychologist</display></b></td></tr> <tr> <td> <b><code>103TP2701X</code></b></td><td><b><display>Group Psychotherapy Psychologist</display></b></td></tr> <tr> <td> <b><code>103TR0400X</code></b></td><td><b><display>Rehabilitation Psychologist</display></b></td></tr> <tr> <td> <b><code>103TS0200X</code></b></td><td><b><display>School Psychologist</display></b></td></tr> <tr> <td> <b><code>103TW0100X</code></b></td><td><b><display>Women Psychologist</display></b></td></tr> <tr> <td> <b><code>104100000X</code></b></td><td><b><display>Social Worker</display></b></td></tr> <tr> <td> <b><code>1041C0700X</code></b></td><td><b><display>Clinical Social Worker</display></b></td></tr> <tr> <td> <b><code>1041S0200X</code></b></td><td><b><display>School Social Worker</display></b></td></tr> <tr> <td> <b><code>106E00000X</code></b></td><td><b><display>Assistant Behavior Analyst</display></b></td></tr> <tr> <td> <b><code>171M00000X</code></b></td><td><b><display>Case Manager/Care Coordinator</display></b></td></tr> <tr> <td> <b><code>CAREMNGR</code></b></td><td><b><display>Care Manager</display></b></td></tr> <tr> <td> <b><code>ORGADMIN</code></b></td><td><b><display>Organization Administrator</display></b></td></tr> <tr> <td> <b><code>PCP</code></b></td><td><b><display>Primary Care Provider</display></b></td></tr> <tr> <td> <b><code>BENETSPT</code></b></td><td><b><display>Benefits Specialist</display></b></td></tr> <tr> <td> <b><code>HASST</code></b></td><td><b><display>Health Assistant</display></b></td></tr> <tr> <td> <b><code>FORECEPT</code></b></td><td><b><display>Front Office/Receptionist</display></b></td></tr> </table> </div>"
+    },
+    "url": "http://www.hl7.org/fhir/us/ocp/ValueSet/ocp-provider-role",
+    "version": "1.1.0",
+    "name": "Provider Taxonomy codes that indicates Provider Codes and Specialization with Classification and Administrator Role Codes",
+    "status": "draft",
+    "experimental": true,
+    "date": "2017-04-19T07:44:43+10:00",
+    "publisher": "National Uniform Claim Committee(NUCC)",
+    "contact": [
+        {
+            "telecom": [
+                {
+                    "system": "other",
+                    "value": "http://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/code-lookup-mainmenu-50"
+                }
+            ]
+        }
+    ],
+    "description": "Provider speciality roles codes which are composed of the NUCC Health Care Provider Taxonomy Code Set for providers and Administrator Role Codes",
+    "jurisdiction": [
+        {
+            "coding": [
+                {
+                    "system": "http://nucc.org/provider-taxonomy",
+                    "code": "US"
+                }
+            ]
+        }
+    ],
+    "compose": {
+        "include": [
+            {
+                "system": "http://nucc.org/provider-taxonomy",
+                "concept": [
+                    {
+                        "code": "101Y00000X",
+                        "display": "Counselor"
+                    },
+                    {
+                        "code": "101YA0400X",
+                        "display": "Addiction (Substance Use Disorder) Counselor"
+                    },
+                    {
+                        "code": "101YM0800X",
+                        "display": "Mental Health Counselor"
+                    },
+                    {
+                        "code": "101YP1600X",
+                        "display": "Pastoral Counselor"
+                    },
+                    {
+                        "code": "101YP2500X",
+                        "display": "Professional Counselor"
+                    },
+                    {
+                        "code": "101YS0200X",
+                        "display": "School Counselor"
+                    },
+                    {
+                        "code": "102L00000X",
+                        "display": "Psychoanalyst"
+                    },
+                    {
+                        "code": "102X00000X",
+                        "display": "Poetry Therapist"
+                    },
+                    {
+                        "code": "103G00000X",
+                        "display": "Clinical Neuropsychologist"
+                    },
+                    {
+                        "code": "103GC0700X",
+                        "display": "Clinical Clinical Neuropsychologist"
+                    },
+                    {
+                        "code": "103K00000X",
+                        "display": "Behavioral Analyst"
+                    },
+                    {
+                        "code": "103T00000X",
+                        "display": "Psychologist"
+                    },
+                    {
+                        "code": "103TA0400X",
+                        "display": "Addiction (Substance Use Disorder) Psychologist"
+                    },
+                    {
+                        "code": "103TA0700X",
+                        "display": "Adult Development and Aging Psychologist"
+                    },
+                    {
+                        "code": "103TB0200X",
+                        "display": "Cognitive & Behavioral Psychologist"
+                    },
+                    {
+                        "code": "103TC0700X",
+                        "display": "Clinical Psychologist"
+                    },
+                    {
+                        "code": "103TC1900X",
+                        "display": "Counseling Psychologist"
+                    },
+                    {
+                        "code": "103TC2200X",
+                        "display": "Clinical Child & Adolescent Psychologist"
+                    },
+                    {
+                        "code": "103TE1000X",
+                        "display": "Educational Psychologist"
+                    },
+                    {
+                        "code": "103TE1100X",
+                        "display": "Exercise & Sports Psychologist"
+                    },
+                    {
+                        "code": "103TF0000X",
+                        "display": "Family Psychologist"
+                    },
+                    {
+                        "code": "103TF0200X",
+                        "display": "Forensic Psychologist"
+                    },
+                    {
+                        "code": "103TH0004X",
+                        "display": "Health Psychologist"
+                    },
+                    {
+                        "code": "103TH0100X",
+                        "display": "Health Service Psychologist"
+                    },
+                    {
+                        "code": "103TM1700X",
+                        "display": "Men & Masculinity Psychologist"
+                    },
+                    {
+                        "code": "103TM1800X",
+                        "display": "Mental Retardation & Developmental Disabilities Psychologist"
+                    },
+                    {
+                        "code": "103TP0016X",
+                        "display": "Prescribing (Medical) Psychologist"
+                    },
+                    {
+                        "code": "103TP0814X",
+                        "display": "Psychoanalysis Psychologist"
+                    },
+                    {
+                        "code": "103TP2700X",
+                        "display": "Psychotherapy Psychologist"
+                    },
+                    {
+                        "code": "103TP2701X",
+                        "display": "Group Psychotherapy Psychologist"
+                    },
+                    {
+                        "code": "103TR0400X",
+                        "display": "Rehabilitation Psychologist"
+                    },
+                    {
+                        "code": "103TS0200X",
+                        "display": "School Psychologist"
+                    },
+                    {
+                        "code": "103TW0100X",
+                        "display": "Women Psychologist"
+                    },
+                    {
+                        "code": "104100000X",
+                        "display": "Social Worker"
+                    },
+                    {
+                        "code": "1041C0700X",
+                        "display": "Clinical Social Worker"
+                    },
+                    {
+                        "code": "1041S0200X",
+                        "display": "School Social Worker"
+                    },
+                    {
+                        "code": "106E00000X",
+                        "display": "Assistant Behavior Analyst"
+                    },
+                    {
+                        "code": "106S00000X",
+                        "display": "Behavior Technician"
+                    },
+                    {
+                        "code": "171M00000X",
+                        "display": "Case Manager/Care Coordinator"
+                    },
+                    {
+                        "code": "CAREMNGR",
+                        "display": "Care Manager"
+                    },
+                    {
+                        "code": "ORGADMIN",
+                        "display": "Organization Administrator"
+                    },
+                    {
+                        "code": "PCP",
+                        "display": "Primary Care Provider"
+                    },
+                    {
+                        "code": "BENETSPT",
+                        "display": "Benefits Specialist"
+                    },
+                    {
+                        "code": "HASST",
+                        "display": "Health Assistant"
+                    },
+                    {
+                        "code": "FORECEPT",
+                        "display": "Front Office/Receptionist"
+                    }
+                ]
+            }
+        ]
+    }
+}

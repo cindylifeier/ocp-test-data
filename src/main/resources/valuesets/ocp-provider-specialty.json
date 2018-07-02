@@ -1,0 +1,161 @@
+{
+    "resourceType": "ValueSet",
+    "id": "ocp-provider-specialty",
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> <h2> Subset of NUCC Provider Directory Provider Specialty (NUCC) </h2> <div> <p> This value set defines subset of provider specialty codes which are composed of the NUCC Health Care Provider Taxonomy Code Set for providers.</p> </div> <p> This value set includes codes from the following code systems:</p> <ul> <li> Include subset of the codes defined in http://nucc.org/provider-taxonomy </li> </ul> <h3> This is a subset of NUCC Provider Taxonomy Codes value set may be updated later. </h3> <p> Release Date: 2016-11-11</p> <table class=\"grid\"> <tr> <td> <b><code>101Y00000X</code></b></td><td><b><display></display></b></td></tr> <tr> <td> <b><code>101YA0400X</code></b></td><td><b><display>Addiction (Substance Use Disorder)</display></b></td></tr> <tr> <td> <b><code>101YM0800X</code></b></td><td><b><display>Mental Health</display></b></td></tr> <tr> <td> <b><code>101YP1600X</code></b></td><td><b><display>Pastoral</display></b></td></tr> <tr> <td> <b><code>101YP2500X</code></b></td><td><b><display>Professional</display></b></td></tr> <tr> <td> <b><code>101YS0200X</code></b></td><td><b><display>School</display></b></td></tr> <tr> <td> <b><code>102L00000X</code></b></td><td><b><display></display></b></td></tr> <tr> <td> <b><code>102X00000X</code></b></td><td><b><display></display></b></td></tr> <tr> <td> <b><code>103G00000X</code></b></td><td><b><display></display></b></td></tr> <tr> <td> <b><code>103GC0700X</code></b></td><td><b><display>Clinical</display></b></td></tr> <tr> <td> <b><code>103K00000X</code></b></td><td><b><display></display></b></td></tr> <tr> <td> <b><code>103T00000X</code></b></td><td><b><display></display></b></td></tr> <tr> <td> <b><code>103TA0400X</code></b></td><td><b><display>Addiction (Substance Use Disorder)</display></b></td></tr> <tr> <td> <b><code>103TA0700X</code></b></td><td><b><display>Adult Development &amp; Aging</display></b></td></tr> <tr> <td> <b><code>103TB0200X</code></b></td><td><b><display>Cognitive &amp; Behavioral</display></b></td></tr> <tr> <td> <b><code>103TC0700X</code></b></td><td><b><display>Clinical</display></b></td></tr> <tr> <td> <b><code>103TC1900X</code></b></td><td><b><display>Counseling</display></b></td></tr> <tr> <td> <b><code>103TC2200X</code></b></td><td><b><display>Clinical Child &amp; Adolescent</display></b></td></tr> <tr> <td> <b><code>103TE1000X</code></b></td><td><b><display>Educational</display></b></td></tr> <tr> <td> <b><code>103TE1100X</code></b></td><td><b><display>Exercise &amp; Sports</display></b></td></tr> <tr> <td> <b><code>103TF0000X</code></b></td><td><b><display>Family</display></b></td></tr> <tr> <td> <b><code>103TF0200X</code></b></td><td><b><display>Forensic</display></b></td></tr> <tr> <td> <b><code>103TH0004X</code></b></td><td><b><display>Health</display></b></td></tr> <tr> <td> <b><code>103TH0100X</code></b></td><td><b><display>Health Service</display></b></td></tr> <tr> <td> <b><code>103TM1700X</code></b></td><td><b><display>Men &amp; Masculinity</display></b></td></tr> <tr> <td> <b><code>103TM1800X</code></b></td><td><b><display>Mental Retardation &amp; Developmental Disabilities</display></b></td></tr> <tr> <td> <b><code>103TP0016X</code></b></td><td><b><display>Prescribing (Medical)</display></b></td></tr> <tr> <td> <b><code>103TP0814X</code></b></td><td><b><display>Psychoanalysis</display></b></td></tr> <tr> <td> <b><code>103TP2700X</code></b></td><td><b><display>Psychotherapy</display></b></td></tr> <tr> <td> <b><code>103TP2701X</code></b></td><td><b><display>Group Psychotherapy</display></b></td></tr> <tr> <td> <b><code>103TR0400X</code></b></td><td><b><display>Rehabilitation</display></b></td></tr> <tr> <td> <b><code>103TS0200X</code></b></td><td><b><display>School</display></b></td></tr> <tr> <td> <b><code>103TW0100X</code></b></td><td><b><display>Women</display></b></td></tr> <tr> <td> <b><code>104100000X</code></b></td><td><b><display></display></b></td></tr> <tr> <td> <b><code>1041C0700X</code></b></td><td><b><display>Clinical</display></b></td></tr> <tr> <td> <b><code>1041S0200X</code></b></td><td><b><display>School</display></b></td></tr> <tr> <td> <b><code>106E00000X</code></b></td><td><b><display></display></b></td></tr> <tr> <td> <b><code>106H00000X</code></b></td><td><b><display></display></b></td></tr> <tr> <td> <b><code>106S00000X</code></b></td><td><b><display></display></b></td></tr> </table> </div>"
+    },
+    "url": "http://www.hl7.org/fhir/us/ocp/ValueSet/ocp-provider-specialty",
+    "version": "1.1.0",
+    "name": "Provider Taxonomy codes that indicates Provider Codes and Specialities",
+    "status": "draft",
+    "experimental": true,
+    "date": "2017-04-19T07:44:43+10:00",
+    "publisher": "National Uniform Claim Committee (NUCC)",
+    "contact": [
+        {
+            "telecom": [
+                {
+                    "system": "other",
+                    "value": "http://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/code-lookup-mainmenu-50"
+                }
+            ]
+        }
+    ],
+    "description": "Provider speciality roles codes which are composed of the NUCC Health Care Provider Taxonomy Code Set for providers",
+    "jurisdiction": [
+        {
+            "coding": [
+                {
+                    "system": "http://nucc.org/provider-taxonomy",
+                    "code": "US"
+                }
+            ]
+        }
+    ],
+    "compose": {
+        "include": [
+            {
+                "system": "http://nucc.org/provider-taxonomy",
+                "concept": [
+                    {
+                        "code": "101YA0400X",
+                        "display": "Addiction (Substance Use Disorder)"
+                    },
+                    {
+                        "code": "101YM0800X",
+                        "display": "Mental Health"
+                    },
+                    {
+                        "code": "101YP1600X",
+                        "display": "Pastoral"
+                    },
+                    {
+                        "code": "101YP2500X",
+                        "display": "Professional"
+                    },
+                    {
+                        "code": "101YS0200X",
+                        "display": "School"
+                    },
+                    {
+                        "code": "103GC0700X",
+                        "display": "Clinical"
+                    },
+                    {
+                        "code": "103TA0400X",
+                        "display": "Addiction (Substance Use Disorder)"
+                    },
+                    {
+                        "code": "103TA0700X",
+                        "display": "Adult Development & Aging"
+                    },
+                    {
+                        "code": "103TB0200X",
+                        "display": "Cognitive & Behavioral"
+                    },
+                    {
+                        "code": "103TC0700X",
+                        "display": "Clinical"
+                    },
+                    {
+                        "code": "103TC1900X",
+                        "display": "Counseling"
+                    },
+                    {
+                        "code": "103TC2200X",
+                        "display": "Clinical Child & Adolescent"
+                    },
+                    {
+                        "code": "103TE1000X",
+                        "display": "Educational"
+                    },
+                    {
+                        "code": "103TE1100X",
+                        "display": "Exercise & Sports"
+                    },
+                    {
+                        "code": "103TF0000X",
+                        "display": "Family"
+                    },
+                    {
+                        "code": "103TF0200X",
+                        "display": "Forensic"
+                    },
+                    {
+                        "code": "103TH0004X",
+                        "display": "Health"
+                    },
+                    {
+                        "code": "103TH0100X",
+                        "display": "Health Service"
+                    },
+                    {
+                        "code": "103TM1700X",
+                        "display": "Men & Masculinity"
+                    },
+                    {
+                        "code": "103TM1800X",
+                        "display": "Mental Retardation & Developmental Disabilities"
+                    },
+                    {
+                        "code": "103TP0016X",
+                        "display": "Prescribing (Medical)"
+                    },
+                    {
+                        "code": "103TP0814X",
+                        "display": "Psychoanalysis"
+                    },
+                    {
+                        "code": "103TP2700X",
+                        "display": "Psychotherapy"
+                    },
+                    {
+                        "code": "103TP2701X",
+                        "display": "Group Psychotherapy"
+                    },
+                    {
+                        "code": "103TR0400X",
+                        "display": "Rehabilitation"
+                    },
+                    {
+                        "code": "103TS0200X",
+                        "display": "School"
+                    },
+                    {
+                        "code": "103TW0100X",
+                        "display": "Women"
+                    },
+                    {
+                        "code": "1041C0700X",
+                        "display": "Clinical"
+                    },
+                    {
+                        "code": "1041S0200X",
+                        "display": "School"
+                    }
+                ]
+            }
+        ]
+    }
+}

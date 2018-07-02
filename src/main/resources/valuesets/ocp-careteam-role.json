@@ -1,0 +1,109 @@
+{
+    "resourceType": "ValueSet",
+    "id": "ocp-careteam-role",
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> <h2> CareTeam roles contains Subset of NUCC Provider Directory Provider Roles (NUCC) and Administrator Role Codes </h2> <div> <p> This value set defines CareTeam roles (subset of provider specialty role codes which are composed of the NUCC Health Care Provider Taxonomy Code Set for providers and Administrator Role Codes).</p> </div> <p> This CareTeam value set includes codes from the following code systems:</p> <ul> <li> Include subset of the NUCC codes defined in \n            http://nucc.org/provider-taxonomy </li> </ul> <h3> This value set defines CareTeam role codes, and roles (a subset of NUCC Provider Taxonomy Codes and Administrator Role Codes), and value sets may be updated later. </h3> <p> Release Date: 2016-11-11</p> <table class=\"grid\"> <tr> <td> <b><code>101Y00000X</code></b></td><td><b><display>Counselor</display></b></td></tr> <tr> <td> <b><code>101YA0400X</code></b></td><td><b><display>Addiction (Substance Use Disorder) Counselor</display></b></td></tr> <tr> <td> <b><code>101YM0800X</code></b></td><td><b><display>Mental Health Counselor</display></b></td></tr> <tr> <td> <b><code>103G00000X</code></b></td><td><b><display>Clinical Neuropsychologist</display></b></td></tr> <tr> <td> <b><code>103GC0700X</code></b></td><td><b><display>Clinical Clinical Neuropsychologist</display></b></td></tr> <tr> <td> <b><code>103K00000X</code></b></td><td><b><display>Behavioral Analyst</display></b></td></tr> <tr> <td> <b><code>103T00000X</code></b></td><td><b><display>Psychologist</display></b></td></tr> <tr> <td> <b><code>103TC1900X</code></b></td><td><b><display>Counseling Psychologist</display></b></td></tr> <tr> <td> <b><code>171M00000X</code></b></td><td><b><display>Case Manager/Care Coordinator</display></b></td></tr> <tr> <td> <b><code>251S00000X</code></b></td><td><b><display>Community/Behavioral Health</display></b></td></tr> <tr> <td> <b><code>103TB0200X</code></b></td><td><b><display>Cognitive &amp; Behavioral Psychologist</display></b></td></tr> <tr> <td> <b><code>2084B0040X</code></b></td><td><b><display>Behavioral Neurology &amp; Neuropsychiatry </display></b></td></tr> <tr> <td> <b><code>251S00000X</code></b></td><td><b><display>Community/Behavioral Health</display></b></td></tr> <tr> <td> <b><code>CAREMNGR</code></b></td><td><b><display>Care Manager</display></b></td></tr> <tr> <td> <b><code>PCP</code></b></td><td><b><display>Primary Care Provider</display></b></td></tr> <tr> <td> <b><code>RELPER</code></b></td><td><b><display>Related Person</display></b></td></tr> </table> </div>"
+    },
+    "url": "http://www.hl7.org/fhir/us/ocp/ValueSet/ocp-careteam-role",
+    "version": "1.1.0",
+    "name": "Provider Taxonomy codes that indicates Provider Codes and Specialization with Classification and Administrator Role Codes",
+    "status": "draft",
+    "experimental": true,
+    "date": "2017-04-19T07:44:43+10:00",
+    "publisher": "National Uniform Claim Committee(NUCC)",
+    "contact": [
+        {
+            "telecom": [
+                {
+                    "system": "other",
+                    "value": "http://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/code-lookup-mainmenu-50"
+                }
+            ]
+        }
+    ],
+    "description": "Provider speciality roles codes which are composed of the NUCC Health Care Provider Taxonomy Code Set for providers and Administrator Role Codes",
+    "jurisdiction": [
+        {
+            "coding": [
+                {
+                    "system": "http://nucc.org/provider-taxonomy",
+                    "code": "US"
+                }
+            ]
+        }
+    ],
+    "compose": {
+        "include": [
+            {
+                "system": "http://nucc.org/provider-taxonomy",
+                "concept": [
+                    {
+                        "code": "101Y00000X",
+                        "display": "Counselor"
+                    },
+                    {
+                        "code": "101YA0400X",
+                        "display": "Addiction (Substance Use Disorder) Counselor"
+                    },
+                    {
+                        "code": "101YM0800X",
+                        "display": "Mental Health Counselor"
+                    },
+                    {
+                        "code": "103G00000X",
+                        "display": "Clinical Neuropsychologist"
+                    },
+                    {
+                        "code": "103GC0700X",
+                        "display": "Clinical Clinical Neuropsychologist"
+                    },
+                    {
+                        "code": "103K00000X",
+                        "display": "Behavioral Analyst"
+                    },
+                    {
+                        "code": "103T00000X",
+                        "display": "Psychoanalyst"
+                    },
+                    {
+                        "code": "103TC1900X",
+                        "display": "Counseling Psychologist"
+                    },
+                    {
+                        "code": "171M00000X",
+                        "display": "Case Manager/Care Coordinator"
+                    },
+                    {
+                        "code": "251S00000X",
+                        "display": "Community/Behavioral Health"
+                    },
+                    {
+                        "code": "103TB0200X",
+                        "display": "Cognitive & Behavioral Psychologist"
+                    },
+                    {
+                        "code": "2084B0040X",
+                        "display": "Behavioral Neurology & Neuropsychiatry"
+                    },
+                    {
+                        "code": "251S00000X",
+                        "display": "Community/Behavioral Health"
+                    },
+                    {
+                        "code": "CAREMNGR",
+                        "display": "Care Manager"
+                    },
+                    {
+                        "code": "PCP",
+                        "display": "Primary Care Provider"
+                    },
+                    {
+                        "code": "RELPER",
+                        "display": "Related Person"
+                    }
+                ]
+            }
+        ]
+    }
+}
