@@ -22,40 +22,33 @@ import java.util.*;
 @Slf4j
 public class OcpDataLoadApplication {
 
-    private static String XSLX_FILE;
-
     public static void main(String[] args) throws IOException, InvalidFormatException {
-        String[] values = readPropertiesFile();
+        readPropertiesFile();
 
-        Arrays.stream(values).forEach(log::info);
 
-        if(values.length == 3) {
-            //populateFhirResources(values[0], values[1]);
+        //populateFhirResources();
 
-            //populateUAA(values[0], values[2]);
-        } else {
-            log.error("Incorrect number of keys in the properties file");
-        }
+         populateUAA();
     }
 
-    private static String[] readPropertiesFile() {
+    private static void readPropertiesFile() {
         Properties prop = new Properties();
-        String[] values = new String[3];
+        String[] values = new String[4];
         try (InputStream input = new FileInputStream("data.properties")) {
             prop.load(input);
 
-            values[0] = prop.getProperty("xlsxfile");
-            values[1] = prop.getProperty("valuesetsdir");
-            values[2] = prop.getProperty("scriptsdir");
+            DataConstants.xlsxFile = prop.getProperty("xlsxfile");
+            DataConstants.valueSetDir = prop.getProperty("valuesetsdir");
+            DataConstants.scriptsDir = prop.getProperty("scriptsdir");
+            DataConstants.serverUrl = prop.getProperty("fhirserverurl");
 
         } catch (IOException e) {
             log.error("Please provide a file data.properties at the root directory");
         }
-        return values;
 
     }
 
-    private static void populateUAA(final String XSLX_FILE, final String scriptsDir) throws IOException, InvalidFormatException {
+    private static void populateUAA() throws IOException, InvalidFormatException {
         //1. Create roles and scopes
         RolesUAAHelper.createRoles();
         log.info("Finished creating roles and scopes in UAA");
@@ -63,7 +56,7 @@ public class OcpDataLoadApplication {
         //2. Create ocpAdmin
         OCPAdminUAAHelper.createOCPAdmin();
 
-        Workbook workbook = WorkbookFactory.create(new File(XSLX_FILE));
+        Workbook workbook = WorkbookFactory.create(new File(DataConstants.xlsxFile));
 
         //Get all organizations
         Map<String, String> organizationsMap = retrieveOrganizations();
@@ -87,16 +80,16 @@ public class OcpDataLoadApplication {
         log.info("Finished creating patients in UAA");
     }
 
-    private static void populateFhirResources(final String XSLX_FILE, final String valueSetsDir) throws IOException, InvalidFormatException {
+    private static void populateFhirResources() throws IOException, InvalidFormatException {
 
         //for intercepting the requests and debugging
         setFiddler();
 
         //ValueSets
-        ValueSetHelper.process(valueSetsDir);
+        ValueSetHelper.process();
 
         //Create a workbook form excel file
-        Workbook workbook = WorkbookFactory.create(new File(XSLX_FILE));
+        Workbook workbook = WorkbookFactory.create(new File(DataConstants.xlsxFile));
 
         //Check number of sheets
         log.info("Number of sheets : " + workbook.getNumberOfSheets());

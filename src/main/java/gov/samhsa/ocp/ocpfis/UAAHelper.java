@@ -22,7 +22,7 @@ public class UAAHelper {
         }
 
         try {
-            ProcessBuilder pb = new ProcessBuilder("/bin/bash", "./create-user-with-attributes.sh");
+            ProcessBuilder pb = new ProcessBuilder("/bin/bash", DataConstants.scriptsDir + "/create-user-with-attributes.sh");
 
             log.info("created processbuilder..");
 
