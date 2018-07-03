@@ -30,18 +30,22 @@ public class PractitionersHelper {
 
         RestTemplate rt = new RestTemplate();
         practitionerDtos.forEach(practitionerDto -> {
-            HttpEntity<PractitionerDto> request = new HttpEntity<>(practitionerDto);
+            try {
+                HttpEntity<PractitionerDto> request = new HttpEntity<>(practitionerDto);
 
-            log.info("Getting ready to post: " + practitionerDto);
-            List<IdentifierDto> identifierDtos = practitionerDto.getIdentifiers();
+                log.info("Getting ready to post: " + practitionerDto);
+                List<IdentifierDto> identifierDtos = practitionerDto.getIdentifiers();
 
-            Optional<IdentifierDto> oIdentifierDto = identifierDtos.stream().findFirst();
-            if(oIdentifierDto.isPresent()) {
-                IdentifierDto identifierDto = oIdentifierDto.get();
+                Optional<IdentifierDto> oIdentifierDto = identifierDtos.stream().findFirst();
+                if (oIdentifierDto.isPresent()) {
+                    IdentifierDto identifierDto = oIdentifierDto.get();
 
-                if (identifierDto.getValue() != null) {
-                    rt.postForObject(DataConstants.serverUrl + "practitioners", request, PractitionerDto.class);
+                    if (identifierDto.getValue() != null) {
+                        rt.postForObject(DataConstants.serverUrl + "practitioners", request, PractitionerDto.class);
+                    }
                 }
+            } catch (Exception e) {
+                log.error("Practitioner could not be posted");
             }
         });
 
@@ -59,7 +63,11 @@ public class PractitionersHelper {
             if (rowNum > 0) {
                 int j = 0;
                 PractitionerDto dto = new PractitionerDto();
-                processRow(mapOrganizations, practitionerRolesLookup, row, j, dto);
+                try {
+                    processRow(mapOrganizations, practitionerRolesLookup, row, j, dto);
+                } catch (Exception e) {
+                    log.error("Error processing row of a practitioner");
+                }
                 practitionerDtos.add(dto);
             }
             rowNum++;

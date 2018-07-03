@@ -30,55 +30,7 @@ public class ActivityDefinitionsHelper {
         Map<String,ValueSetDto> actionParticipantRoleLookups=CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/action-participant-role");
         Map<String,ValueSetDto> actionResourceTypeLookups= CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/resource-type");
 
-        List<TempActivityDefinitionDto> activityDefinitionDtos=new ArrayList<>();
-
-        for(Row row: activityDefinitions){
-            if(rowNum>0){
-                int j=0;
-                TempActivityDefinitionDto dto=new TempActivityDefinitionDto();
-                TempPeriodDto periodDto=new TempPeriodDto();
-                for(Cell cell: row){
-                    String cellValue=new DataFormatter().formatCellValue(cell);
-
-                    if(j==0){
-                        dto.setPublisher("Organization/"+mapOrganizations.get(cellValue));
-                    }else if(j==1){
-                        dto.setVersion(cellValue);
-                    }else if(j==2){
-                        dto.setName(cellValue);
-                    } else if(j==3){
-                        dto.setTitle(cellValue);
-                    } else if(j==4){
-                        dto.setStatus(publicationStatusLookups.get(cellValue));
-                    } else if(j==5){
-                        dto.setDate(String.valueOf(cellValue));
-                    } else if(j==6){
-                        dto.setDescription(cellValue);
-                    } else if(j==7){
-                       periodDto.setStart(String.valueOf(cellValue));
-                    } else if(j==8){
-                        periodDto.setEnd(String.valueOf(cellValue));
-                        dto.setEffectivePeriod(periodDto);
-                    } else if(j==9){
-                        dto.setTopic(topicLookups.get(cellValue));
-                    } else if(j==10){
-                        dto.setKind(actionResourceTypeLookups.get(cellValue));
-                    } else if(j==11){
-                        dto.setActionParticipantType(actionParticipantTypeLookups.get(cellValue));
-                    }else if(j==12){
-                        dto.setActionParticipantRole(actionParticipantRoleLookups.get(cellValue));
-                    }else if(j==13){
-                        TempTimingDto timingDto =new TempTimingDto();
-                        timingDto.setDurationMax(cellValue);
-                        dto.setTiming(timingDto);
-                    }
-
-                    j++;
-                }
-                activityDefinitionDtos.add(dto);
-            }
-            rowNum++;
-        }
+        List<TempActivityDefinitionDto> activityDefinitionDtos = retrieveSheet(activityDefinitions, mapOrganizations, rowNum, publicationStatusLookups, topicLookups, actionParticipantTypeLookups, actionParticipantRoleLookups, actionResourceTypeLookups);
         RestTemplate rt=new RestTemplate();
 
         activityDefinitionDtos.stream().filter(activityDef->!activityDef.getPublisher().split("/")[1].equalsIgnoreCase("null")).forEach(activityDefinitionDto->{
@@ -90,5 +42,66 @@ public class ActivityDefinitionsHelper {
                 e.printStackTrace();
             }
         });
+    }
+
+    private static List<TempActivityDefinitionDto> retrieveSheet(Sheet activityDefinitions, Map<String, String> mapOrganizations, int rowNum, Map<String, ValueSetDto> publicationStatusLookups, Map<String, ValueSetDto> topicLookups, Map<String, ValueSetDto> actionParticipantTypeLookups, Map<String, ValueSetDto> actionParticipantRoleLookups, Map<String, ValueSetDto> actionResourceTypeLookups) {
+        List<TempActivityDefinitionDto> activityDefinitionDtos=new ArrayList<>();
+
+        for(Row row: activityDefinitions){
+            if(rowNum>0){
+                int j=0;
+                TempActivityDefinitionDto dto=new TempActivityDefinitionDto();
+                TempPeriodDto periodDto=new TempPeriodDto();
+                try {
+                    processRow(mapOrganizations, publicationStatusLookups, topicLookups, actionParticipantTypeLookups, actionParticipantRoleLookups, actionResourceTypeLookups, row, j, dto, periodDto);
+                } catch (Exception e) {
+                    log.error("Error processing a row for activitydefinitions");
+                }
+                activityDefinitionDtos.add(dto);
+            }
+            rowNum++;
+        }
+        return activityDefinitionDtos;
+    }
+
+    private static void processRow(Map<String, String> mapOrganizations, Map<String, ValueSetDto> publicationStatusLookups, Map<String, ValueSetDto> topicLookups, Map<String, ValueSetDto> actionParticipantTypeLookups, Map<String, ValueSetDto> actionParticipantRoleLookups, Map<String, ValueSetDto> actionResourceTypeLookups, Row row, int j, TempActivityDefinitionDto dto, TempPeriodDto periodDto) {
+        for(Cell cell: row){
+            String cellValue=new DataFormatter().formatCellValue(cell);
+
+            if(j==0){
+                dto.setPublisher("Organization/"+mapOrganizations.get(cellValue));
+            }else if(j==1){
+                dto.setVersion(cellValue);
+            }else if(j==2){
+                dto.setName(cellValue);
+            } else if(j==3){
+                dto.setTitle(cellValue);
+            } else if(j==4){
+                dto.setStatus(publicationStatusLookups.get(cellValue));
+            } else if(j==5){
+                dto.setDate(String.valueOf(cellValue));
+            } else if(j==6){
+                dto.setDescription(cellValue);
+            } else if(j==7){
+               periodDto.setStart(String.valueOf(cellValue));
+            } else if(j==8){
+                periodDto.setEnd(String.valueOf(cellValue));
+                dto.setEffectivePeriod(periodDto);
+            } else if(j==9){
+                dto.setTopic(topicLookups.get(cellValue));
+            } else if(j==10){
+                dto.setKind(actionResourceTypeLookups.get(cellValue));
+            } else if(j==11){
+                dto.setActionParticipantType(actionParticipantTypeLookups.get(cellValue));
+            }else if(j==12){
+                dto.setActionParticipantRole(actionParticipantRoleLookups.get(cellValue));
+            }else if(j==13){
+                TempTimingDto timingDto =new TempTimingDto();
+                timingDto.setDurationMax(cellValue);
+                dto.setTiming(timingDto);
+            }
+
+            j++;
+        }
     }
 }

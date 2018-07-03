@@ -39,21 +39,10 @@ public class OrganizationHelper {
             if (rowNum > 0) {
                 int j = 0;
                 OrganizationDto dto = new OrganizationDto();
-                for (Cell cell : row) {
-                    String cellValue = dataFormatter.formatCellValue(cell);
-
-                    if (j == 0) {
-                        dto.setName(cellValue);
-                    } else if (j == 2) {
-                        dto.setAddresses(CommonHelper.getAddresses(cellValue));
-                    } else if (j == 3) {
-                        dto.setTelecoms(CommonHelper.getTelecoms("phone",cellValue));
-                    } else if (j == 4) {
-                        dto.setIdentifiers(CommonHelper.getIdentifiers("Organization Tax ID", cellValue));
-                    } else if (j == 5) {
-                        dto.setActive(true);
-                    }
-                    j++;
+                try {
+                    processRow(row, j, dto);
+                } catch (Exception e) {
+                    log.error("Error processing a row for organization");
                 }
                 organizationDtos.add(dto);
             }
@@ -73,5 +62,24 @@ public class OrganizationHelper {
             }
         });
 
+    }
+
+    private static void processRow(Row row, int j, OrganizationDto dto) {
+        for (Cell cell : row) {
+            String cellValue = dataFormatter.formatCellValue(cell);
+
+            if (j == 0) {
+                dto.setName(cellValue);
+            } else if (j == 2) {
+                dto.setAddresses(CommonHelper.getAddresses(cellValue));
+            } else if (j == 3) {
+                dto.setTelecoms(CommonHelper.getTelecoms("phone",cellValue));
+            } else if (j == 4) {
+                dto.setIdentifiers(CommonHelper.getIdentifiers("Organization Tax ID", cellValue));
+            } else if (j == 5) {
+                dto.setActive(true);
+            }
+            j++;
+        }
     }
 }

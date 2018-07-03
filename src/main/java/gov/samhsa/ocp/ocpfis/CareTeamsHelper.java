@@ -28,86 +28,7 @@ public class CareTeamsHelper {
         Map<String, String> careTeamReasonCodes = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/care-team-reasons");
         Map<String, String> participantRoles = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/participant-roles");
 
-        List<CareTeamDto> careTeamDtos = new ArrayList<>();
-
-        for (Row row : careTeams) {
-            if (rowNum > 0) {
-                int j = 0;
-                CareTeamDto dto = new CareTeamDto();
-                ParticipantDto participantDto = new ParticipantDto();
-
-                for (Cell cell : row) {
-                    String cellValue = new DataFormatter().formatCellValue(cell);
-
-                    if (j == 0) {
-                        //patient
-
-                        String[] name = cellValue.split(" ");
-
-                        if (name.length > 1) {
-                            dto.setSubjectLastName(name[1].trim());
-                            dto.setSubjectFirstName(name[0].trim());
-                            dto.setSubjectId(mapOfPatients.get(cellValue));
-                        }
-
-                    } else if (j == 1) {
-                        //care team name
-
-                        dto.setName(cellValue.trim());
-
-                    } else if (j == 2) {
-                        //category
-
-                        dto.setCategoryCode(careTeamsCategories.get(cellValue.trim()));
-                        dto.setCategoryDisplay(cellValue.trim());
-
-                    } else if (j == 3) {
-                        //status
-
-                        dto.setStatusCode("active");
-                        dto.setStatusDisplay("Active");
-
-                    }  else if (j == 4) {
-                        //reason
-                        dto.setReasonCode(careTeamReasonCodes.get(cellValue.trim()));
-                        dto.setReasonDisplay(cellValue.trim());
-
-                    } else if (j == 5) {
-                        //start date
-
-                        dto.setStartDate("01/01/2018");
-
-                    } else if (j == 6) {
-                        //end date
-
-                        dto.setEndDate("01/01/2020");
-
-                    } else if (j == 7) {
-                        //participant
-
-                        participantDto.setMemberId(mapOfPractitioners.get(cellValue));
-                        participantDto.setMemberLastName(Optional.of(cellValue));
-                        participantDto.setMemberFirstName(Optional.of(""));
-
-                    } else if (j == 8) {
-                        //participant role
-
-                        participantDto.setRoleCode(participantRoles.get(cellValue));
-                        participantDto.setMemberType(participantRoles.get(cellValue));
-                        participantDto.setRoleDisplay(cellValue);
-                        participantDto.setStartDate("01/01/2018");
-                        participantDto.setEndDate("01/01/2020");
-
-                        dto.setParticipants(Arrays.asList(participantDto));
-                    }
-
-                    j++;
-                }
-
-                careTeamDtos.add(dto);
-            }
-            rowNum++;
-        }
+        List<CareTeamDto> careTeamDtos = retrieveSheet(careTeams, mapOfPractitioners, mapOfPatients, rowNum, careTeamsCategories, careTeamReasonCodes, participantRoles);
 
         RestTemplate rt = new RestTemplate();
 
@@ -127,5 +48,96 @@ public class CareTeamsHelper {
 
         });
 
+    }
+
+    private static List<CareTeamDto> retrieveSheet(Sheet careTeams, Map<String, String> mapOfPractitioners, Map<String, String> mapOfPatients, int rowNum, Map<String, String> careTeamsCategories, Map<String, String> careTeamReasonCodes, Map<String, String> participantRoles) {
+        List<CareTeamDto> careTeamDtos = new ArrayList<>();
+
+        for (Row row : careTeams) {
+            if (rowNum > 0) {
+                int j = 0;
+                CareTeamDto dto = new CareTeamDto();
+                ParticipantDto participantDto = new ParticipantDto();
+                try {
+                    processRow(mapOfPractitioners, mapOfPatients, careTeamsCategories, careTeamReasonCodes, participantRoles, row, j, dto, participantDto);
+                } catch (Exception e) {
+                    log.error("Error processing a row for careTeams");
+                }
+
+                careTeamDtos.add(dto);
+            }
+            rowNum++;
+        }
+        return careTeamDtos;
+    }
+
+    private static void processRow(Map<String, String> mapOfPractitioners, Map<String, String> mapOfPatients, Map<String, String> careTeamsCategories, Map<String, String> careTeamReasonCodes, Map<String, String> participantRoles, Row row, int j, CareTeamDto dto, ParticipantDto participantDto) {
+        for (Cell cell : row) {
+            String cellValue = new DataFormatter().formatCellValue(cell);
+
+            if (j == 0) {
+                //patient
+
+                String[] name = cellValue.split(" ");
+
+                if (name.length > 1) {
+                    dto.setSubjectLastName(name[1].trim());
+                    dto.setSubjectFirstName(name[0].trim());
+                    dto.setSubjectId(mapOfPatients.get(cellValue));
+                }
+
+            } else if (j == 1) {
+                //care team name
+
+                dto.setName(cellValue.trim());
+
+            } else if (j == 2) {
+                //category
+
+                dto.setCategoryCode(careTeamsCategories.get(cellValue.trim()));
+                dto.setCategoryDisplay(cellValue.trim());
+
+            } else if (j == 3) {
+                //status
+
+                dto.setStatusCode("active");
+                dto.setStatusDisplay("Active");
+
+            }  else if (j == 4) {
+                //reason
+                dto.setReasonCode(careTeamReasonCodes.get(cellValue.trim()));
+                dto.setReasonDisplay(cellValue.trim());
+
+            } else if (j == 5) {
+                //start date
+
+                dto.setStartDate("01/01/2018");
+
+            } else if (j == 6) {
+                //end date
+
+                dto.setEndDate("01/01/2020");
+
+            } else if (j == 7) {
+                //participant
+
+                participantDto.setMemberId(mapOfPractitioners.get(cellValue));
+                participantDto.setMemberLastName(Optional.of(cellValue));
+                participantDto.setMemberFirstName(Optional.of(""));
+
+            } else if (j == 8) {
+                //participant role
+
+                participantDto.setRoleCode(participantRoles.get(cellValue));
+                participantDto.setMemberType(participantRoles.get(cellValue));
+                participantDto.setRoleDisplay(cellValue);
+                participantDto.setStartDate("01/01/2018");
+                participantDto.setEndDate("01/01/2020");
+
+                dto.setParticipants(Arrays.asList(participantDto));
+            }
+
+            j++;
+        }
     }
 }

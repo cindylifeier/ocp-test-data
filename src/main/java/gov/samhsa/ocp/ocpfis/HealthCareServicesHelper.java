@@ -30,83 +30,7 @@ public class HealthCareServicesHelper {
         Map<String, String> specialityLookups = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/healthcare-service-specialities");
         Map<String, String> referralLookups = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/healthcare-service-referral-methods");
 
-        List<TempHealthCareServiceDto> healthCareServiceDtos = new ArrayList<>();
-
-        for (Row row : healthCareServices) {
-            if (rowNum > 0) {
-                int j = 0;
-                TempHealthCareServiceDto dto = new TempHealthCareServiceDto();
-                for (Cell cell : row) {
-                    String cellValue = new DataFormatter().formatCellValue(cell);
-
-                    if (j == 0) {
-                        //organization
-                        dto.setOrganizationId(mapOrganizations.get(cellValue.trim()));
-                    } else if (j == 1) {
-                        //name
-                        dto.setName(cellValue);
-                    } else if (j == 2) {
-                        //program name
-                        dto.setProgramName(Arrays.asList(cellValue));
-                    } else if (j == 3) {
-                        //category
-
-                        ValueSetDto valueSetDto = new ValueSetDto();
-                        valueSetDto.setCode(categoryLookups.get(cellValue.trim()));
-
-                        if(valueSetDto.getCode() == null) {
-                            valueSetDto.setCode(categoryLookups.get("Adoption"));
-                        }
-
-                        dto.setCategory(valueSetDto);
-                    } else if (j == 4) {
-                        //type
-
-                        ValueSetDto valueSetDto = new ValueSetDto();
-                        valueSetDto.setCode(typeLookups.get(cellValue.trim()));
-                        valueSetDto.setSystem("http://hl7.org/fhir/service-type");
-
-                        if(valueSetDto.getCode() == null) {
-                            valueSetDto.setCode(typeLookups.get("Aged Care Assessment"));
-                        }
-
-                        dto.setType(Arrays.asList(valueSetDto));
-                    } else if (j == 5) {
-                        //speciality
-
-                        ValueSetDto valueSetDto = new ValueSetDto();
-
-                        //if not available, set a default value
-                        if(valueSetDto.getCode() == null) {
-                            valueSetDto.setCode(specialityLookups.get("Adult mental illness"));
-                        }
-
-                        dto.setSpecialty(Arrays.asList(valueSetDto));
-                    } else if (j == 6) {
-                        //referral
-
-                        ValueSetDto valueSetDto = new ValueSetDto();
-                        valueSetDto.setCode(referralLookups.get(cellValue.trim()));
-
-                        if(valueSetDto.getCode() == null) {
-                            valueSetDto.setCode(referralLookups.get("Phone"));
-                        }
-
-                        dto.setReferralMethod(Arrays.asList(valueSetDto));
-                    } else if (j == 7) {
-                        //contact
-                        log.info(cellValue);
-                        TelecomDto telecomDto = new TelecomDto();
-                        telecomDto.setValue(Optional.of(cellValue));
-                        dto.setTelecom(Arrays.asList(telecomDto));
-                    }
-
-                    j++;
-                }
-                healthCareServiceDtos.add(dto);
-            }
-            rowNum++;
-        }
+        List<TempHealthCareServiceDto> healthCareServiceDtos = retrieveSheet(healthCareServices, mapOrganizations, rowNum, categoryLookups, typeLookups, specialityLookups, referralLookups);
 
         RestTemplate rt = new RestTemplate();
 
@@ -122,6 +46,95 @@ public class HealthCareServicesHelper {
         });
 
 
+    }
+
+    private static List<TempHealthCareServiceDto> retrieveSheet(Sheet healthCareServices, Map<String, String> mapOrganizations, int rowNum, Map<String, String> categoryLookups, Map<String, String> typeLookups, Map<String, String> specialityLookups, Map<String, String> referralLookups) {
+        List<TempHealthCareServiceDto> healthCareServiceDtos = new ArrayList<>();
+
+        for (Row row : healthCareServices) {
+            if (rowNum > 0) {
+                int j = 0;
+                TempHealthCareServiceDto dto = new TempHealthCareServiceDto();
+                try {
+                    processRow(mapOrganizations, categoryLookups, typeLookups, specialityLookups, referralLookups, row, j, dto);
+                } catch (Exception e) {
+                    log.error("Error processing a row for healthCareServices");
+                }
+                healthCareServiceDtos.add(dto);
+            }
+            rowNum++;
+        }
+        return healthCareServiceDtos;
+    }
+
+    private static void processRow(Map<String, String> mapOrganizations, Map<String, String> categoryLookups, Map<String, String> typeLookups, Map<String, String> specialityLookups, Map<String, String> referralLookups, Row row, int j, TempHealthCareServiceDto dto) {
+        for (Cell cell : row) {
+            String cellValue = new DataFormatter().formatCellValue(cell);
+
+            if (j == 0) {
+                //organization
+                dto.setOrganizationId(mapOrganizations.get(cellValue.trim()));
+            } else if (j == 1) {
+                //name
+                dto.setName(cellValue);
+            } else if (j == 2) {
+                //program name
+                dto.setProgramName(Arrays.asList(cellValue));
+            } else if (j == 3) {
+                //category
+
+                ValueSetDto valueSetDto = new ValueSetDto();
+                valueSetDto.setCode(categoryLookups.get(cellValue.trim()));
+
+                if(valueSetDto.getCode() == null) {
+                    valueSetDto.setCode(categoryLookups.get("Adoption"));
+                }
+
+                dto.setCategory(valueSetDto);
+            } else if (j == 4) {
+                //type
+
+                ValueSetDto valueSetDto = new ValueSetDto();
+                valueSetDto.setCode(typeLookups.get(cellValue.trim()));
+                valueSetDto.setSystem("http://hl7.org/fhir/service-type");
+
+                if(valueSetDto.getCode() == null) {
+                    valueSetDto.setCode(typeLookups.get("Aged Care Assessment"));
+                }
+
+                dto.setType(Arrays.asList(valueSetDto));
+            } else if (j == 5) {
+                //speciality
+
+                ValueSetDto valueSetDto = new ValueSetDto();
+
+                //if not available, set a default value
+                if(valueSetDto.getCode() == null) {
+                    valueSetDto.setCode(specialityLookups.get("Adult mental illness"));
+                }
+
+                dto.setSpecialty(Arrays.asList(valueSetDto));
+            } else if (j == 6) {
+                //referral
+
+                ValueSetDto valueSetDto = new ValueSetDto();
+                valueSetDto.setCode(referralLookups.get(cellValue.trim()));
+
+                if(valueSetDto.getCode() == null) {
+                    valueSetDto.setCode(referralLookups.get("Phone"));
+                }
+
+                dto.setReferralMethod(Arrays.asList(valueSetDto));
+            } else if (j == 7) {
+                //contact
+                log.info(cellValue);
+                TelecomDto telecomDto = new TelecomDto();
+                telecomDto.setValue(Optional.of(cellValue));
+                dto.setTelecom(Arrays.asList(telecomDto));
+            }
+
+            j++;
+        }
     }
 
 }

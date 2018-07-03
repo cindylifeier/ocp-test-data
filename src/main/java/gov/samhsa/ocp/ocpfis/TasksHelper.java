@@ -24,67 +24,8 @@ public class TasksHelper {
 
         int rowNum=0;
 
-        List<TempTaskDto> taskDtos=new ArrayList<>();
-        Map<String,ValueSetDto> statusLookupValueSet=CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/task-status");
-        Map<String,ValueSetDto> priorityValueSet=CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/request-priority");
-        Map<String,ValueSetDto> intentValueSet=CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/request-intent");
-        Map<String,ValueSetDto> performerValueSet=CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/task-performer-type");
-        for(Row row: tasks){
-            if(rowNum>0){
-                int j=0;
-                TempTaskDto dto=new TempTaskDto();
-                TempPeriodDto tempPeriodDto=new TempPeriodDto();
-                for(Cell cell: row){
-                    String cellValue=new DataFormatter().formatCellValue(cell).trim();
+        List<TempTaskDto> taskDtos = retrieveSheet(tasks, mapOfPatients, mapOfPractitioners, mapOfOrganizations, rowNum);
 
-                    if(j==0){
-                        ReferenceDto referenceDto=new ReferenceDto();
-                        referenceDto.setReference("Patient/"+mapOfPatients.get(cellValue));
-                        referenceDto.setDisplay(cellValue);
-                        dto.setBeneficiary(referenceDto);
-                    }
-                    else if(j==1){
-                        dto.setDescription(cellValue);
-                    }else if(j==2){
-                       ReferenceDto referenceDto=new ReferenceDto();
-                       referenceDto.setReference("Organization/"+mapOfOrganizations.get(cellValue));
-                       referenceDto.setDisplay(cellValue);
-                       dto.setOrganization(referenceDto);
-                    }else if(j==3){
-                        dto.setStatus(statusLookupValueSet.get(cellValue));
-                    }else if(j==4){
-                        dto.setPriority(priorityValueSet.get(cellValue));
-                    }else if(j==5){
-                        dto.setIntent(intentValueSet.get(cellValue));
-                    }else if(j==6){
-                        ReferenceDto referenceDto=new ReferenceDto();
-                        referenceDto.setReference("Practitioner/"+mapOfPractitioners.get(cellValue));
-                        referenceDto.setDisplay(cellValue);
-                        dto.setDefinition(referenceDto);
-                    }else if(j==7){
-                        ReferenceDto referenceDto=new ReferenceDto();
-                        referenceDto.setReference("Practitioner/"+CommonHelper.getPractitionerId(cellValue.trim().split(" ")[0]));
-                        referenceDto.setDisplay(cellValue);
-                        dto.setOwner(referenceDto);
-                    }else if(j==8){
-                        dto.setPerformerType(performerValueSet.get(cellValue));
-                    }else if(j==9){
-                        tempPeriodDto.setStart("01/01/2018");
-                    }else if(j==10){
-                        tempPeriodDto.setEnd("02/01/2018");
-                        dto.setExecutionPeriod(tempPeriodDto);
-                    }else if(j==11){
-                        ReferenceDto referenceDto=new ReferenceDto();
-                        referenceDto.setReference("Practitioner/"+CommonHelper.getPractitionerId(cellValue.trim().split(" ")[1]));
-                        referenceDto.setDisplay(cellValue);
-                        dto.setAgent(referenceDto);
-                    }
-                    j++;
-                }
-                taskDtos.add(dto);
-            }
-            rowNum++;
-        }
         RestTemplate rt=new RestTemplate();
 
         taskDtos.forEach(taskDto->{
@@ -98,6 +39,79 @@ public class TasksHelper {
 
             }
         });
+    }
+
+    private static List<TempTaskDto> retrieveSheet(Sheet tasks, Map<String, String> mapOfPatients, Map<String, String> mapOfPractitioners, Map<String, String> mapOfOrganizations, int rowNum) {
+        List<TempTaskDto> taskDtos=new ArrayList<>();
+        Map<String,ValueSetDto> statusLookupValueSet= CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/task-status");
+        Map<String,ValueSetDto> priorityValueSet=CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/request-priority");
+        Map<String,ValueSetDto> intentValueSet=CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/request-intent");
+        Map<String,ValueSetDto> performerValueSet=CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/task-performer-type");
+        for(Row row: tasks){
+            if(rowNum>0){
+                int j=0;
+                TempTaskDto dto=new TempTaskDto();
+                TempPeriodDto tempPeriodDto=new TempPeriodDto();
+                try {
+                    processRow(mapOfPatients, mapOfPractitioners, mapOfOrganizations, statusLookupValueSet, priorityValueSet, intentValueSet, performerValueSet, row, j, dto, tempPeriodDto);
+                } catch (Exception e) {
+                    log.error("Error processing a row of a task");
+                }
+                taskDtos.add(dto);
+            }
+            rowNum++;
+        }
+        return taskDtos;
+    }
+
+    private static void processRow(Map<String, String> mapOfPatients, Map<String, String> mapOfPractitioners, Map<String, String> mapOfOrganizations, Map<String, ValueSetDto> statusLookupValueSet, Map<String, ValueSetDto> priorityValueSet, Map<String, ValueSetDto> intentValueSet, Map<String, ValueSetDto> performerValueSet, Row row, int j, TempTaskDto dto, TempPeriodDto tempPeriodDto) {
+        for(Cell cell: row){
+            String cellValue=new DataFormatter().formatCellValue(cell).trim();
+
+            if(j==0){
+                ReferenceDto referenceDto=new ReferenceDto();
+                referenceDto.setReference("Patient/"+mapOfPatients.get(cellValue));
+                referenceDto.setDisplay(cellValue);
+                dto.setBeneficiary(referenceDto);
+            }
+            else if(j==1){
+                dto.setDescription(cellValue);
+            }else if(j==2){
+               ReferenceDto referenceDto=new ReferenceDto();
+               referenceDto.setReference("Organization/"+mapOfOrganizations.get(cellValue));
+               referenceDto.setDisplay(cellValue);
+               dto.setOrganization(referenceDto);
+            }else if(j==3){
+                dto.setStatus(statusLookupValueSet.get(cellValue));
+            }else if(j==4){
+                dto.setPriority(priorityValueSet.get(cellValue));
+            }else if(j==5){
+                dto.setIntent(intentValueSet.get(cellValue));
+            }else if(j==6){
+                ReferenceDto referenceDto=new ReferenceDto();
+                referenceDto.setReference("Practitioner/"+mapOfPractitioners.get(cellValue));
+                referenceDto.setDisplay(cellValue);
+                dto.setDefinition(referenceDto);
+            }else if(j==7){
+                ReferenceDto referenceDto=new ReferenceDto();
+                referenceDto.setReference("Practitioner/"+ CommonHelper.getPractitionerId(cellValue.trim().split(" ")[0]));
+                referenceDto.setDisplay(cellValue);
+                dto.setOwner(referenceDto);
+            }else if(j==8){
+                dto.setPerformerType(performerValueSet.get(cellValue));
+            }else if(j==9){
+                tempPeriodDto.setStart("01/01/2018");
+            }else if(j==10){
+                tempPeriodDto.setEnd("02/01/2018");
+                dto.setExecutionPeriod(tempPeriodDto);
+            }else if(j==11){
+                ReferenceDto referenceDto=new ReferenceDto();
+                referenceDto.setReference("Practitioner/"+CommonHelper.getPractitionerId(cellValue.trim().split(" ")[1]));
+                referenceDto.setDisplay(cellValue);
+                dto.setAgent(referenceDto);
+            }
+            j++;
+        }
     }
 
 }
