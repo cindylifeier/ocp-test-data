@@ -54,10 +54,11 @@ public class ActivityDefinitionsHelper {
                 TempPeriodDto periodDto=new TempPeriodDto();
                 try {
                     processRow(mapOrganizations, publicationStatusLookups, topicLookups, actionParticipantTypeLookups, actionParticipantRoleLookups, actionResourceTypeLookups, row, j, dto, periodDto);
+                    activityDefinitionDtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error processing a row for activitydefinitions");
                 }
-                activityDefinitionDtos.add(dto);
+
             }
             rowNum++;
         }

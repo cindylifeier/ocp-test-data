@@ -58,10 +58,11 @@ public class CommunicationsHelper {
                 String sentDateTime=null;
                 try {
                     processRow(mapOfPatients, mapOfPractitioners, statusLookup, notDoneReasonValueSetLookup, categoryValueSetLookup, contactMediumValueSetLookup, row, j, dto, sentDateTime);
+                    communicationDtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error processing a row for communication");
                 }
-                communicationDtos.add(dto);
+
             }
             rowNum++;
         }

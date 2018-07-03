@@ -41,6 +41,7 @@ public class OrganizationHelper {
                 OrganizationDto dto = new OrganizationDto();
                 try {
                     processRow(row, j, dto);
+                    organizationDtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error processing a row for organization");
                 }

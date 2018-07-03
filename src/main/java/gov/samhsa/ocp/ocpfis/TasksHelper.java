@@ -54,10 +54,11 @@ public class TasksHelper {
                 TempPeriodDto tempPeriodDto=new TempPeriodDto();
                 try {
                     processRow(mapOfPatients, mapOfPractitioners, mapOfOrganizations, statusLookupValueSet, priorityValueSet, intentValueSet, performerValueSet, row, j, dto, tempPeriodDto);
+                    taskDtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error processing a row of a task");
                 }
-                taskDtos.add(dto);
+
             }
             rowNum++;
         }

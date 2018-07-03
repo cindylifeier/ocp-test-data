@@ -60,11 +60,12 @@ public class CareTeamsHelper {
                 ParticipantDto participantDto = new ParticipantDto();
                 try {
                     processRow(mapOfPractitioners, mapOfPatients, careTeamsCategories, careTeamReasonCodes, participantRoles, row, j, dto, participantDto);
+                    careTeamDtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error processing a row for careTeams");
                 }
 
-                careTeamDtos.add(dto);
+
             }
             rowNum++;
         }

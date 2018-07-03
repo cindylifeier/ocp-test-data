@@ -58,10 +58,11 @@ public class AppointmentsHelper {
                 String date=null;
                 try {
                     processRow(mapOfPatients, mapOfPractitioners, typeCodeLookups, participationTypes, participationStatus, participantRequired, row, j, dto, participantDtos, patientParticipant, otherParticipant, date);
+                    appointmentDtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error processing a row for Appointments");
                 }
-                appointmentDtos.add(dto);
+
             }
             rowNum++;
         }

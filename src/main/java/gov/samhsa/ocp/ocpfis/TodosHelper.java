@@ -52,10 +52,11 @@ public class TodosHelper {
                 TempPeriodDto tempPeriodDto=new TempPeriodDto();
                 try {
                     processRow(mapOfPatient, mapOfOrganizations, statusLookupValueSet, priorityValueSet, intentValueSet, performerValueSet, row, j, dto, tempPeriodDto);
+                    todoDtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error processing row of a TODO");
                 }
-                todoDtos.add(dto);
+
             }
             rowNum++;
         }

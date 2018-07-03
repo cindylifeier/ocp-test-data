@@ -65,10 +65,11 @@ public class PractitionersHelper {
                 PractitionerDto dto = new PractitionerDto();
                 try {
                     processRow(mapOrganizations, practitionerRolesLookup, row, j, dto);
+                    practitionerDtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error processing row of a practitioner");
                 }
-                practitionerDtos.add(dto);
+
             }
             rowNum++;
         }

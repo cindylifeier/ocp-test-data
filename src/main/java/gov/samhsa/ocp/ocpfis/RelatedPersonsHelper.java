@@ -65,10 +65,11 @@ public class RelatedPersonsHelper {
                 dto.setEndDate("01/01/2020");
                 try {
                     processRow(mapOfPatients, identifierTypeLookup, genderLookup, relationLookup, row, j, dto);
+                    relatedPersonDtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error processing row of a relatedPerson");
                 }
-                relatedPersonDtos.add(dto);
+
             }
             rowNum++;
         }

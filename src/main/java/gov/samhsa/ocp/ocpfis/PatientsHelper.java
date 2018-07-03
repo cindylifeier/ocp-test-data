@@ -59,10 +59,11 @@ public class PatientsHelper {
                 PatientDto dto = new PatientDto();
                 try {
                     processRow(mapOfPractitioners, mapOfOrganizations, genderCodeLookup, birthSexLookup, raceLookup, ethnicityLookup, languageLookup, identifierTypeLookup, row, j, dto);
+                    patientDtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error processing a row of patient");
                 }
-                patientDtos.add(dto);
+
             }
             rowNum++;
         }

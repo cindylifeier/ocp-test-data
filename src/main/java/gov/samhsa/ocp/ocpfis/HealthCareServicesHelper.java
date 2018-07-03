@@ -57,10 +57,12 @@ public class HealthCareServicesHelper {
                 TempHealthCareServiceDto dto = new TempHealthCareServiceDto();
                 try {
                     processRow(mapOrganizations, categoryLookups, typeLookups, specialityLookups, referralLookups, row, j, dto);
+                    healthCareServiceDtos.add(dto);
+
                 } catch (Exception e) {
                     log.error("Error processing a row for healthCareServices");
                 }
-                healthCareServiceDtos.add(dto);
+
             }
             rowNum++;
         }
