@@ -15,6 +15,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,7 +57,11 @@ public class PatientsHelper {
             if (rowNum > 0) {
                 int j = 0;
                 PatientDto dto = new PatientDto();
-                processRow(mapOfPractitioners, mapOfOrganizations, genderCodeLookup, birthSexLookup, raceLookup, ethnicityLookup, languageLookup, identifierTypeLookup, row, j, dto);
+                try {
+                    processRow(mapOfPractitioners, mapOfOrganizations, genderCodeLookup, birthSexLookup, raceLookup, ethnicityLookup, languageLookup, identifierTypeLookup, row, j, dto);
+                } catch (Exception e) {
+                    log.error("Error processing a row of patient");
+                }
                 patientDtos.add(dto);
             }
             rowNum++;
@@ -78,10 +83,15 @@ public class PatientsHelper {
                 dto.setName(Arrays.asList(nameDto));
             }
             else if (j == 2) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-                String date = cellValue;
-                LocalDate localDate = LocalDate.parse(date, formatter);
-                dto.setBirthDate(localDate);
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                    String date = cellValue;
+                    LocalDate localDate = LocalDate.parse(date, formatter);
+                    dto.setBirthDate(localDate);
+                } catch (Exception e) {
+                    //use some default
+                    dto.setBirthDate(LocalDate.of(1986, Month.APRIL, 1));
+                }
             }
             else if (j == 3) {
                 dto.setGenderCode(genderCodeLookup.get(cellValue));
