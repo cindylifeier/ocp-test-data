@@ -8,6 +8,7 @@ import gov.samhsa.ocp.ocpfis.model.practitioner.PractitionerRole;
 import gov.samhsa.ocp.ocpfis.model.practitioner.WrapperPractitionerDto;
 import gov.samhsa.ocp.ocpfis.service.dto.PatientDto;
 import gov.samhsa.ocp.ocpfis.service.dto.PractitionerDto;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -31,10 +32,15 @@ public class OcpDataLoadApplication {
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
         readPropertiesFile();
+        log.info("Read properties file");
 
         populateFhirResources();
+        log.info("Populated fhir resources");
 
         populateUAA();
+        log.info("Populated UAA resources");
+
+        log.info("Completed the job!!!");
     }
 
     private static void readPropertiesFile() {
@@ -46,7 +52,12 @@ public class OcpDataLoadApplication {
             DataConstants.xlsxFile = prop.getProperty("xlsxfile");
             DataConstants.valueSetDir = prop.getProperty("valuesetsdir");
             DataConstants.scriptsDir = prop.getProperty("scriptsdir");
-            DataConstants.serverUrl = prop.getProperty("fhirserverurl");
+            DataConstants.serverUrl = prop.getProperty("fisUrl");
+
+            log.info("xlsx file :" + DataConstants.xlsxFile);
+            log.info("valuesets location : " + DataConstants.valueSetDir);
+            log.info("scripts location : " + DataConstants.scriptsDir);
+            log.info("fis server : " + DataConstants.serverUrl);
 
         } catch (IOException e) {
             log.error("Please provide a file data.properties at the root directory");
