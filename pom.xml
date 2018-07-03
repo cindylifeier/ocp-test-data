@@ -31,7 +31,7 @@
         <dependency>
             <groupId>gov.samhsa.ocp</groupId>
             <artifactId>ocp-fis</artifactId>
-            <version>0.11.0-SNAPSHOT</version>
+            <version>0.13.0-SNAPSHOT</version>
         </dependency>
 
     </dependencies>
