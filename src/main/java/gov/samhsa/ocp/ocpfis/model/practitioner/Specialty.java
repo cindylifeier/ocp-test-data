@@ -1,4 +1,3 @@
-
 package gov.samhsa.ocp.ocpfis.model.practitioner;
 
 import java.util.HashMap;

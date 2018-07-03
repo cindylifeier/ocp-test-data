@@ -1,105 +1,105 @@
 {
-    "resourceType": "ValueSet",
-    "id": "clinical-findings",
-    "text": {
-        "status": "generated",
-        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> <h2> Clinical Findings [SNOMED CT] codes - concepts where concept is-a 404684003 (Clinical finding (finding)) </h2> <p> <b> Copyright Statement:</b> This value set includes content from SNOMED CT, which is copyright   &copy; 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement. </p> <div> <p> This value set defines subset of Clinical Findings [SNOMED CT] codes and value sets may be updated later </p> </div> <p> This value set includes codes from the following code system:</p> <ul> <li> Include subset of the SNOMED CT codes defined in \n            http://snomed.info/sct </li> </ul> <p> Release Date: 2016-11-11</p> <table class=\"grid\"> <tr> <td> <b><code>250171008</code></b></td><td><b><display>Clinical history and observations</display></b></td></tr> <tr> <td> <b><code>365860008</code></b></td><td><b><display>General clinical state finding (finding)</display></b></td></tr> <tr> <td> <b><code>127357005</code></b></td><td><b><display>Finding related to physiologic substance (finding)</display></b></td></tr> <tr> <td> <b><code>844005</code></b></td><td><b><display>Behavioral finding</display></b></td></tr> <tr> <td> <b><code>118228005</code></b></td><td><b><display>Functional observations</display></b></td></tr> <tr> <td> <b><code>384821006</code></b></td><td><b><display>Mental state, behavior and/or psychosocial functioning observations</display></b></td></tr> <tr> <td> <b><code>248536006</code></b></td><td><b><display>Observation of functional performance and activity</display></b></td></tr> <tr> <td> <b><code>106168000</code></b></td><td><b><display>Finding related to sleep (finding)</display></b></td></tr> <tr> <td> <b><code>36456004</code></b></td><td><b><display>Mental state finding (finding)</display></b></td></tr> <tr> <td> <b><code>66214007</code></b></td><td><b><display>Substance abuse (disorder)</display></b></td></tr> <tr> <td> <b><code>416578004</code></b></td><td><b><display>Mental and psychological observations</display></b></td></tr> <tr> <td> <b><code>74732009</code></b></td><td><b><display>Mental disorder (disorder)</display></b></td></tr> <tr> <td> <b><code>87858002</code></b></td><td><b><display>Drug-related disorder (disorder)</display></b></td></tr> <tr> <td> <b><code>191816009</code></b></td><td><b><display>Drug dependence (disorder)</display></b></td></tr> <tr> <td> <b><code>719848005</code></b></td><td><b><display>Alcohol induced disorder</display></b></td></tr> </table> </div>"
-    },
-    "url": "http://www.hl7.org/fhir/us/ocp/ValueSet/clinical-findings",
-    "version": "1.1.0",
-    "name": "Subset of SNOMED CT Codes for Clinical Findings",
-    "status": "draft",
-    "experimental": true,
-    "date": "2017-04-19T07:44:43+10:00",
-    "publisher": "SNOMED CT",
-    "contact": [
+  "resourceType": "ValueSet",
+  "id": "clinical-findings",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> <h2> Clinical Findings [SNOMED CT] codes - concepts where concept is-a 404684003 (Clinical finding (finding)) </h2> <p> <b> Copyright Statement:</b> This value set includes content from SNOMED CT, which is copyright   &copy; 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement. </p> <div> <p> This value set defines subset of Clinical Findings [SNOMED CT] codes and value sets may be updated later </p> </div> <p> This value set includes codes from the following code system:</p> <ul> <li> Include subset of the SNOMED CT codes defined in \n            http://snomed.info/sct </li> </ul> <p> Release Date: 2016-11-11</p> <table class=\"grid\"> <tr> <td> <b><code>250171008</code></b></td><td><b><display>Clinical history and observations</display></b></td></tr> <tr> <td> <b><code>365860008</code></b></td><td><b><display>General clinical state finding (finding)</display></b></td></tr> <tr> <td> <b><code>127357005</code></b></td><td><b><display>Finding related to physiologic substance (finding)</display></b></td></tr> <tr> <td> <b><code>844005</code></b></td><td><b><display>Behavioral finding</display></b></td></tr> <tr> <td> <b><code>118228005</code></b></td><td><b><display>Functional observations</display></b></td></tr> <tr> <td> <b><code>384821006</code></b></td><td><b><display>Mental state, behavior and/or psychosocial functioning observations</display></b></td></tr> <tr> <td> <b><code>248536006</code></b></td><td><b><display>Observation of functional performance and activity</display></b></td></tr> <tr> <td> <b><code>106168000</code></b></td><td><b><display>Finding related to sleep (finding)</display></b></td></tr> <tr> <td> <b><code>36456004</code></b></td><td><b><display>Mental state finding (finding)</display></b></td></tr> <tr> <td> <b><code>66214007</code></b></td><td><b><display>Substance abuse (disorder)</display></b></td></tr> <tr> <td> <b><code>416578004</code></b></td><td><b><display>Mental and psychological observations</display></b></td></tr> <tr> <td> <b><code>74732009</code></b></td><td><b><display>Mental disorder (disorder)</display></b></td></tr> <tr> <td> <b><code>87858002</code></b></td><td><b><display>Drug-related disorder (disorder)</display></b></td></tr> <tr> <td> <b><code>191816009</code></b></td><td><b><display>Drug dependence (disorder)</display></b></td></tr> <tr> <td> <b><code>719848005</code></b></td><td><b><display>Alcohol induced disorder</display></b></td></tr> </table> </div>"
+  },
+  "url": "http://www.hl7.org/fhir/us/ocp/ValueSet/clinical-findings",
+  "version": "1.1.0",
+  "name": "Subset of SNOMED CT Codes for Clinical Findings",
+  "status": "draft",
+  "experimental": true,
+  "date": "2017-04-19T07:44:43+10:00",
+  "publisher": "SNOMED CT",
+  "contact": [
+    {
+      "telecom": [
         {
-            "telecom": [
-                {
-                    "system": "other",
-                    "value": "http://snomed.info/sct"
-                }
-            ]
+          "system": "other",
+          "value": "http://snomed.info/sct"
         }
-    ],
-    "description": "Subset of SNOMED CT Clinical findings which describes why the care team exists",
-    "jurisdiction": [
-        {
-            "coding": [
-                {
-                    "system": "http://snomed.info/sct",
-                    "code": "US"
-                }
-            ]
-        }
-    ],
-    "compose": {
-        "include": [
-            {
-                "system": "http://snomed.info/sct",
-                "concept": [
-                    {
-                        "code": "250171008",
-                        "display": "Clinical history and observations"
-                    },
-                    {
-                        "code": "365860008",
-                        "display": "General clinical state finding (finding)"
-                    },
-                    {
-                        "code": "127357005",
-                        "display": "Finding related to physiologic substance (finding)"
-                    },
-                    {
-                        "code": "844005",
-                        "display": "Behavioral finding"
-                    },
-                    {
-                        "code": "118228005",
-                        "display": "Functional observations"
-                    },
-                    {
-                        "code": "384821006",
-                        "display": "Mental state, behavior and/or psychosocial functioning observations"
-                    },
-                    {
-                        "code": "248536006",
-                        "display": "Observation of functional performance and activity"
-                    },
-                    {
-                        "code": "106168000",
-                        "display": "Finding related to sleep (finding)"
-                    },
-                    {
-                        "code": "36456004",
-                        "display": "Mental state finding (finding)"
-                    },
-                    {
-                        "code": "66214007",
-                        "display": "Substance abuse (disorder)"
-                    },
-                    {
-                        "code": "416578004",
-                        "display": "Mental and psychological observations"
-                    },
-                    {
-                        "code": "74732009",
-                        "display": "Mental disorder (disorder)"
-                    },
-                    {
-                        "code": "87858002",
-                        "display": "Drug-related disorder (disorder)"
-                    },
-                    {
-                        "code": "191816009",
-                        "display": "Drug dependence (disorder)"
-                    },
-                    {
-                        "code": "719848005",
-                        "display": "Alcohol induced disorder"
-                    }
-                ]
-            }
-        ]
+      ]
     }
+  ],
+  "description": "Subset of SNOMED CT Clinical findings which describes why the care team exists",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "US"
+        }
+      ]
+    }
+  ],
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "concept": [
+          {
+            "code": "250171008",
+            "display": "Clinical history and observations"
+          },
+          {
+            "code": "365860008",
+            "display": "General clinical state finding (finding)"
+          },
+          {
+            "code": "127357005",
+            "display": "Finding related to physiologic substance (finding)"
+          },
+          {
+            "code": "844005",
+            "display": "Behavioral finding"
+          },
+          {
+            "code": "118228005",
+            "display": "Functional observations"
+          },
+          {
+            "code": "384821006",
+            "display": "Mental state, behavior and/or psychosocial functioning observations"
+          },
+          {
+            "code": "248536006",
+            "display": "Observation of functional performance and activity"
+          },
+          {
+            "code": "106168000",
+            "display": "Finding related to sleep (finding)"
+          },
+          {
+            "code": "36456004",
+            "display": "Mental state finding (finding)"
+          },
+          {
+            "code": "66214007",
+            "display": "Substance abuse (disorder)"
+          },
+          {
+            "code": "416578004",
+            "display": "Mental and psychological observations"
+          },
+          {
+            "code": "74732009",
+            "display": "Mental disorder (disorder)"
+          },
+          {
+            "code": "87858002",
+            "display": "Drug-related disorder (disorder)"
+          },
+          {
+            "code": "191816009",
+            "display": "Drug dependence (disorder)"
+          },
+          {
+            "code": "719848005",
+            "display": "Alcohol induced disorder"
+          }
+        ]
+      }
+    ]
+  }
 }

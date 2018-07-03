@@ -22,22 +22,21 @@ import java.util.Map;
 public class RelatedPersonsHelper {
 
     public static void process(Sheet relatedPersons, Map<String, String> mapOfPatients) {
-        log.info("last row number :"+relatedPersons.getLastRowNum());
-        int rowNum=0;
+        log.info("last row number :" + relatedPersons.getLastRowNum());
+        int rowNum = 0;
 
         List<TempRelatedPersonDto> relatedPersonDtos = retrieveSheet(relatedPersons, mapOfPatients, rowNum);
 
-        RestTemplate rt=new RestTemplate();
+        RestTemplate rt = new RestTemplate();
 
         log.info("Size : " + relatedPersonDtos.size());
 
 
-
         relatedPersonDtos.forEach(relatedPersonDto -> {
-            log.info("related persons : "+relatedPersonDto);
+            log.info("related persons : " + relatedPersonDto);
 
             try {
-                if(relatedPersonDto.getPatient() != null) {
+                if (relatedPersonDto.getPatient() != null) {
                     HttpEntity<TempRelatedPersonDto> request = new HttpEntity<>(relatedPersonDto);
                     rt.postForObject(DataConstants.serverUrl + "related-persons/", request, RelatedPersonDto.class);
                 }
@@ -52,14 +51,14 @@ public class RelatedPersonsHelper {
     }
 
     private static List<TempRelatedPersonDto> retrieveSheet(Sheet relatedPersons, Map<String, String> mapOfPatients, int rowNum) {
-        List<TempRelatedPersonDto> relatedPersonDtos=new ArrayList<>();
-        Map<String,String> identifierTypeLookup= CommonHelper.identifierTypeDtoValue(DataConstants.serverUrl + "lookups/identifier-systems");
+        List<TempRelatedPersonDto> relatedPersonDtos = new ArrayList<>();
+        Map<String, String> identifierTypeLookup = CommonHelper.identifierTypeDtoValue(DataConstants.serverUrl + "lookups/identifier-systems");
         Map<String, String> genderLookup = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/administrative-genders");
         Map<String, String> relationLookup = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/related-person-patient-relationship-types");
-        for(Row row:relatedPersons){
-            if(rowNum>0){
-                int j=0;
-                TempRelatedPersonDto dto=new TempRelatedPersonDto();
+        for (Row row : relatedPersons) {
+            if (rowNum > 0) {
+                int j = 0;
+                TempRelatedPersonDto dto = new TempRelatedPersonDto();
 
                 dto.setStartDate("01/01/2018");
                 dto.setEndDate("01/01/2020");
@@ -77,34 +76,34 @@ public class RelatedPersonsHelper {
     }
 
     private static void processRow(Map<String, String> mapOfPatients, Map<String, String> identifierTypeLookup, Map<String, String> genderLookup, Map<String, String> relationLookup, Row row, int j, TempRelatedPersonDto dto) {
-        for(Cell cell:row){
-            String cellValue=new DataFormatter().formatCellValue(cell).trim();
+        for (Cell cell : row) {
+            String cellValue = new DataFormatter().formatCellValue(cell).trim();
 
-            if(j==0){
+            if (j == 0) {
                 dto.setPatient(mapOfPatients.get(cellValue.trim()));
-            }else if(j==1){
+            } else if (j == 1) {
                 dto.setFirstName(cellValue);
-            }else if(j==2){
+            } else if (j == 2) {
                 dto.setLastName(cellValue);
-            }else if(j==3){
+            } else if (j == 3) {
                 dto.setRelationshipCode(relationLookup.get(cellValue));
                 dto.setRelationshipValue(cellValue);
-            }else if(j==4){
+            } else if (j == 4) {
                 dto.setBirthDate("01/01/1980");
-            }else if(j==5){
+            } else if (j == 5) {
                 dto.setGenderCode(genderLookup.get(cellValue));
                 dto.setGenderValue(cellValue);
-            }else if(j==6){
+            } else if (j == 6) {
                 dto.setIdentifierType(identifierTypeLookup.get(cellValue));
-            }else if(j==7){
+            } else if (j == 7) {
                 dto.setIdentifierValue(cellValue);
-            }else if(j==8){
-                boolean isActive=(cellValue.equalsIgnoreCase("active"))? true:false;
+            } else if (j == 8) {
+                boolean isActive = (cellValue.equalsIgnoreCase("active")) ? true : false;
                 dto.setActive(isActive);
-            }else if(j==9){
+            } else if (j == 9) {
                 dto.setAddresses(CommonHelper.getAddresses(cellValue));
-            }else if(j==10){
-                TelecomDto telecomDto=new TelecomDto();
+            } else if (j == 10) {
+                TelecomDto telecomDto = new TelecomDto();
                 telecomDto.setSystem(java.util.Optional.of(ContactPointSystem.PHONE.toCode()));
                 telecomDto.setUse(java.util.Optional.of(ContactPointUse.WORK.toCode()));
                 telecomDto.setValue(java.util.Optional.ofNullable(cellValue));

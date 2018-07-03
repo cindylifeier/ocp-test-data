@@ -2,10 +2,6 @@ package gov.samhsa.ocp.ocpfis.model.relatedperson;
 
 import gov.samhsa.ocp.ocpfis.service.dto.AddressDto;
 import gov.samhsa.ocp.ocpfis.service.dto.TelecomDto;
-import gov.samhsa.ocp.ocpfis.service.validation.DateConstraint;
-import gov.samhsa.ocp.ocpfis.service.validation.GenderCodeConstraint;
-import gov.samhsa.ocp.ocpfis.service.validation.RelatedPersonIdentifierTypeConstraint;
-import gov.samhsa.ocp.ocpfis.service.validation.RelationshipCodeConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

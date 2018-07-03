@@ -16,8 +16,15 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 @Slf4j
 public class OcpDataLoadApplication {
@@ -25,10 +32,9 @@ public class OcpDataLoadApplication {
     public static void main(String[] args) throws IOException, InvalidFormatException {
         readPropertiesFile();
 
+        populateFhirResources();
 
-        //populateFhirResources();
-
-         populateUAA();
+        populateUAA();
     }
 
     private static void readPropertiesFile() {

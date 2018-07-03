@@ -30,9 +30,9 @@ public class PatientsHelper {
 
         List<PatientDto> patientDtos = retrieveSheet(patients, mapOfPractitioners, mapOfOrganizations);
 
-        RestTemplate rt=new RestTemplate();
+        RestTemplate rt = new RestTemplate();
 
-        patientDtos.stream().forEach(patientDto->{
+        patientDtos.stream().forEach(patientDto -> {
             try {
                 HttpEntity<PatientDto> request = new HttpEntity<>(patientDto);
                 rt.postForObject(DataConstants.serverUrl + "patients/", request, PatientDto.class);
@@ -45,11 +45,11 @@ public class PatientsHelper {
 
     public static List<PatientDto> retrieveSheet(Sheet patients, Map<String, String> mapOfPractitioners, Map<String, String> mapOfOrganizations) {
         Map<String, String> genderCodeLookup = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/administrative-genders");
-        Map<String, String> birthSexLookup=CommonHelper.getLookup(DataConstants.serverUrl + "lookups/us-core-birthsexes");
-        Map<String, String> raceLookup=CommonHelper.getLookup(DataConstants.serverUrl + "lookups/us-core-races");
-        Map<String,String> ethnicityLookup=CommonHelper.getLookup(DataConstants.serverUrl + "lookups/us-core-ethnicities");
-        Map<String, String> languageLookup=CommonHelper.getLookup(DataConstants.serverUrl + "lookups/languages");
-        Map<String,String> identifierTypeLookup=CommonHelper.identifierTypeDtoValue(DataConstants.serverUrl + "lookups/identifier-systems");
+        Map<String, String> birthSexLookup = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/us-core-birthsexes");
+        Map<String, String> raceLookup = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/us-core-races");
+        Map<String, String> ethnicityLookup = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/us-core-ethnicities");
+        Map<String, String> languageLookup = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/languages");
+        Map<String, String> identifierTypeLookup = CommonHelper.identifierTypeDtoValue(DataConstants.serverUrl + "lookups/identifier-systems");
 
         List<PatientDto> patientDtos = new ArrayList<>();
         int rowNum = 0;
@@ -72,18 +72,16 @@ public class PatientsHelper {
 
     private static void processRow(Map<String, String> mapOfPractitioners, Map<String, String> mapOfOrganizations, Map<String, String> genderCodeLookup, Map<String, String> birthSexLookup, Map<String, String> raceLookup, Map<String, String> ethnicityLookup, Map<String, String> languageLookup, Map<String, String> identifierTypeLookup, Row row, int j, PatientDto dto) {
         NameDto nameDto = new NameDto();
-        IdentifierDto tempIdentifiereDto=new IdentifierDto();
+        IdentifierDto tempIdentifiereDto = new IdentifierDto();
         for (Cell cell : row) {
             String cellValue = new DataFormatter().formatCellValue(cell);
 
             if (j == 0) {
                 nameDto.setFirstName(cellValue);
-            }
-            else if (j == 1) {
+            } else if (j == 1) {
                 nameDto.setLastName(cellValue);
                 dto.setName(Arrays.asList(nameDto));
-            }
-            else if (j == 2) {
+            } else if (j == 2) {
                 try {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
                     String date = cellValue;
@@ -93,52 +91,41 @@ public class PatientsHelper {
                     //use some default
                     dto.setBirthDate(LocalDate.of(1986, Month.APRIL, 1));
                 }
-            }
-            else if (j == 3) {
+            } else if (j == 3) {
                 dto.setGenderCode(genderCodeLookup.get(cellValue));
-            }
-            else if (j == 4) {
+            } else if (j == 4) {
                 dto.setBirthSex(birthSexLookup.get(cellValue));
-            }
-            else if(j==5){
+            } else if (j == 5) {
                 dto.setRace(raceLookup.get(cellValue));
-            }
-            else if(j==6){
+            } else if (j == 6) {
                 dto.setEthnicity(ethnicityLookup.get(cellValue));
-            }
-            else if(j==7){
+            } else if (j == 7) {
                 dto.setLanguage(languageLookup.get(cellValue));
-            }
-            else if(j==8){
+            } else if (j == 8) {
                 tempIdentifiereDto.setSystem(identifierTypeLookup.get(cellValue));
-            }
-            else if(j==9){
+            } else if (j == 9) {
                 tempIdentifiereDto.setValue(cellValue);
                 dto.setIdentifier(Arrays.asList(tempIdentifiereDto));
-            }
-            else if(j==10){
-                List<TelecomDto> telecomDtos=new ArrayList<>();
-                TelecomDto telecomDto=new TelecomDto();
+            } else if (j == 10) {
+                List<TelecomDto> telecomDtos = new ArrayList<>();
+                TelecomDto telecomDto = new TelecomDto();
                 telecomDto.setSystem(Optional.of(ContactPointSystem.PHONE.toCode()));
                 telecomDto.setUse(Optional.of(ContactPointUse.WORK.toCode()));
                 telecomDto.setValue(Optional.ofNullable(cellValue));
                 telecomDtos.add(telecomDto);
 
-                TelecomDto emailDto=new TelecomDto();
+                TelecomDto emailDto = new TelecomDto();
                 emailDto.setSystem(Optional.of(ContactPointSystem.EMAIL.toCode()));
                 emailDto.setUse(Optional.of(ContactPointUse.WORK.toCode()));
-                emailDto.setValue(Optional.of(dto.getName().stream().findFirst().get().getFirstName().toLowerCase() + "." + dto.getName().stream().findFirst().get().getLastName().toLowerCase()+"@ocpmail.com"));
+                emailDto.setValue(Optional.of(dto.getName().stream().findFirst().get().getFirstName().toLowerCase() + "." + dto.getName().stream().findFirst().get().getLastName().toLowerCase() + "@ocpmail.com"));
                 telecomDtos.add(emailDto);
                 dto.setTelecoms(telecomDtos);
-            }
-            else if(j==11){
+            } else if (j == 11) {
                 dto.setAddresses(CommonHelper.getAddresses(cellValue));
-            }
-            else if(j==12){
+            } else if (j == 12) {
                 dto.setOrganizationId(Optional.of(mapOfOrganizations.get(cellValue.trim())));
-            }
-            else if(j==13){
-               dto.setPractitionerId(Optional.of(mapOfPractitioners.get(cellValue.trim())));
+            } else if (j == 13) {
+                dto.setPractitionerId(Optional.of(mapOfPractitioners.get(cellValue.trim())));
             }
             j++;
         }

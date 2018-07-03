@@ -1,4 +1,3 @@
-
 package gov.samhsa.ocp.ocpfis.model.organization;
 
 import java.util.HashMap;

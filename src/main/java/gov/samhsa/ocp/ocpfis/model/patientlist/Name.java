@@ -1,4 +1,3 @@
-
 package gov.samhsa.ocp.ocpfis.model.patientlist;
 
 import java.util.HashMap;

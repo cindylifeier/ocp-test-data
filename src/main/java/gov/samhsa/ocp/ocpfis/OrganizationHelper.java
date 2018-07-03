@@ -25,13 +25,13 @@ public class OrganizationHelper {
 
         List<OrganizationDto> organizationDtos = new ArrayList<>();
 
-        OrganizationDto orgDto=new OrganizationDto();
+        OrganizationDto orgDto = new OrganizationDto();
         orgDto.setName("Omnibus Care Plan (SAMSHA)");
         orgDto.setAddresses(CommonHelper.getAddresses("5600 Fishers Lane| Rockville| MD| 20857|US"));
-        orgDto.setIdentifiers(CommonHelper.getIdentifiers("Organization Tax Id","530196960"));
-        List<TelecomDto> telecomDtos=new ArrayList<>();
-        telecomDtos.addAll(CommonHelper.getTelecoms("phone","(240)276-2827"));
-        telecomDtos.addAll(CommonHelper.getTelecoms("email","Kenneth.Salyards@SAMHSA.hhs.gov"));
+        orgDto.setIdentifiers(CommonHelper.getIdentifiers("Organization Tax Id", "530196960"));
+        List<TelecomDto> telecomDtos = new ArrayList<>();
+        telecomDtos.addAll(CommonHelper.getTelecoms("phone", "(240)276-2827"));
+        telecomDtos.addAll(CommonHelper.getTelecoms("email", "Kenneth.Salyards@SAMHSA.hhs.gov"));
         orgDto.setTelecoms(telecomDtos);
         organizationDtos.add(orgDto);
 
@@ -74,7 +74,7 @@ public class OrganizationHelper {
             } else if (j == 2) {
                 dto.setAddresses(CommonHelper.getAddresses(cellValue));
             } else if (j == 3) {
-                dto.setTelecoms(CommonHelper.getTelecoms("phone",cellValue));
+                dto.setTelecoms(CommonHelper.getTelecoms("phone", cellValue));
             } else if (j == 4) {
                 dto.setIdentifiers(CommonHelper.getIdentifiers("Organization Tax ID", cellValue));
             } else if (j == 5) {

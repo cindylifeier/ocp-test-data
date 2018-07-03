@@ -1,80 +1,80 @@
 {
-    "resourceType": "ValueSet",
-    "id": "ocp-service-category",
-    "text": {
-        "status": "generated",
-        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> <h2> Supported Service Categories </h2> <div> <p> This value set defines subset of codes that can be used to classify groupings of service-types/specialties.</p> </div> <p> This value set is a subset of codes from the following code systems:</p> <ul> <li> Include subset of the codes defined in <a href=\"codesystem-service-category.html\"> <code> http://hl7.org/fhir/service-category</code> </a> </li> </ul> <h3> This is a subset of service categories value set and may be updated later. </h3> <table class=\"none\"> <tr> <td> <b> Code</b> </td> <td> <b> Display</b> </td> </tr> <tr> <td> <b>2</b> </td> <td> <i>Aged Care</i> </td> </tr> <tr> <td> <b>6</b> </td> <td> <i>Child Protection and Family Services</i> </td> </tr> <tr> <td> <b>7</b> </td> <td> <i>Community Health Care</i> </td> </tr> <tr> <td> <b>8</b> </td> <td> <i>Counselling</i> </td> </tr> <tr> <td> <b>11</b> </td> <td> <i>Disability Support</i> </td> </tr> <tr> <td> <b>12</b> </td> <td> <i>Drug/Alcohol</i> </td> </tr> <tr> <td> <b>13</b> </td> <td> <i>Education and Learning</i> </td> </tr> <tr> <td> <b>18</b> </td> <td> <i>Housing/Homelessness</i> </td> </tr> <tr> <td> <b>22</b> </td> <td> <i>Mental Health</i> </td> </tr> </table> </div>"
-    },
-    "url": "http://www.hl7.org/fhir/us/ocp/ValueSet/service-category",
-    "version": "1.1.0",
-    "name": "Service Category codes that can be used to classify groupings of service-types/specialties.",
-    "status": "draft",
-    "date": "2017-04-19T07:44:43+10:00",
-    "publisher": "HL7 US Realm Steering Committee",
-    "contact": [
+  "resourceType": "ValueSet",
+  "id": "ocp-service-category",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> <h2> Supported Service Categories </h2> <div> <p> This value set defines subset of codes that can be used to classify groupings of service-types/specialties.</p> </div> <p> This value set is a subset of codes from the following code systems:</p> <ul> <li> Include subset of the codes defined in <a href=\"codesystem-service-category.html\"> <code> http://hl7.org/fhir/service-category</code> </a> </li> </ul> <h3> This is a subset of service categories value set and may be updated later. </h3> <table class=\"none\"> <tr> <td> <b> Code</b> </td> <td> <b> Display</b> </td> </tr> <tr> <td> <b>2</b> </td> <td> <i>Aged Care</i> </td> </tr> <tr> <td> <b>6</b> </td> <td> <i>Child Protection and Family Services</i> </td> </tr> <tr> <td> <b>7</b> </td> <td> <i>Community Health Care</i> </td> </tr> <tr> <td> <b>8</b> </td> <td> <i>Counselling</i> </td> </tr> <tr> <td> <b>11</b> </td> <td> <i>Disability Support</i> </td> </tr> <tr> <td> <b>12</b> </td> <td> <i>Drug/Alcohol</i> </td> </tr> <tr> <td> <b>13</b> </td> <td> <i>Education and Learning</i> </td> </tr> <tr> <td> <b>18</b> </td> <td> <i>Housing/Homelessness</i> </td> </tr> <tr> <td> <b>22</b> </td> <td> <i>Mental Health</i> </td> </tr> </table> </div>"
+  },
+  "url": "http://www.hl7.org/fhir/us/ocp/ValueSet/service-category",
+  "version": "1.1.0",
+  "name": "Service Category codes that can be used to classify groupings of service-types/specialties.",
+  "status": "draft",
+  "date": "2017-04-19T07:44:43+10:00",
+  "publisher": "HL7 US Realm Steering Committee",
+  "contact": [
+    {
+      "telecom": [
         {
-            "telecom": [
-                {
-                    "system": "url",
-                    "value": "http://hl7.org/fhir"
-                }
-            ]
+          "system": "url",
+          "value": "http://hl7.org/fhir"
         }
-    ],
-    "description": "This value set defines subset of codes that can be used to classify groupings    of service-types/specialties, however the service category codes are required, all other elements are optional.",
-    "jurisdiction": [
-        {
-            "coding": [
-                {
-                    "system": "urn:iso:std:iso:3166",
-                    "code": "US"
-                }
-            ]
-        }
-    ],
-    "compose": {
-        "include": [
-            {
-                "system": "http://hl7.org/fhir/service-category",
-                "concept": [
-                    {
-                        "code": "2",
-                        "display": "Aged Care"
-                    },
-                    {
-                        "code": "6",
-                        "display": "Child Protection and Family Services"
-                    },
-                    {
-                        "code": "7",
-                        "display": "Community Health Care"
-                    },
-                    {
-                        "code": "8",
-                        "display": "Counselling"
-                    },
-                    {
-                        "code": "11",
-                        "display": "Disability Support"
-                    },
-                    {
-                        "code": "12",
-                        "display": "Drug/Alcohol"
-                    },
-                    {
-                        "code": "13",
-                        "display": "Education and Learning"
-                    },
-                    {
-                        "code": "18",
-                        "display": "Housing/Homelessness"
-                    },
-                    {
-                        "code": "22",
-                        "display": "Mental Health"
-                    }
-                ]
-            }
-        ]
+      ]
     }
+  ],
+  "description": "This value set defines subset of codes that can be used to classify groupings    of service-types/specialties, however the service category codes are required, all other elements are optional.",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "US"
+        }
+      ]
+    }
+  ],
+  "compose": {
+    "include": [
+      {
+        "system": "http://hl7.org/fhir/service-category",
+        "concept": [
+          {
+            "code": "2",
+            "display": "Aged Care"
+          },
+          {
+            "code": "6",
+            "display": "Child Protection and Family Services"
+          },
+          {
+            "code": "7",
+            "display": "Community Health Care"
+          },
+          {
+            "code": "8",
+            "display": "Counselling"
+          },
+          {
+            "code": "11",
+            "display": "Disability Support"
+          },
+          {
+            "code": "12",
+            "display": "Drug/Alcohol"
+          },
+          {
+            "code": "13",
+            "display": "Education and Learning"
+          },
+          {
+            "code": "18",
+            "display": "Housing/Homelessness"
+          },
+          {
+            "code": "22",
+            "display": "Mental Health"
+          }
+        ]
+      }
+    ]
+  }
 }

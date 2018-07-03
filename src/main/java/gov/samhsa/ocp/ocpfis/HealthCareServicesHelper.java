@@ -88,7 +88,7 @@ public class HealthCareServicesHelper {
                 ValueSetDto valueSetDto = new ValueSetDto();
                 valueSetDto.setCode(categoryLookups.get(cellValue.trim()));
 
-                if(valueSetDto.getCode() == null) {
+                if (valueSetDto.getCode() == null) {
                     valueSetDto.setCode(categoryLookups.get("Adoption"));
                 }
 
@@ -100,7 +100,7 @@ public class HealthCareServicesHelper {
                 valueSetDto.setCode(typeLookups.get(cellValue.trim()));
                 valueSetDto.setSystem("http://hl7.org/fhir/service-type");
 
-                if(valueSetDto.getCode() == null) {
+                if (valueSetDto.getCode() == null) {
                     valueSetDto.setCode(typeLookups.get("Aged Care Assessment"));
                 }
 
@@ -111,7 +111,7 @@ public class HealthCareServicesHelper {
                 ValueSetDto valueSetDto = new ValueSetDto();
 
                 //if not available, set a default value
-                if(valueSetDto.getCode() == null) {
+                if (valueSetDto.getCode() == null) {
                     valueSetDto.setCode(specialityLookups.get("Adult mental illness"));
                 }
 
@@ -122,7 +122,7 @@ public class HealthCareServicesHelper {
                 ValueSetDto valueSetDto = new ValueSetDto();
                 valueSetDto.setCode(referralLookups.get(cellValue.trim()));
 
-                if(valueSetDto.getCode() == null) {
+                if (valueSetDto.getCode() == null) {
                     valueSetDto.setCode(referralLookups.get("Phone"));
                 }
 

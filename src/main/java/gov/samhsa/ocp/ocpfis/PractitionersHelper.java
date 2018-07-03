@@ -128,7 +128,7 @@ public class PractitionersHelper {
                 valueSetDto.setDisplay(cellValue);
 
                 //put a default if not available
-                if(valueSetDto.getCode() == null) {
+                if (valueSetDto.getCode() == null) {
                     valueSetDto.setCode(practitionerRolesLookup.get("Counselor"));
                 }
 

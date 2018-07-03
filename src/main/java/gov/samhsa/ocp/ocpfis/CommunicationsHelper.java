@@ -19,24 +19,24 @@ import java.util.Map;
 @Slf4j
 public class CommunicationsHelper {
 
-    public static void process(Sheet communications, Map<String, String> mapOfPatients, Map<String,String> mapOfPractitioners) {
-        log.info("last row number: "+ communications.getLastRowNum());
-        Map<String,String> statusLookup=CommonHelper.getLookup(DataConstants.serverUrl + "lookups/communication-statuses");
-        Map<String,ValueSetDto> notDoneReasonValueSetLookup=CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/communication-not-done-reasons");
-        Map<String,ValueSetDto> categoryValueSetLookup=CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/communication-categories");
-        Map<String,ValueSetDto> contactMediumValueSetLookup=CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/communication-mediums");
-        int rowNum=0;
+    public static void process(Sheet communications, Map<String, String> mapOfPatients, Map<String, String> mapOfPractitioners) {
+        log.info("last row number: " + communications.getLastRowNum());
+        Map<String, String> statusLookup = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/communication-statuses");
+        Map<String, ValueSetDto> notDoneReasonValueSetLookup = CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/communication-not-done-reasons");
+        Map<String, ValueSetDto> categoryValueSetLookup = CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/communication-categories");
+        Map<String, ValueSetDto> contactMediumValueSetLookup = CommonHelper.getLookupValueSet(DataConstants.serverUrl + "lookups/communication-mediums");
+        int rowNum = 0;
 
         List<CommunicationDto> communicationDtos = retrieveSheet(communications, mapOfPatients, mapOfPractitioners, statusLookup, notDoneReasonValueSetLookup, categoryValueSetLookup, contactMediumValueSetLookup, rowNum);
 
-        RestTemplate rt=new RestTemplate();
+        RestTemplate rt = new RestTemplate();
 
         communicationDtos.forEach(communicationDto -> {
-            log.info("communications : "+communicationDto);
+            log.info("communications : " + communicationDto);
 
             try {
-                    HttpEntity<CommunicationDto> request = new HttpEntity<>(communicationDto);
-                    rt.postForObject(DataConstants.serverUrl + "communications/", request, CommunicationDto.class);
+                HttpEntity<CommunicationDto> request = new HttpEntity<>(communicationDto);
+                rt.postForObject(DataConstants.serverUrl + "communications/", request, CommunicationDto.class);
             } catch (Exception e) {
                 log.info("This communications could not be posted : " + communicationDto);
                 e.printStackTrace();
@@ -46,16 +46,15 @@ public class CommunicationsHelper {
         });
 
 
-
     }
 
     private static List<CommunicationDto> retrieveSheet(Sheet communications, Map<String, String> mapOfPatients, Map<String, String> mapOfPractitioners, Map<String, String> statusLookup, Map<String, ValueSetDto> notDoneReasonValueSetLookup, Map<String, ValueSetDto> categoryValueSetLookup, Map<String, ValueSetDto> contactMediumValueSetLookup, int rowNum) {
-        List<CommunicationDto> communicationDtos=new ArrayList<>();
-        for(Row row:communications){
-            if(rowNum>0){
-                int j=0;
-                CommunicationDto dto=new CommunicationDto();
-                String sentDateTime=null;
+        List<CommunicationDto> communicationDtos = new ArrayList<>();
+        for (Row row : communications) {
+            if (rowNum > 0) {
+                int j = 0;
+                CommunicationDto dto = new CommunicationDto();
+                String sentDateTime = null;
                 try {
                     processRow(mapOfPatients, mapOfPractitioners, statusLookup, notDoneReasonValueSetLookup, categoryValueSetLookup, contactMediumValueSetLookup, row, j, dto, sentDateTime);
                     communicationDtos.add(dto);
@@ -70,49 +69,49 @@ public class CommunicationsHelper {
     }
 
     private static void processRow(Map<String, String> mapOfPatients, Map<String, String> mapOfPractitioners, Map<String, String> statusLookup, Map<String, ValueSetDto> notDoneReasonValueSetLookup, Map<String, ValueSetDto> categoryValueSetLookup, Map<String, ValueSetDto> contactMediumValueSetLookup, Row row, int j, CommunicationDto dto, String sentDateTime) {
-        for(Cell cell:row){
-            String cellValue=new DataFormatter().formatCellValue(cell);
+        for (Cell cell : row) {
+            String cellValue = new DataFormatter().formatCellValue(cell);
 
-            if(j==0){
-                ReferenceDto referenceDto=new ReferenceDto();
-                referenceDto.setReference("Practitioner/"+mapOfPractitioners.get(cellValue));
+            if (j == 0) {
+                ReferenceDto referenceDto = new ReferenceDto();
+                referenceDto.setReference("Practitioner/" + mapOfPractitioners.get(cellValue));
                 referenceDto.setDisplay(cellValue);
                 dto.setSender(referenceDto);
-            }else if(j==1){
-               sentDateTime=cellValue;
-            }else if(j==2){
-                sentDateTime=sentDateTime+" "+cellValue;
+            } else if (j == 1) {
+                sentDateTime = cellValue;
+            } else if (j == 2) {
+                sentDateTime = sentDateTime + " " + cellValue;
                 dto.setSent(sentDateTime);
-            } else if(j==3){
+            } else if (j == 3) {
                 dto.setStatusCode(statusLookup.get(cellValue));
-            }else if(j==4){
+            } else if (j == 4) {
                 dto.setCategoryCode(categoryValueSetLookup.get(cellValue).getCode());
                 dto.setCategoryValue(categoryValueSetLookup.get(cellValue).getDisplay());
-            }else if(j==5){
+            } else if (j == 5) {
                 dto.setMediumCode(contactMediumValueSetLookup.get(cellValue).getCode());
                 dto.setMediumValue(contactMediumValueSetLookup.get(cellValue).getDisplay());
-            }else if(j==6){
-                ReferenceDto referenceDto=new ReferenceDto();
-                referenceDto.setReference("Patient/"+mapOfPatients.get(cellValue));
+            } else if (j == 6) {
+                ReferenceDto referenceDto = new ReferenceDto();
+                referenceDto.setReference("Patient/" + mapOfPatients.get(cellValue));
                 referenceDto.setDisplay(cellValue);
                 dto.setSubject(referenceDto);
-            }else if(j==7){
+            } else if (j == 7) {
                 dto.setPayloadContent(cellValue);
-            }else if(j==8){
+            } else if (j == 8) {
                 dto.setNote(cellValue);
-            }else if(j==9){
-                ReferenceDto referenceDto=new ReferenceDto();
-                referenceDto.setReference("Practitioner/"+mapOfPractitioners.get(cellValue));
+            } else if (j == 9) {
+                ReferenceDto referenceDto = new ReferenceDto();
+                referenceDto.setReference("Practitioner/" + mapOfPractitioners.get(cellValue));
                 referenceDto.setDisplay(cellValue);
                 dto.setRecipient(Arrays.asList(referenceDto));
-            }else if(j==10){
-                if(!cellValue.isEmpty()) {
+            } else if (j == 10) {
+                if (!cellValue.isEmpty()) {
                     if ((cellValue.equalsIgnoreCase("true"))) {
                         dto.setNotDone(true);
                     }
                 }
-            }else if(j==11){
-                if(!cellValue.isEmpty()) {
+            } else if (j == 11) {
+                if (!cellValue.isEmpty()) {
                     dto.setNotDoneReasonCode(notDoneReasonValueSetLookup.get(cellValue).getCode());
                     dto.setNotDoneReasonValue(notDoneReasonValueSetLookup.get(cellValue).getDisplay());
                 }

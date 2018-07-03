@@ -35,7 +35,7 @@ public class CareTeamsHelper {
 
         careTeamDtos.forEach(careTeamDto -> {
             try {
-                if(careTeamDto.getSubjectId() != null && careTeamDto.getParticipants() != null) {
+                if (careTeamDto.getSubjectId() != null && careTeamDto.getParticipants() != null) {
                     log.info("Getting ready to post: " + careTeamDto);
                     HttpEntity<CareTeamDto> request = new HttpEntity<>(careTeamDto);
                     rt.postForObject(DataConstants.serverUrl + "care-teams/", request, CareTeamDto.class);
@@ -104,7 +104,7 @@ public class CareTeamsHelper {
                 dto.setStatusCode("active");
                 dto.setStatusDisplay("Active");
 
-            }  else if (j == 4) {
+            } else if (j == 4) {
                 //reason
                 dto.setReasonCode(careTeamReasonCodes.get(cellValue.trim()));
                 dto.setReasonDisplay(cellValue.trim());
