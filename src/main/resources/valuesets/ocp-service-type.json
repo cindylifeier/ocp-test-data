@@ -1,0 +1,69 @@
+{
+    "resourceType": "ValueSet",
+    "id": "ocp-service-type",
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> <h2> Supported Service Types </h2> <div> <p> This value set defines subset of codes of service-types.</p> </div> <p> This value set is a subset of codes from the following code systems:</p> <ul> <li> Include subset of the CPT codes defined in <a href=\"https://coder.aapc.com/cpt-codes/\"> <code> https://coder.aapc.com/cpt-codes/</code> </a> </li> </ul> <ul> <li> Include subset of the HCPCS codes defined in <a href=\"https://coder.aapc.com/hcpcs-codes/\"> <code> https://coder.aapc.com/hcpcs-codes/</code> </a> </li> </ul> <h3> This is a subset of service types value set of CPT-4, HCPCS Codes and may be updated later. </h3> <table class=\"none\"> <tr> <td> <b> Code</b> </td> <td> <b> Display</b> </td> </tr> <tr> <td> <b>S9482</b> </td> <td> <i>Family stabilization services, per 15 minutes</i> </td> </tr> <tr> <td> <b>S0221</b> </td> <td> <i>Medical conference by a physician with interdisciplinary team of health professionals or representatives of community agencies to coordinate activities of patient care (patient is present); approximately 60 minutes</i> </td> </tr> <tr> <td> <b>T1006</b> </td> <td> <i>Hospice evaluation and counseling services, pre-election</i> </td> </tr> <tr> <td> <b>H0006</b> </td> <td> <i>Alcohol and/or drug services; case management</i> </td> </tr> <tr> <td> <b>H0025</b> </td> <td> <i>Behavioral health prevention education service (delivery of services with target population to affect knowledge, attitude and/or behavior)</i> </td> </tr> <tr> <td> <b>H0035</b> </td> <td> <i>Mental health partial hospitalization, treatment, less than 24 hours</i> </td> </tr> </table> </div>"
+    },
+    "url": "http://www.hl7.org/fhir/us/ocp/ValueSet/service-type",
+    "version": "1.1.0",
+    "name": "Service Type codes that can be used to define services performed",
+    "status": "draft",
+    "experimental": true,
+    "date": "2017-04-19T07:44:43+10:00",
+    "publisher": "HL7 US Realm Steering Committee",
+    "contact": [
+        {
+            "telecom": [
+                {
+                    "system": "url",
+                    "value": "http://hl7.org/fhir"
+                }
+            ]
+        }
+    ],
+    "description": "This value set defines subset of codes for service-types.",
+    "jurisdiction": [
+        {
+            "coding": [
+                {
+                    "system": "urn:iso:std:iso:3166",
+                    "code": "US"
+                }
+            ]
+        }
+    ],
+    "compose": {
+        "include": [
+            {
+                "system": "http://hl7.org/fhir/service-type",
+                "concept": [
+                    {
+                        "code": "S9482",
+                        "display": "Family stabilization services, per 15 minutes"
+                    },
+                    {
+                        "code": "S0221",
+                        "display": "Medical conference by a physician with interdisciplinary team of health professionals or representatives of community agencies to coordinate activities of patient care (patient is present); approximately 60 minutes"
+                    },
+                    {
+                        "code": "T1006",
+                        "display": "Hospice evaluation and counseling services, pre-election"
+                    },
+                    {
+                        "code": "H0006",
+                        "display": "Alcohol and/or drug services; case management"
+                    },
+                    {
+                        "code": "H0025",
+                        "display": "Behavioral health prevention education service (delivery of services with target population to affect knowledge, attitude and/or behavior)"
+                    },
+                    {
+                        "code": "H0035",
+                        "display": "Mental health partial hospitalization, treatment, less than 24 hours"
+                    }
+                ]
+            }
+        ]
+    }
+}

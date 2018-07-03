@@ -1,0 +1,51 @@
+{
+    "resourceType": "ValueSet",
+    "id": "ocp-security-label",
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> <h2>Below codes are subset of security label. Current C2S supports the below four codes for segmentation. </h2> <p> This is a subset of v3 Act code value sets, and more value sets may be added later. This value set includes codes from the following code systems:</p> <ul> <li> Includes subset of the codes defined in \n            http://hl7.org/fhir/v3/ActCode </li> </ul> <table class=\"grid\"> <tr> <td> <b><code>ETH</code></b></td><td><b><display>substance abuse information sensitivity</display></b></td></tr> <tr> <td> <b><code>HIV</code></b></td><td><b><display>HIV/AIDS information sensitivity</display></b></td></tr> <tr> <td> <b><code>PSY</code></b></td><td><b><display>psychiatry information sensitivity</display></b></td></tr> <tr> <td> <b><code>SEX</code></b></td><td><b><display>sexuality and reproductive health information sensitivity</display></b></td></tr> </table> </div>"
+    },
+    "url": "http://hl7.org/fhir/ValueSet/ocp-security-label",
+    "version": "1.1.0",
+    "name": "v3 Actcodes",
+    "status": "draft",
+    "experimental": true,
+    "date": "2017-04-19T07:44:43+10:00",
+    "publisher": "HL7",
+    "description": "A code specifying the particular kind of Act that the Act-instance represents within its class",
+    "jurisdiction": [
+        {
+            "coding": [
+                {
+                    "system": "http://hl7.org/fhir/v3/ActCode",
+                    "code": "US"
+                }
+            ]
+        }
+    ],
+    "compose": {
+        "include": [
+            {
+                "system": "http://hl7.org/fhir/v3/ActCode",
+                "concept": [
+                    {
+                        "code": "ETH",
+                        "display": "substance abuse information sensitivity"
+                    },
+                    {
+                        "code": "HIV",
+                        "display": "HIV/AIDS information sensitivity"
+                    },
+                    {
+                        "code": "PSY",
+                        "display": "psychiatry information sensitivity"
+                    },
+                    {
+                        "code": "SEX",
+                        "display": "sexuality and reproductive health information sensitivity"
+                    }
+                ]
+            }
+        ]
+    }
+}

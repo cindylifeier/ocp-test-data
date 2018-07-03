@@ -16,9 +16,9 @@ This application loads test data into Omnibus Care Plan (OCP) application.
 
 ### Prerequisities
 
-+ Get the Excel file that contains the test data and place it in a folder.
++ Get the Excel file(available in resources folder) that contains the test data and place it in a folder.
 
-+ Get the files for valuesets and place it in a folder.
++ Get the files for valuesets (available in resource folder) and place it in a folder. Replace the server url to point to your uaa server.
 
 + Get all the scripts from ocp-uaa/external-scripts in Github and place them in a folder. 
 
@@ -37,7 +37,9 @@ fhirserverurl=http://172.16.112.35:8444/`
 
 ### Commands
 
-Run the command: `java -jar ocp0test-data-<VERSION-NUMBER>.jar`. This will pull the data from excel file and valueset files and populate the data in the fhir server.
++ This should be run in a linux environment because the program invokes a linux shell to run the scripts.
+
++ Run the command: `java -jar ocp-test-data-<VERSION-NUMBER>.jar`. This will pull the data from excel file and valueset files and populate the data in the fhir server.
 
 ### Verify
 
