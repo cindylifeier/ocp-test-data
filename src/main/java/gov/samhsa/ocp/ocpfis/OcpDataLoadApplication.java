@@ -35,8 +35,9 @@ public class OcpDataLoadApplication {
         log.info("Read properties file");
 
         populateFhirResources();
-        log.info("Populated fhir resources");
+        //log.info("Populated fhir resources");
 
+        log.info("Populating UAA resources");
         populateUAA();
         log.info("Populated UAA resources");
 
@@ -67,34 +68,51 @@ public class OcpDataLoadApplication {
 
     private static void populateUAA() throws IOException, InvalidFormatException {
         //1. Create roles and scopes
+        log.info("Start creating roles an scopes in UAA");
         RolesUAAHelper.createRoles();
         log.info("Finished creating roles and scopes in UAA");
+        log.info("------------------------------------------");
 
         //2. Create ocpAdmin
+        log.info("Starting creating ocpAdmin in UAA");
         OCPAdminUAAHelper.createOCPAdmin();
+        log.info("Finished creating ocpAdmin in UAA");
+        log.info("------------------------------------------");
 
         Workbook workbook = WorkbookFactory.create(new File(DataConstants.xlsxFile));
 
         //Get all organizations
+        log.info("Retrieving all organizations");
         Map<String, String> organizationsMap = retrieveOrganizations();
         log.info("Retrieved organizations");
+        log.info("------------------------------------------");
 
         //3. Populate Practitioners
+        log.info("Retrieving all practitioners");
         Map<String, String> practitionersMap = retrievePractitioners();
         List<PractitionerDto> practitionersSheet = PractitionersHelper.retrieveSheet(workbook.getSheet("Practitioners"), organizationsMap);
         log.info("Retrieved practitioners");
+        log.info("------------------------------------------");
 
+
+        log.info("Start creating practitioners in UAA");
         PractitionerUAAHelper.createPractitioners(practitionersMap, practitionersSheet);
         log.info("Finished creating practitioners in UAA");
+        log.info("------------------------------------------");
+
 
         //4. Populate Patients
+        log.info("Retrieving all patients");
         Map<String, String> patientsMap = retrievePatients();
         log.info("Retrieved patients");
 
         List<PatientDto> patientsSheet = PatientsHelper.retrieveSheet(workbook.getSheet("Patient"), practitionersMap, organizationsMap);
 
+        log.info("Start creating patients in UAA");
         PatientUAAHelper.createPatients(patientsMap, organizationsMap, patientsSheet);
         log.info("Finished creating patients in UAA");
+        log.info("------------------------------------------");
+
     }
 
     private static void populateFhirResources() throws IOException, InvalidFormatException {
