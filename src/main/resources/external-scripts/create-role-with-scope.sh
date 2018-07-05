@@ -65,7 +65,7 @@ totalResults=$(curl --silent \
 	-H "Cache-Control: no-cache" \
 	GET "http://172.16.112.35:8080/uaa/Groups?filter=displayName+eq+%22$replacedString%22" | jsonValue totalResults)
 
-if [ "$totalResults" -eq 0 ]; then
+if [ "$totalResults" = 0 ]; then
 	roleId=$(curl --silent \
 		-H "Cache-Control: no-cache" \
 		-H "Content-Type: application/json" \

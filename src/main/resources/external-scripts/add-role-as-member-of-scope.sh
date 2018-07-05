@@ -63,10 +63,10 @@ echo $response
 
 
 clear
-echo -n "Please enter permission scope : "
+echo  "Please enter permission scope : "
 read scope
 
-echo -n "Please enter role scope : "
+echo  "Please enter role scope : "
 read role
 
 echo -e "${red}Step 1 of 2:  getting token...${reset}"
