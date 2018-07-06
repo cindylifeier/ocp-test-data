@@ -45,7 +45,6 @@ public class OrganizationHelper {
                 } catch (Exception e) {
                     log.error("Error processing a row for organization");
                 }
-                organizationDtos.add(dto);
             }
             rowNum++;
         }
