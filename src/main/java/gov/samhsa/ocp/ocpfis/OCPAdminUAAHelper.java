@@ -4,7 +4,7 @@ public class OCPAdminUAAHelper {
 
     public static void createOCPAdmin() {
 
-        UAAHelper.createEntityInUAA("James Joyce", null, "ocp.role.ocpAdmin", null, 3);
+        UAAHelper.createEntityInUAA("ocpAdmin ocpAdminLastName", null, "ocp.role.ocpAdmin", null, 3);
 
     }
 }

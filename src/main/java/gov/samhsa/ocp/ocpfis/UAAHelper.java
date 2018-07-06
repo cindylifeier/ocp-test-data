@@ -71,7 +71,7 @@ public class UAAHelper {
 
                 } else if (line.contains("enter the Org ID")) {
                     pw.println(organizationId);
-                    log.info("Entered organization ID: 53");
+                    log.info("Entered organization ID: " + organizationId);
                     pw.flush();
 
                 } else if (line.contains("fhir resource id")) {
