@@ -235,7 +235,7 @@ public class OcpDataLoadApplication {
     }
 
     private static Map<String, String> retrievePatients() {
-        String url = DataConstants.serverUrl + "patients/search";
+        String url = DataConstants.serverUrl + "patients/search?showAll=true";
         RestTemplate rt = new RestTemplate();
         ResponseEntity<WrapperPatientDto> responseEntity = rt.getForEntity(url, WrapperPatientDto.class);
         WrapperPatientDto wrapperDto = responseEntity.getBody();
