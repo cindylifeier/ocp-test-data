@@ -1,6 +1,6 @@
 #!/bin/bash
 
-UAA_BASE_URL="http://172.16.112.35:8080/uaa"
+UAA_BASE_URL="http://localhost:8080/uaa"
 CLIENT_ID="admin-client"
 CLIENT_SECTRET="changeit"
 ADMIN_USERNAME="scim-admin"
@@ -57,7 +57,7 @@ response=$(curl --silent \
 			-H "Authorization: $bearerToken" \
 			-H "Cache-Control: no-cache" \
 			-H "Content-Type: application/json" \
-			POST --data '{"origin" : "uaa", "type" : "GROUP", "value" : "'"$roleId"'"}' "http://172.16.112.35:8080/uaa/Groups/$groupId/members")
+			POST --data '{"origin" : "uaa", "type" : "GROUP", "value" : "'"$roleId"'"}' "http://localhost:8080/uaa/Groups/$groupId/members")
 echo $response
 }
 

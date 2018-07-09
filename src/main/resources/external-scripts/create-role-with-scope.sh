@@ -25,7 +25,7 @@ function getScimAdminToken(){
 token=$(curl --silent\
         -H "Content-Type:application/x-www-form-urlencoded" \
 		-H "Cache-Control: no-cache" \
-        -X POST --data "client_id=admin-client&grant_type=password&client_secret=changeit&username=scim-admin&response_type=token&password=AAA%21aaa1" "http://172.16.112.35:8080/uaa/oauth/token" | jsonValue access_token)
+        -X POST --data "client_id=admin-client&grant_type=password&client_secret=changeit&username=scim-admin&response_type=token&password=AAA%21aaa1" "http://localhost:8080/uaa/oauth/token" | jsonValue access_token)
 
 echo -e $token
 }
@@ -36,7 +36,7 @@ replacedString=${tmp//_/%5F}
 result=$(curl --silent \
 	-H "Authorization: $2" \
 	-H "Cache-Control: no-cache" \
-	GET "http://172.16.112.35:8080/uaa/Groups?filter=displayName+eq+%22$replacedString%22")
+	GET "http://localhost:8080/uaa/Groups?filter=displayName+eq+%22$replacedString%22")
 groupId=`echo  -e $result | grep -Po '"id": *\K"[^"]*"'  | tr -d '"'`
 echo -e $groupId
 }
@@ -46,7 +46,7 @@ response=$(curl --silent \
 			-H "Authorization: $3" \
 			-H "Cache-Control: no-cache" \
 			-H "Content-Type: application/json" \
-			POST --data '{"origin" : "uaa", "type" : "GROUP", "value" : "'"$2"'"}' "http://172.16.112.35:8080/uaa/Groups/$1/members")
+			POST --data '{"origin" : "uaa", "type" : "GROUP", "value" : "'"$2"'"}' "http://localhost:8080/uaa/Groups/$1/members")
 }
 
 function createNewRole(){
@@ -54,7 +54,7 @@ roleId=$(curl --silent \
 	-H "Cache-Control: no-cache" \
 	-H "Content-Type: application/json" \
 	-H "Authorization: $3" \
-	POST --data '{"displayName": "$1", "description" : "$2"}' "http://172.16.112.35:8080/uaa/Groups" | jsonValue id)
+	POST --data '{"displayName": "$1", "description" : "$2"}' "http://localhost:8080/uaa/Groups" | jsonValue id)
 }
 
 function createRoleAndAddScopes(){
@@ -63,14 +63,14 @@ replacedString=${tmp//_/%5F}
 totalResults=$(curl --silent \
 	-H "Authorization: $3" \
 	-H "Cache-Control: no-cache" \
-	GET "http://172.16.112.35:8080/uaa/Groups?filter=displayName+eq+%22$replacedString%22" | jsonValue totalResults)
+	GET "http://localhost:8080/uaa/Groups?filter=displayName+eq+%22$replacedString%22" | jsonValue totalResults)
 
 if [ "$totalResults" = 0 ]; then
 	roleId=$(curl --silent \
 		-H "Cache-Control: no-cache" \
 		-H "Content-Type: application/json" \
 		-H "Authorization: $3" \
-		POST --data '{"displayName": "'"$1"'", "description" : "'"$2"'"}' "http://172.16.112.35:8080/uaa/Groups"  | jsonValue id)
+		POST --data '{"displayName": "'"$1"'", "description" : "'"$2"'"}' "http://localhost:8080/uaa/Groups"  | jsonValue id)
 
 echo -e "Created the new role."
 

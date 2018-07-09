@@ -27,7 +27,7 @@ This application loads test data into Omnibus Care Plan (OCP) application.
 `xlsxfile=/home/utish/Downloads/OCP.xlsx
 valuesetsdir=/home/utish/Downloads/valuesets
 scriptsdir=/home/utish/Downloads/external-scripts
-fhirserverurl=http://172.16.112.35:8444/`
+fhirserverurl=http://localhost:8444/`
 
 + Replace the values for xlsxfile (path to Excel file above), valuesetdir (path to valueset files above), scriptsdir (path to scripts directory above), fhirsererurl (path to fhir server where you want to load the data) with your values.
 
