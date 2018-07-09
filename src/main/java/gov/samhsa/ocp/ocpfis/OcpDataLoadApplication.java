@@ -35,7 +35,7 @@ public class OcpDataLoadApplication {
         log.info("Read properties file");
 
         populateFhirResources();
-        //log.info("Populated fhir resources");
+        log.info("Populated fhir resources");
 
         log.info("Populating UAA resources");
         populateUAA();
