@@ -189,34 +189,6 @@
           {
             "code": "106S00000X",
             "display": "Behavior Technician"
-          },
-          {
-            "code": "171M00000X",
-            "display": "Case Manager/Care Coordinator"
-          },
-          {
-            "code": "CAREMNGR",
-            "display": "Care Manager"
-          },
-          {
-            "code": "ORGADMIN",
-            "display": "Organization Administrator"
-          },
-          {
-            "code": "PCP",
-            "display": "Primary Care Provider"
-          },
-          {
-            "code": "BENETSPT",
-            "display": "Benefits Specialist"
-          },
-          {
-            "code": "HASST",
-            "display": "Health Assistant"
-          },
-          {
-            "code": "FORECEPT",
-            "display": "Front Office/Receptionist"
           }
         ]
       }
