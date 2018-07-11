@@ -110,11 +110,6 @@ public class PractitionersHelper {
 
                 firstName = cellValue.trim();
 
-            } else if (j == 2) {
-                //middle name
-
-                firstName = firstName+" "+ cellValue.trim();
-
             } else if (j == 3) {
                 //last name
                 NameDto nameDto = new NameDto();
