@@ -34,6 +34,21 @@ public class CommonHelper {
         return Arrays.asList(getAddress(line, city, state, zip));
     }
 
+    public static AddressDto getAddress(String cellValue) {
+        AddressDto dto = new AddressDto();
+        Faker faker = new Faker();
+        dto.setLine1(faker.address().streetAddress());
+        dto.setCity(faker.address().city());
+        dto.setStateCode(faker.address().state());
+        dto.setPostalCode(faker.address().zipCode());
+        dto.setCountryCode("US");
+        return dto;
+    }
+
+    public static List<AddressDto> getAddresses(String cellValue) {
+        return Arrays.asList(getAddress(cellValue));
+    }
+
     public static List<TelecomDto> getTelecoms(String system, String cellValue) {
         TelecomDto telecomDto = new TelecomDto();
         telecomDto.setSystem(Optional.ofNullable(system));
