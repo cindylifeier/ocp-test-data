@@ -60,15 +60,19 @@ public class LocationsHelper {
 
     private static void processRow(Map<String, String> mapOrganizations, Row row, int j, TempLocationDto dto) {
         for (Cell cell : row) {
+            String street="";
+            String city="";
+            String state="";
+            String zip="";
             String cellValue = new DataFormatter().formatCellValue(cell);
 
-            processCell(mapOrganizations, j, dto, cellValue);
+            processCell(mapOrganizations, j, dto, street, city, state, zip, cellValue);
             j++;
         }
     }
 
 
-    private static void processCell(Map<String, String> mapOrganizations, int j, TempLocationDto dto, String cellValue) {
+    private static void processCell(Map<String, String> mapOrganizations, int j, TempLocationDto dto, String street, String city, String state, String zip, String cellValue) {
         if (j == 0) {
             //get the id of the organization
             dto.setManagingOrganization(mapOrganizations.get(cellValue.trim()));
@@ -77,15 +81,22 @@ public class LocationsHelper {
             dto.setName(cellValue);
 
         } else if (j == 2) {
-            dto.setAddress(CommonHelper.getAddress(cellValue));
-
+            street=cellValue.trim();
         } else if (j == 3) {
+            city=cellValue.trim();
+        }else if (j == 4) {
+            state=cellValue.trim();
+        }else if (j == 5) {
+            zip=cellValue.trim();
+            dto.setAddress(CommonHelper.getAddress(street,city,state,zip));
+        }
+        else if (j == 6) {
             dto.setTelecoms(CommonHelper.getTelecoms("phone", cellValue));
 
-        } else if (j == 5) {
+        } else if (j == 8) {
             dto.setIdentifiers(CommonHelper.getIdentifiers("Organization Tax ID", cellValue));
 
-        } else if (j == 6) {
+        } else if (j == 9) {
             dto.setStatus("active");
         }
     }
