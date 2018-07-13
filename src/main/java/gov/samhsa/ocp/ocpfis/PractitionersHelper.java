@@ -79,7 +79,10 @@ public class PractitionersHelper {
 
     private static void processRow(Map<String, String> mapOrganizations, Map<String, String> practitionerRolesLookup, Row row, int j, PractitionerDto dto) {
         String firstName = "";
-        String middleName = "";
+        String line="";
+        String city="";
+        String state="";
+        String zip="";
         PractitionerRoleDto roleDto = new PractitionerRoleDto();
         roleDto.setActive(true);
 
@@ -107,11 +110,6 @@ public class PractitionersHelper {
 
                 firstName = cellValue.trim();
 
-            } else if (j == 2) {
-                //middle name
-
-                middleName = cellValue.trim();
-
             } else if (j == 3) {
                 //last name
                 NameDto nameDto = new NameDto();
@@ -136,17 +134,24 @@ public class PractitionersHelper {
 
             } else if (j == 5) {
                 //address
+                line=cellValue.trim();
 
-                dto.setAddresses(CommonHelper.getAddresses(cellValue));
+            } else if(j==6){
+                city=cellValue.trim();
 
-            } else if (j == 6) {
+            }else if(j==7){
+                state=cellValue.trim();
+            } else if(j==8){
+                zip=cellValue.trim();
+                dto.setAddresses(CommonHelper.getAddresses(line,city,state,zip));
+            } else if (j == 9) {
                 //contact
                 TelecomDto telecom = new TelecomDto();
                 telecom.setSystem(Optional.of("phone"));
                 telecom.setValue(Optional.of(cellValue));
                 telecoms.add(telecom);
 
-            } else if (j == 7) {
+            } else if (j == 10) {
                 //email
                 TelecomDto telecom = new TelecomDto();
                 telecom.setSystem(Optional.of("email"));
@@ -155,12 +160,12 @@ public class PractitionersHelper {
 
                 dto.setTelecoms(telecoms);
 
-            } else if (j == 8) {
+            } else if (j == 11) {
                 //ID type
 
                 idType = cellValue;
 
-            } else if (j == 9) {
+            } else if (j == 12) {
                 //ID
                 IdentifierDto identifierDto = new IdentifierDto();
                 identifierDto.setSystem("http://hl7.org/fhir/sid/us-npi");
@@ -168,7 +173,7 @@ public class PractitionersHelper {
 
                 dto.setIdentifiers(Arrays.asList(identifierDto));
 
-            } else if (j == 10) {
+            } else if (j == 13) {
                 //UAA role
                 dto.setUaaRole(cellValue);
             }

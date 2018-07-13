@@ -76,6 +76,10 @@ public class RelatedPersonsHelper {
     }
 
     private static void processRow(Map<String, String> mapOfPatients, Map<String, String> identifierTypeLookup, Map<String, String> genderLookup, Map<String, String> relationLookup, Row row, int j, TempRelatedPersonDto dto) {
+        String line = "";
+        String city="";
+        String state="";
+        String zip="";
         for (Cell cell : row) {
             String cellValue = new DataFormatter().formatCellValue(cell).trim();
 
@@ -100,9 +104,16 @@ public class RelatedPersonsHelper {
             } else if (j == 8) {
                 boolean isActive = (cellValue.equalsIgnoreCase("active")) ? true : false;
                 dto.setActive(isActive);
-            } else if (j == 9) {
-                dto.setAddresses(CommonHelper.getAddresses(cellValue));
-            } else if (j == 10) {
+            } else if(j==9){
+                line=cellValue.trim();
+            }else if(j==10){
+                city=cellValue.trim();
+            }else if(j==11){
+                state=cellValue.trim();
+            } else if (j == 12) {
+                zip=cellValue.trim();
+                dto.setAddresses(CommonHelper.getAddresses(line,city,state,zip));
+            } else if (j == 13) {
                 TelecomDto telecomDto = new TelecomDto();
                 telecomDto.setSystem(java.util.Optional.of(ContactPointSystem.PHONE.toCode()));
                 telecomDto.setUse(java.util.Optional.of(ContactPointUse.WORK.toCode()));

@@ -20,6 +20,20 @@ import java.util.Optional;
 
 public class CommonHelper {
 
+    public static AddressDto getAddress(String line, String city, String state, String zip) {
+        AddressDto dto = new AddressDto();
+        dto.setLine1(line);
+        dto.setCity(city);
+        dto.setStateCode(state);
+        dto.setPostalCode(zip);
+        dto.setCountryCode("US");
+        return dto;
+    }
+
+    public static List<AddressDto> getAddresses(String line, String city, String state, String zip) {
+        return Arrays.asList(getAddress(line, city, state, zip));
+    }
+
     public static AddressDto getAddress(String cellValue) {
         AddressDto dto = new AddressDto();
         Faker faker = new Faker();

@@ -1,0 +1,197 @@
+{
+        "resourceType": "StructureDefinition",
+        "id": "us-core-race",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2018-06-13T19:17:24.836+00:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border: 0px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top;\">\n    <tr style=\"border: 1px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top;\">\n      <th style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/formats.html#table\" title=\"The logical name of the element\">Name</a>\n      </th>\n      <th style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/formats.html#table\" title=\"Information about the use of the element\">Flags</a>\n      </th>\n      <th style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/formats.html#table\" title=\"Minimum and Maximum # of times the the element can appear in the instance\">Card.</a>\n      </th>\n      <th style=\"width: 100px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/formats.html#table\" title=\"Reference to the type of the element\">Type</a>\n      </th>\n      <th style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/formats.html#table\" title=\"Additional information about the element\">Description &amp; Constraints</a>\n        <span style=\"float: right\">\n          <a href=\"http://hl7.org/fhir/STU3/formats.html#table\" title=\"Legend for this format\">\n            <img src=\"http://hl7.org/fhir/STU3/help16.png\" alt=\"doco\" style=\"background-color: inherit\"/>\n          </a>\n        </span>\n      </th>\n    </tr>\n    <tr style=\"border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;\">\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck1.png)\" class=\"hierarchy\">\n        <img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"icon_element.gif\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"Element\" class=\"hierarchy\"/>\n        <a href=\"StructureDefinition-us-core-race-definitions.html#Extension:race\" title=\"Concepts classifying the person into a named category of humans sharing common history, traits, geographical origin or nationality.  The race codes used to represent these concepts are based upon the [CDC Race and Ethnicity Code Set Version 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for representing race and ethnicity of which 921 reference race.  The race concepts are grouped by and pre-mapped to the 5 OMB race categories: - American Indian or Alaska Native - Asian - Black or African American - Native Hawaiian or Other Pacific Islander - White.\">Extension</a>\n        <a name=\"Extension\"></a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"></td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"></td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">US Core Race Extension</td>\n    </tr>\n    <tr style=\"border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;\">\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck10.png)\" class=\"hierarchy\">\n        <img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"icon_element.gif\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"Element\" class=\"hierarchy\"/>\n        <a href=\"StructureDefinition-us-core-race-definitions.html#Extension:race.url\" title=\"null\">url</a>\n        <a name=\"Extension.url\"></a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"></td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">1..1</td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"></td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <span style=\"color: darkgreen\">\"http://hl7.org/fhir/us/core/StructureDefinition/us-core-race\"</span>\n      </td>\n    </tr>\n    <tr style=\"border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;\">\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck11.png)\" class=\"hierarchy\">\n        <img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"icon_extension_simple.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"Simple Extension\" class=\"hierarchy\"/>\n        <a href=\"StructureDefinition-us-core-race-definitions.html#Extension:race.extension:ombcategory\" title=\"Slice ombCategory: The 5 race category codes according to the [OMB Standards for Maintaining, Collecting, and Presenting Federal Data on Race and Ethnicity, Statistical Policy Directive No. 15, as revised, October 30, 1997](https://www.whitehouse.gov/omb/fedreg_1997standards).\">extension</a>\n        <a name=\"Extension.extension\"></a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <span style=\"padding: 3px; color: white; background-color: red\" title=\"This element must be supported\">S</span>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..5</td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/datatypes.html#Extension\">Extension</a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">American Indian or Alaska Native|Asian|Black or African American|Native Hawaiian or Other Pacific Islander|White</td>\n    </tr>\n    <tr style=\"border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;\">\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck110.png)\" class=\"hierarchy\">\n        <img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"icon_primitive.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"Primitive Data Type\" class=\"hierarchy\"/>\n        <a href=\"StructureDefinition-us-core-race-definitions.html#Extension:race.extension:ombcategory.url\" title=\"null\">url</a>\n        <a name=\"Extension.extension.url\"></a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"></td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">1..1</td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/datatypes.html#uri\">uri</a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <span style=\"color: darkgreen\">\"ombCategory\"</span>\n      </td>\n    </tr>\n    <tr style=\"border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;\">\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck100.png)\" class=\"hierarchy\">\n        <img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"icon_datatype.gif\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"Data Type\" class=\"hierarchy\"/>\n        <a href=\"StructureDefinition-us-core-race-definitions.html#Extension:race.extension:ombcategory.valueCoding\" title=\"null\">valueCoding</a>\n        <a name=\"Extension.extension.valueCoding\"></a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"></td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">1..1</td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/datatypes.html#Coding\">Coding</a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <span style=\"font-weight:bold\">Binding: </span>\n        <a href=\"ValueSet-omb-race-category.html\">OMB Race Categories</a> (<a href=\"http://hl7.org/fhir/STU3/terminologies.html#required\" title=\"To be conformant, the concept in this element SHALL be from the specified value set\">required</a>)</td>\n    </tr>\n    <tr style=\"border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;\">\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck11.png)\" class=\"hierarchy\">\n        <img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"icon_extension_simple.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"Simple Extension\" class=\"hierarchy\"/>\n        <a href=\"StructureDefinition-us-core-race-definitions.html#Extension:race.extension:detailed\" title=\"Slice detailed: The 900+ CDC race codes that are grouped under one of the 5 OMB race category codes:.\">extension</a>\n        <a name=\"Extension.extension\"></a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"></td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..*</td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/datatypes.html#Extension\">Extension</a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Extended race codes<br/></td>\n    </tr>\n    <tr style=\"border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;\">\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck110.png)\" class=\"hierarchy\">\n        <img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"icon_primitive.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"Primitive Data Type\" class=\"hierarchy\"/>\n        <a href=\"StructureDefinition-us-core-race-definitions.html#Extension:race.extension:detailed.url\" title=\"null\">url</a>\n        <a name=\"Extension.extension.url\"></a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"></td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">1..1</td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/datatypes.html#uri\">uri</a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <span style=\"color: darkgreen\">\"detailed\"</span>\n      </td>\n    </tr>\n    <tr style=\"border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;\">\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck100.png)\" class=\"hierarchy\">\n        <img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"icon_datatype.gif\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"Data Type\" class=\"hierarchy\"/>\n        <a href=\"StructureDefinition-us-core-race-definitions.html#Extension:race.extension:detailed.valueCoding\" title=\"null\">valueCoding</a>\n        <a name=\"Extension.extension.valueCoding\"></a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"></td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">1..1</td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/datatypes.html#Coding\">Coding</a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <span style=\"font-weight:bold\">Binding: </span>\n        <a href=\"ValueSet-detailed-race.html\">US-Core Detailed Race</a> (<a href=\"http://hl7.org/fhir/STU3/terminologies.html#required\" title=\"To be conformant, the concept in this element SHALL be from the specified value set\">required</a>)</td>\n    </tr>\n    <tr style=\"border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;\">\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck01.png)\" class=\"hierarchy\">\n        <img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"icon_extension_simple.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"Simple Extension\" class=\"hierarchy\"/>\n        <a href=\"StructureDefinition-us-core-race-definitions.html#Extension:race.extension:text\" title=\"Slice text: Plain text representation of the race concept(s).\">extension</a>\n        <a name=\"Extension.extension\"></a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <span style=\"padding: 3px; color: white; background-color: red\" title=\"This element must be supported\">S</span>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">1..1</td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/datatypes.html#Extension\">Extension</a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Race Text</td>\n    </tr>\n    <tr style=\"border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;\">\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck010.png)\" class=\"hierarchy\">\n        <img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"icon_primitive.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"Primitive Data Type\" class=\"hierarchy\"/>\n        <a href=\"StructureDefinition-us-core-race-definitions.html#Extension:race.extension:text.url\" title=\"null\">url</a>\n        <a name=\"Extension.extension.url\"></a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"></td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">1..1</td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/datatypes.html#uri\">uri</a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <span style=\"color: darkgreen\">\"text\"</span>\n      </td>\n    </tr>\n    <tr style=\"border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;\">\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck000.png)\" class=\"hierarchy\">\n        <img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/>\n        <img src=\"icon_primitive.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"Primitive Data Type\" class=\"hierarchy\"/>\n        <a href=\"StructureDefinition-us-core-race-definitions.html#Extension:race.extension:text.valueString\" title=\"null\">valueString</a>\n        <a name=\"Extension.extension.valueString\"></a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"></td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">1..1</td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">\n        <a href=\"http://hl7.org/fhir/STU3/datatypes.html#string\">string</a>\n      </td>\n      <td style=\"vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"></td>\n    </tr>\n    <tr>\n      <td colspan=\"5\" class=\"hierarchy\">\n        <br/>\n        <a href=\"http://hl7.org/fhir/STU3/formats.html#table\" title=\"Legend for this format\">\n          <img src=\"http://hl7.org/fhir/STU3/help16.png\" alt=\"doco\" style=\"background-color: inherit\"/> Documentation for this format</a>\n      </td>\n    </tr>\n  </table>\n</div>"
+        },
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+        "version": "1.0.1",
+        "name": "US Core Race Extension",
+        "title": "US Core Race Extension",
+        "status": "draft",
+        "date": "2016-08-01T00:00:00+10:00",
+        "publisher": "HL7 US Realm Steering Committee",
+        "contact": [
+          {
+            "telecom": [
+              {
+                "system": "url",
+                "value": "http://www.healthit.gov"
+              }
+            ]
+          }
+        ],
+        "description": "Concepts classifying the person into a named category of humans sharing common history, traits, geographical origin or nationality.  The race codes used to represent these concepts are based upon the [CDC Race and Ethnicity Code Set Version 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for representing race and ethnicity of which 921 reference race.  The race concepts are grouped by and pre-mapped to the 5 OMB race categories: - American Indian or Alaska Native - Asian - Black or African American - Native Hawaiian or Other Pacific Islander - White.",
+        "jurisdiction": [
+          {
+            "coding": [
+              {
+                "system": "urn:iso:std:iso:3166",
+                "code": "US",
+                "display": "United States Minor Outlying Islands (the)"
+              }
+            ]
+          }
+        ],
+        "purpose": "Complies with 2015 Edition Common Clinical Data Set for patient race.",
+        "fhirVersion": "3.0.1",
+        "mapping": [
+          {
+            "identity": "rim",
+            "uri": "http://hl7.org/v3",
+            "name": "RIM Mapping"
+          }
+        ],
+        "kind": "complex-type",
+        "abstract": false,
+        "contextType": "resource",
+        "context": [
+          "Patient"
+        ],
+        "type": "Extension",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Extension",
+              "path": "Extension",
+              "short": "US Core Race Extension",
+              "definition": "Concepts classifying the person into a named category of humans sharing common history, traits, geographical origin or nationality.  The race codes used to represent these concepts are based upon the [CDC Race and Ethnicity Code Set Version 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for representing race and ethnicity of which 921 reference race.  The race concepts are grouped by and pre-mapped to the 5 OMB race categories: - American Indian or Alaska Native - Asian - Black or African American - Native Hawaiian or Other Pacific Islander - White.",
+              "max": "1",
+              "isModifier": false
+            },
+            {
+              "id": "Extension.extension",
+              "path": "Extension.extension",
+              "slicing": {
+                "discriminator": [
+                  {
+                    "type": "value",
+                    "path": "url"
+                  }
+                ],
+                "rules": "open"
+              }
+            },
+            {
+              "id": "Extension.extension:ombCategory",
+              "path": "Extension.extension",
+              "sliceName": "ombCategory",
+              "short": "American Indian or Alaska Native|Asian|Black or African American|Native Hawaiian or Other Pacific Islander|White",
+              "definition": "The 5 race category codes according to the [OMB Standards for Maintaining, Collecting, and Presenting Federal Data on Race and Ethnicity, Statistical Policy Directive No. 15, as revised, October 30, 1997](https://www.whitehouse.gov/omb/fedreg_1997standards).",
+              "max": "5",
+              "mustSupport": true,
+              "isModifier": false,
+              "mapping": [
+                {
+                  "identity": "iso11179",
+                  "map": "/ClinicalDocument/recordTarget/patientRole/patient/raceCode"
+                }
+              ]
+            },
+            {
+              "id": "Extension.extension:ombCategory.url",
+              "path": "Extension.extension.url",
+              "fixedUri": "ombCategory"
+            },
+            {
+              "id": "Extension.extension:ombCategory.value[x]:valueCoding",
+              "path": "Extension.extension.valueCoding",
+              "sliceName": "valueCoding",
+              "min": 1,
+              "type": [
+                {
+                  "code": "Coding"
+                }
+              ],
+              "binding": {
+                "strength": "required",
+                "description": "The 5 race category codes according to the [OMB Standards for Maintaining, Collecting, and Presenting Federal Data on Race and Ethnicity, Statistical Policy Directive No. 15, as revised, October 30, 1997](https://www.whitehouse.gov/omb/fedreg_1997standards).",
+                "valueSetReference": {
+                  "reference": "http://hl7.org/fhir/us/core/ValueSet/omb-race-category"
+                }
+              }
+            },
+            {
+              "id": "Extension.extension:detailed",
+              "path": "Extension.extension",
+              "sliceName": "detailed",
+              "short": "Extended race codes",
+              "definition": "The 900+ CDC race codes that are grouped under one of the 5 OMB race category codes:.",
+              "isModifier": false,
+              "mapping": [
+                {
+                  "identity": "iso11179",
+                  "map": "/ClinicalDocument/recordTarget/patientRole/patient/sdtc:raceCode"
+                }
+              ]
+            },
+            {
+              "id": "Extension.extension:detailed.url",
+              "path": "Extension.extension.url",
+              "fixedUri": "detailed"
+            },
+            {
+              "id": "Extension.extension:detailed.value[x]:valueCoding",
+              "path": "Extension.extension.valueCoding",
+              "sliceName": "valueCoding",
+              "min": 1,
+              "type": [
+                {
+                  "code": "Coding"
+                }
+              ],
+              "binding": {
+                "strength": "required",
+                "description": "The [900+ CDC Race codes](http://www.cdc.gov/phin/resources/vocabulary/index.html) that are grouped under one of the 5 OMB race category codes.",
+                "valueSetReference": {
+                  "reference": "http://hl7.org/fhir/us/core/ValueSet/detailed-race"
+                }
+              }
+            },
+            {
+              "id": "Extension.extension:text",
+              "path": "Extension.extension",
+              "sliceName": "text",
+              "short": "Race Text",
+              "definition": "Plain text representation of the race concept(s).",
+              "min": 1,
+              "max": "1",
+              "mustSupport": true,
+              "isModifier": false
+            },
+            {
+              "id": "Extension.extension:text.url",
+              "path": "Extension.extension.url",
+              "fixedUri": "text"
+            },
+            {
+              "id": "Extension.extension:text.value[x]:valueString",
+              "path": "Extension.extension.valueString",
+              "sliceName": "valueString",
+              "min": 1,
+              "type": [
+                {
+                  "code": "string"
+                }
+              ]
+            },
+            {
+              "id": "Extension.url",
+              "path": "Extension.url",
+              "fixedUri": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+            },
+            {
+              "id": "Extension.value[x]",
+              "path": "Extension.value[x]",
+              "max": "0"
+            }
+          ]
+        }
+      }

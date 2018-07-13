@@ -1,0 +1,170 @@
+{
+        "resourceType": "StructureDefinition",
+        "id": "ocp-flag",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-05-04T19:10:57.757+00:00"
+        },
+        "language": "US-en",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\nThe FHIR STU3 (Release 3) Omnibus Care Plan (OCP) Flag profile uses FHIR resources and describes minimum expectations with supported data elements and changes to the cardinality to alert practitioners to information that is important to influence their interaction with a Omnibus Care Plan (OCP) Patient prior to detailed review of the record. It identifies which core elements, extensions, and value sets SHALL be present in the resource when using this profile. Flags are not raised as a result of a reported or proposed action.\nDependencies:\n   Flag profile that conforms to this specification must include reference to other resources \n<ul><li>OCP-Patient</li><li>Location</li><li>Group</li><li>Organization</li><li>PlanDefinition</li><li>OCP-Practitioner</li><li>Medication</li><li>Procedure</li></ul></div>"
+        },
+        "url": "http://hl7.org/fhir/StructureDefinition/ocp-flag",
+        "version": "1.0",
+        "name": "OCP Flag",
+        "title": "OCP Flag",
+        "status": "draft",
+        "date": "2018-03-26T14:59:09.485-04:00",
+        "publisher": "SAMHSA",
+        "contact": [
+          {
+            "name": "Neelima Chennamaraja",
+            "telecom": [
+              {
+                "system": "url",
+                "value": "www.eversolve.com",
+                "period": {
+                  "start": "1999-06-15"
+                }
+              },
+              {
+                "system": "email",
+                "value": "neelima@eversolve.com",
+                "use": "work"
+              }
+            ]
+          }
+        ],
+        "description": "The Omnibus Care Plan (OCP) Flag profile is used to alert practitioners to information that is important to influence their interaction with a Omnibus Care Plan (OCP) Patient prior to detailed review of the record. Flags are not used to convey information to a specific individual or organization. Flags are not raised as a result of a reported or proposed action.",
+        "jurisdiction": [
+          {
+            "coding": [
+              {
+                "code": "US",
+                "display": "US-Realm"
+              }
+            ],
+            "text": "US-Realm OCP Flag Profile published by SAMHSA"
+          }
+        ],
+        "purpose": "The OCP Flag profile includes all the elements related to basic need for OCP (which could change over time). This profile is intended to be implemented by OCP (Omnibus Care Plan) systems. ",
+        "copyright": "+Copyright (c) 2017 SAMHSA. All Rights Reserved.",
+        "fhirVersion": "3.0.1",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Flag",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Flag",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Flag.status",
+              "path": "Flag.status",
+              "mustSupport": true
+            },
+            {
+              "id": "Flag.category",
+              "path": "Flag.category",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Flag.code",
+              "path": "Flag.code",
+              "definition": "The coded value or textual component of the flag to display to the user. OCP will use only the code.text (to store user entered text) part of the CodeableConcept and code.coding will not be populated. No valueset required for this. ",
+              "mustSupport": true
+            },
+            {
+              "id": "Flag.code.text",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable",
+                  "valueBoolean": true
+                }
+              ],
+              "path": "Flag.code.text",
+              "definition": "Specifies a specific user-defined text note.\r\nA human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user."
+            },
+            {
+              "id": "Flag.subject",
+              "path": "Flag.subject",
+              "definition": "The patient, location, group , organization , or practitioner, etc. this is about record this flag is associated with. Read-only. System to autopopulate resource reference for which Flag was added. For the time being, implemented only for Patient but the same module may be used for flags related to Location, Organization, Pracititioner, etc. later.",
+              "comment": "References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository. \r\nNote: Plan to submit FHIR Tracker to change to Reference(Any) or atleast add HealthcareService, RelatedPerson and CareTeam to support future OCP requirements. ",
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Location"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Group"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/PlanDefinition"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Medication"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Procedure"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-practitioner"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
+              "id": "Flag.period",
+              "path": "Flag.period",
+              "definition": "The period of time from the activation of the flag to inactivation of the flag. If the flag is active, the end of the period should be unspecified. \r\n",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Flag.period.start",
+              "path": "Flag.period.start",
+              "definition": "The start of the period. The boundary is inclusive. Read-only. System to autopoulate the current date as start date by default but allow user to change. "
+            },
+            {
+              "id": "Flag.period.end",
+              "path": "Flag.period.end",
+              "definition": "The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time. System to auto populate date as end date by default when status is changed to inactive or entered-in-error and allow user to change it (we may restrict it in future). "
+            },
+            {
+              "id": "Flag.author",
+              "path": "Flag.author",
+              "definition": "The person, organization or device that created the flag. Read-only. System populated with the current user context (usually Practitioner but could be Patient or RelatedPerson). May not need to support Organization.  \r\n\r\nNote: Plan to submit FHIR Tracker to change this to allow Reference to RelatedPerson since they can be part of care team. ",
+              "min": 1,
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-practitioner"
+                }
+              ],
+              "mustSupport": true
+            }
+          ]
+        }
+      }

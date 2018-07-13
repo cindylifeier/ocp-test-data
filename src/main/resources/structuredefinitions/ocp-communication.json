@@ -1,0 +1,232 @@
+{
+        "resourceType": "StructureDefinition",
+        "id": "ocp-communication",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-06-20T14:33:17.645+00:00"
+        },
+        "language": "US-en",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> <ul> <li>OCP-Patient</li> <li>Group</li> <li>Organization</li> <li>ActivityDefinition</li> <li>PlanDefinition</li> <li>OCP-Practitioner</li> <li>OCP-RelatedPerson</li> <li>EpisodeOfCare</li> <li>Encounter</li> <li>Condition</li> <li>Observation</li> </ul> The FHIR STU3 (Release 3) Omnibus Care Plan (OCP) Communication profile uses FHIR resources and describes minimum expectations for the Communication with supported data elements and changes to the car\n(Content truncated) </div>"
+        },
+        "url": "http://hl7.org/fhir/StructureDefinition/ocp-communication",
+        "version": "1.0",
+        "name": "OCP Communication",
+        "title": "OCP Communication Profile",
+        "status": "draft",
+        "date": "2018-03-24T00:44:38.512-04:00",
+        "publisher": "SAMHSA",
+        "contact": [
+          {
+            "name": "Neelima Chennamaraja",
+            "telecom": [
+              {
+                "system": "url",
+                "value": "www.eversolve.com",
+                "period": {
+                  "start": "1999-06-15"
+                }
+              },
+              {
+                "system": "email",
+                "value": "neelima@eversolve.com",
+                "use": "work"
+              }
+            ]
+          }
+        ],
+        "description": "This OCP (Omnibus Care Plan) Communication profile describes an occurrence of information being transmitted. A communication is a conveyance of information from one entity, a sender, to another entity, a receiver and the information is delivered only once. The sender and receivers may be patients, practitioners, related persons, organizations, or devices. It identifies which core elements, extensions, and value sets SHALL be present in the resource when using this profile.\r\nCommunication does not deal with the duration of a call, it represents the fact that information was transferred at a particular point in time.",
+        "jurisdiction": [
+          {
+            "coding": [
+              {
+                "code": "US",
+                "display": "US-Realm"
+              }
+            ],
+            "text": "US-Realm OCP EpisodeOfCare Profile published by SAMHSA"
+          }
+        ],
+        "purpose": "This profile for Communication includes all the elements related to basic need for OCP (which could change over time). This profile is intended to be implemented by OCP (Omnibus Care Plan) systems. ",
+        "copyright": "+Copyright (c) 2017 SAMHSA. All Rights Reserved.",
+        "fhirVersion": "3.0.1",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Communication",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Communication",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Communication.definition",
+              "path": "Communication.definition",
+              "definition": "A protocol, guideline, or other definition that was adhered to in whole or in part by this communication event. To be supported later once organization relationship is established. There could be one or more ActivityDefinition templates defined for Communication (e.g. Outreach). ",
+              "max": "1",
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.status",
+              "path": "Communication.status",
+              "definition": "The status of the transmission. Show all status for user to choose from. May require state machine flow for this.",
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.notDone",
+              "path": "Communication.notDone",
+              "definition": "If true, indicates that the described communication event did not actually occur. Allow user to check if the communication did not occur and this is added just for record person (e.g. tried calling Patient but was not able to talk). Default value is FALSE.",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.notDoneReason",
+              "path": "Communication.notDoneReason",
+              "definition": "Describes why the communication event did not occur in coded and/or textual form. Allow user to choose from value set. Only required if notDone = true. ",
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.category",
+              "path": "Communication.category",
+              "comment": "There may be multiple axes of categorization and one communication may serve multiple purposes. Allow user to choose from value set. Use FHIR example value set for now. ",
+              "min": 1,
+              "max": "1",
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.medium",
+              "path": "Communication.medium",
+              "definition": "A channel that was used for this communication (e.g. email, fax). Allow user to choose from value set. Use FHIR example value set for now. ",
+              "min": 1,
+              "max": "1",
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.subject",
+              "path": "Communication.subject",
+              "definition": "The patient or group that was the focus of this communication. System populated with the current patient context when communication  is created specific to Patient. ",
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Group"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.recipient",
+              "path": "Communication.recipient",
+              "definition": "The entity (e.g. person, organization, clinical information system, or device) which was the target of the communication. If receipts need to be tracked by individual, a separate resource instance will need to be created for each recipient.   Multiple recipient communications are intended where either a receipt(s) is not tracked (e.g. a mass mail-out) or is captured in aggregate (all emails confirmed received by a particular time). Patient or Practitioner from Care Team or RelatedPerson associated with the Patient (may or may not be in the Care Team).",
+              "min": 1,
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Group"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-practitioner"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-relatedperson"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.topic",
+              "path": "Communication.topic",
+              "definition": "The resources which were responsible for or related to producing this communication. System to populate with Task or Appointment or CarePlan etc. depending on where creation of Communication is invoked from. Optional link to other resource such as Task/Activity, Assessment, Care Plan, Appointment etc. ",
+              "max": "1",
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.context",
+              "path": "Communication.context",
+              "definition": "The encounter within which the communication was sent. Select from list of Episode of Care (same way as on Task) for current patient context and current organization cotext. Generally there should be only one active Episode of Care for given patient and organization. Keeping it optional to allow communication that is not related to specific episode of care.  ",
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Encounter"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-episodeofcare"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.sent",
+              "path": "Communication.sent",
+              "definition": "The time when this communication was sent. When communication was made or message was sent. Populated by the system with current date/time by default but allow user to choose different datetime in the past if user is entering afterwards.",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.received",
+              "path": "Communication.received",
+              "definition": "The time when this communication arrived at the destination. Adding to profile and may be used later for receipient to acknoledge receipt when applicable. ",
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.sender",
+              "path": "Communication.sender",
+              "definition": "The entity (e.g. person, organization, clinical information system, or device) which was the source of the communication. Read-only. System populated with the current user context (usually Practitioner but could be Patient or RelatedPerson). May not need to support Organization or Device.",
+              "min": 1,
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-practitioner"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-relatedperson"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.payload",
+              "path": "Communication.payload",
+              "definition": "Text, attachment(s), or resource(s) that was communicated to the recipient. Allow user to enter optional message text if applicable (e.g. not needed for phone conversation).",
+              "min": 1,
+              "max": "1",
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.payload.content[x]",
+              "path": "Communication.payload.content[x]",
+              "definition": "A communicated content (or for multi-part communications, one portion of the communication). Only use string for now. May be used at later time to include attachments.",
+              "mustSupport": true
+            },
+            {
+              "id": "Communication.note",
+              "path": "Communication.note",
+              "definition": "Additional notes or commentary about the communication by the sender, receiver or other interested parties. Optional  comments not part of the message. ",
+              "max": "1",
+              "mustSupport": true
+            }
+          ]
+        }
+      }
