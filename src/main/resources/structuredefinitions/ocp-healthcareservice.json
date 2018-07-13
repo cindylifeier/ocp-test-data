@@ -1,0 +1,299 @@
+{
+        "resourceType": "StructureDefinition",
+        "id": "ocp-healthcareservice",
+        "meta": {
+          "versionId": "4",
+          "lastUpdated": "2018-06-28T16:57:57.060+00:00"
+        },
+        "language": "US-en",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> <ul> <li>Location, and</li> <li>Organization (custodian, custodians, information recipients )</li> </ul> The FHIR STU3 (Release 3) Omnibus Care Plan (OCP) HealthcareService profile uses FHIR resources and describes a single healthcare service or category of services that are provided by an organization a\n(Content truncated) </div>"
+        },
+        "url": "http://hl7.org/fhir/StructureDefinition/ocp-healthcareservice",
+        "version": "1.0",
+        "name": "OCP HealthcareService",
+        "title": "OCP HealthcareService ",
+        "status": "draft",
+        "date": "2018-02-08",
+        "publisher": "SAMHSA",
+        "contact": [
+          {
+            "name": "Neelima Chennamaraja Ioana Singureanu",
+            "telecom": [
+              {
+                "system": "url",
+                "value": "http://www.eversolve.com",
+                "period": {
+                  "start": "1999-06-15"
+                }
+              },
+              {
+                "system": "email",
+                "value": "neelima@eversolve.com",
+                "use": "work"
+              },
+              {
+                "system": "email",
+                "value": "ioana@eversolve.com",
+                "use": "work"
+              }
+            ]
+          }
+        ],
+        "description": "The Omnibus Care Plan (OCP) HealthcareService profile is used to describe a single healthcare service or category of services that are provided by an organization at a location. The location of the services could be virtual, as with TeleMedicine Services. OCP HealthcareService resources do not represent Computer related Services (not SOA). The OCP HealthcareService resource can be used with the Schedule resource to define actual availability of the service.   When creating an Appointment, the OCP HealthcareService is to be assigned to one of the participants. It is up to the scheduling system to determine if the service is available, and can be accepted. ",
+        "jurisdiction": [
+          {
+            "coding": [
+              {
+                "code": "US",
+                "display": "US-Realm"
+              }
+            ],
+            "text": "US-Realm OCP HealthcareService Profile published by SAMHSA"
+          }
+        ],
+        "purpose": "The HealthcareService profile includes elements related to Omnibus Care Plan (OCP) to describe a single healthcare service or category of services that are provided by an organization at a location.",
+        "copyright": "+Copyright (c) 2017 SAMHSA. All Rights Reserved.",
+        "fhirVersion": "3.0.1",
+        "kind": "resource",
+        "abstract": false,
+        "type": "HealthcareService",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/HealthcareService",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "HealthcareService",
+              "path": "HealthcareService",
+              "definition": "The HealthcareService resource is used to describe a single healthcare service or category of services that are provided by an organization at a location. The location of the services could be virtual, as with TeleMedicine Services.  Example uses of HealthcareService resources are: National Services Directory - Consumer Focus National Services Directory - Practitioner Referrals Searching Organization's Client Portal - to locate services / book appointments Address book of services for Referrals including references to Questionnaires for assessments that are required as part of the referral Health Network internal directory Used for tracking available services offered internally, and also those offered by business partners. This information may also include costing information.",
+              "comment": "Common examples of HealthcareServices are:  Allied Health Clinical Neuropsychologist Podiatry Service Smallville Hospital Emergency Services Respite care provided at a nursing home or hostel 24hr crisis telephone counseling service Information, advice and/or referral services; Disability, Telecommunications Rural TeleHealth Services Hospital in the home Yellow Cabs Pharmacy Active Rehab Social Support Drug and/or alcohol counseling Day Programs, Adult Training and Support Services Consulting psychologists and/or psychology services Group Hydrotherapy Little River Home Maintenance  HealthcareService do not represent Computer related Services."
+            },
+            {
+              "id": "HealthcareService.identifier",
+              "path": "HealthcareService.identifier",
+              "definition": "External identifiers for this item. A numeric or alphanumeric string that is associated with a single object or entity within a given system. Typically, identifiers are used to connect content in resources to external content available in other frameworks or protocols. Identifiers are associated with objects, and may be changed or retired due to human or system process and errors.",
+              "max": "0"
+            },
+            {
+              "id": "HealthcareService.active",
+              "path": "HealthcareService.active",
+              "definition": "Indicates whether this healthcareservice record is in active use for the OCP system.",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "HealthcareService.providedBy",
+              "path": "HealthcareService.providedBy",
+              "definition": "The OCP organization that provides this healthcare service. ",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "HealthcareService.providedBy.identifier",
+              "path": "HealthcareService.providedBy.identifier",
+              "mustSupport": false
+            },
+            {
+              "id": "HealthcareService.category",
+              "path": "HealthcareService.category",
+              "definition": "Identifies the broad category of service being performed or delivered for OCP system. Selecting a Service Category then determines the list of relevant service types that can be selected in the primary service type.  This value set defines an example set of codes that can be used to classify groupings of service-types/specialties. ",
+              "comment": "Selecting a Service Category then determines the list of relevant service types that can be selected in the primary service type",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "HealthcareService.category.coding",
+              "path": "HealthcareService.category.coding",
+              "definition": "A reference to a code defined by a terminology system. Elements defined in Ancestors: id, extension.",
+              "binding": {
+                "strength": "example",
+                "description": "This value set defines subset of codes of service-category"
+              }
+            },
+            {
+              "id": "HealthcareService.category.coding.system",
+              "path": "HealthcareService.category.coding.system",
+              "binding": {
+                "strength": "example",
+                "valueSetReference": {
+                  "reference": "http://hl7.org/fhir/ValueSet/service-category"
+                }
+              }
+            },
+            {
+              "id": "HealthcareService.category.coding.version",
+              "path": "HealthcareService.category.coding.version",
+              "max": "0"
+            },
+            {
+              "id": "HealthcareService.category.coding.code",
+              "path": "HealthcareService.category.coding.code",
+              "mustSupport": true,
+              "binding": {
+                "strength": "example",
+                "description": "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+                "valueSetReference": {
+                  "reference": "http://hl7.org/fhir/ValueSet/service-category"
+                }
+              }
+            },
+            {
+              "id": "HealthcareService.type",
+              "path": "HealthcareService.type",
+              "definition": "The specific type of service that may be delivered or performed for the OCP system.",
+              "min": 1,
+              "max": "1",
+              "mustSupport": true
+            },
+            {
+              "id": "HealthcareService.type.coding",
+              "path": "HealthcareService.type.coding",
+              "binding": {
+                "strength": "example",
+                "description": "This value set defines subset of codes of service-types"
+              }
+            },
+            {
+              "id": "HealthcareService.type.coding.system",
+              "path": "HealthcareService.type.coding.system",
+              "binding": {
+                "strength": "example",
+                "valueSetReference": {
+                  "reference": "http://hl7.org/fhir/ValueSet/service-type"
+                }
+              }
+            },
+            {
+              "id": "HealthcareService.type.coding.version",
+              "path": "HealthcareService.type.coding.version",
+              "max": "0"
+            },
+            {
+              "id": "HealthcareService.type.coding.code",
+              "path": "HealthcareService.type.coding.code",
+              "mustSupport": true,
+              "binding": {
+                "strength": "example",
+                "description": "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+                "valueSetUri": "https://coder.aapc.com/hcpcs-codes"
+              }
+            },
+            {
+              "id": "HealthcareService.type.coding.userSelected",
+              "path": "HealthcareService.type.coding.userSelected",
+              "max": "0"
+            },
+            {
+              "id": "HealthcareService.specialty",
+              "path": "HealthcareService.specialty",
+              "definition": "Collection of specialties handled by the Healthcareservice site (this is more of a medical term).",
+              "mustSupport": true
+            },
+            {
+              "id": "HealthcareService.specialty.coding",
+              "path": "HealthcareService.specialty.coding",
+              "mustSupport": true,
+              "binding": {
+                "strength": "preferred",
+                "description": "This value set defines specialties handled by healthcare service"
+              }
+            },
+            {
+              "id": "HealthcareService.specialty.coding.system",
+              "path": "HealthcareService.specialty.coding.system",
+              "binding": {
+                "strength": "preferred",
+                "valueSetReference": {
+                  "reference": "http://hl7.org/fhir/ValueSet/c80-practice-codes"
+                }
+              }
+            },
+            {
+              "id": "HealthcareService.specialty.coding.version",
+              "path": "HealthcareService.specialty.coding.version",
+              "max": "0"
+            },
+            {
+              "id": "HealthcareService.specialty.coding.code",
+              "path": "HealthcareService.specialty.coding.code",
+              "mustSupport": true,
+              "binding": {
+                "strength": "preferred",
+                "description": "This value set includes codes from the following code systems:",
+                "valueSetUri": "http://snomed.info/sct"
+              }
+            },
+            {
+              "id": "HealthcareService.specialty.coding.userSelected",
+              "path": "HealthcareService.specialty.coding.userSelected",
+              "max": "0"
+            },
+            {
+              "id": "HealthcareService.location",
+              "path": "HealthcareService.location",
+              "definition": "The location(s) where this healthcare service may be provided for the OCP system.",
+              "mustSupport": true
+            },
+            {
+              "id": "HealthcareService.name",
+              "path": "HealthcareService.name",
+              "definition": "Further description of the service as it would be presented to a consumer while searching. example: Care coordination is the name of the program.",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "HealthcareService.comment",
+              "path": "HealthcareService.comment",
+              "mustSupport": true
+            },
+            {
+              "id": "HealthcareService.telecom",
+              "path": "HealthcareService.telecom",
+              "definition": "List of contacts related to this specific healthcare service. If there is any service specific phone number data must be present otherwise it's optional",
+              "comment": "If this is empty, then refer to the location's contacts. Added for any service specific phone number but optional. ",
+              "mustSupport": true
+            },
+            {
+              "id": "HealthcareService.programName",
+              "path": "HealthcareService.programName",
+              "definition": "Program Name that can be used to categorize the service.",
+              "min": 1,
+              "max": "1",
+              "mustSupport": true
+            },
+            {
+              "id": "HealthcareService.referralMethod",
+              "path": "HealthcareService.referralMethod",
+              "definition": "This data element will be used for the OCP system to know how to initiate the referral notification for this type of service. Ways that the service accepts referrals, if this is not provided then it is implied that no referral is required.",
+              "mustSupport": true
+            },
+            {
+              "id": "HealthcareService.availableTime.availableStartTime",
+              "path": "HealthcareService.availableTime.availableStartTime",
+              "definition": "The opening time of day. Note: If the AllDay flag = true, then this time is ignored."
+            },
+            {
+              "id": "HealthcareService.availableTime.availableEndTime",
+              "path": "HealthcareService.availableTime.availableEndTime",
+              "definition": "The closing time of day. Note: If the AllDay flag = true, then this time is ignored."
+            },
+            {
+              "id": "HealthcareService.notAvailable",
+              "path": "HealthcareService.notAvailable",
+              "definition": "The HealthcareService is not available during this time due to the provided reason."
+            },
+            {
+              "id": "HealthcareService.notAvailable.description",
+              "path": "HealthcareService.notAvailable.description",
+              "definition": "The reason that can be presented to the user explaining as to why this time is not available."
+            },
+            {
+              "id": "HealthcareService.endpoint",
+              "path": "HealthcareService.endpoint",
+              "definition": "Technical endpoints providing access to services operated for the location.",
+              "mustSupport": true
+            }
+          ]
+        }
+      }

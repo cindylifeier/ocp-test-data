@@ -1,0 +1,188 @@
+{
+        "resourceType": "StructureDefinition",
+        "id": "ocp-practitioner",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-05-04T18:48:08.981+00:00"
+        },
+        "language": "US-en",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\nThe FHIR STU3 (Release 3) Omnibus Care Plan (OCP) Practitioner profile uses FHIR resources and describes minimum expectations for the Practitioner resource to record [content] associated with a patient. It identifies which core elements, extensions, vocabularies and value sets SHALL be present in the resource when using this profile. \nAdded the below additional supported data elements to the OCP Practitioner profile as follows:\nPractitioner.email (1..*) (S)\nPractitioner.phoneNumber (1..*) (S)\nAlso changed the cardinality of the supported data elements to the OCP Practitioner profile as follows:\nPractitioner.name.given(1..*)(S)\nPractitioner.address (0..*) (S)\nDependencies:\nPractitioner profile that conform to this specification must include reference to other resources \n<ul><li> Organization (custodian, custodians, information recipients )</li><li>OCP-Practitioner</li></ul></div>"
+        },
+        "url": "http://hl7.org/fhir/StructureDefinition/ocp-practitioner",
+        "version": "1.0",
+        "name": "OCP Practitioner",
+        "title": "OCP Practitioner",
+        "status": "draft",
+        "date": "2018-01-30",
+        "publisher": "SAMHSA",
+        "contact": [
+          {
+            "name": "Neelima Chennamaraja, Ioana Singureanu",
+            "telecom": [
+              {
+                "system": "url",
+                "value": "www.eversolve.com",
+                "period": {
+                  "start": "1999-06-15"
+                }
+              },
+              {
+                "system": "email",
+                "value": "neelima@eversolve.com",
+                "use": "work"
+              }
+            ]
+          }
+        ],
+        "description": "This profile describes about the Omnibus Care Plan (OCP) Practitioner who is directly or indirectly involved in the provisioning of healthcare.\r\nThe profile sets minimum expectations for OCP Practitioner resource to record [content] associated with a patient. It identifies which core elements, extensions, vocabularies and value sets SHALL be present in the resource when using this profile.\r\nThis specification describes how OCP Practitioner populates a FHIR Practitioner resource.  This OCP Practitioner profile does not use any contained resources. Contained resources allow the inadvertent sharing of Protected Information to unauthorized users and application. Therefore, any references to patients, providers, organizations are described as external references to resources stored on the same server.\r\nPractitioners include (but are not limited to):  physicians, dentists, pharmacists, physician assistants, nurses, scribes, midwives, dietitians, therapists, optometrists, paramedics, medical technicians, laboratory scientists, prosthetic technicians, radiographers, social workers, professional home carers, official volunteers, receptionists handling patient registration, IT personnel merging or unmerging patient records. \r\n\r\n\r\n",
+        "jurisdiction": [
+          {
+            "coding": [
+              {
+                "code": "US",
+                "display": "US-Realm"
+              }
+            ],
+            "text": "US-Realm OCP Practitioner Profile published by SAMHSA"
+          }
+        ],
+        "purpose": "The OCP Practitioner profile includes fields not defined in US-Core Profile. This profile is intended to be implemented by OCP (Omnibus Care Plan) systems.",
+        "copyright": "+Copyright (c) 2017 SAMHSA. All Rights Reserved.",
+        "fhirVersion": "3.0.1",
+        "mapping": [
+          {
+            "identity": "v2",
+            "uri": "http://hl7.org/v2",
+            "name": "HL7 v2 Mapping"
+          },
+          {
+            "identity": "rim",
+            "uri": "http://hl7.org/v3",
+            "name": "RIM Mapping"
+          },
+          {
+            "identity": "servd",
+            "uri": "http://www.omg.org/spec/ServD/1.0/",
+            "name": "ServD"
+          },
+          {
+            "identity": "w5",
+            "uri": "http://hl7.org/fhir/w5",
+            "name": "W5 Mapping"
+          }
+        ],
+        "kind": "resource",
+        "abstract": false,
+        "type": "Practitioner",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Practitioner",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Practitioner",
+              "path": "Practitioner",
+              "short": "OCP Practitioner",
+              "definition": "This profile builds on US Core Practitioner and is basic constraint on provider for use in US Core resources.",
+              "alias": [
+                "Provider"
+              ],
+              "mustSupport": false,
+              "isModifier": false
+            },
+            {
+              "id": "Practitioner.identifier",
+              "path": "Practitioner.identifier",
+              "definition": "An identifier that applies to this person in this role.\r\nNote: This is a business identifer, not a resource identifier ",
+              "requirements": "The following mandatory elements are needed for OCP Practitioner:\r\nidentifier, name, and telecom.\r\n",
+              "min": 1,
+              "mustSupport": true,
+              "isModifier": false
+            },
+            {
+              "id": "Practitioner.identifier.system",
+              "path": "Practitioner.identifier.system",
+              "short": "NPI could be used as the identifier system in the US.",
+              "comment": "NPI could be used as the identifier system in the US.",
+              "min": 1,
+              "example": [
+                {
+                  "label": "General",
+                  "valueUri": "NPI preferred, Tax id is allowed, Local id is allowed in addition to 'authoritative' identifier"
+                }
+              ],
+              "mustSupport": true,
+              "isModifier": false
+            },
+            {
+              "id": "Practitioner.identifier.value",
+              "path": "Practitioner.identifier.value",
+              "min": 1,
+              "mustSupport": true,
+              "isModifier": false
+            },
+            {
+              "id": "Practitioner.name",
+              "path": "Practitioner.name",
+              "min": 1,
+              "max": "1",
+              "mustSupport": true,
+              "isModifier": false
+            },
+            {
+              "id": "Practitioner.name.family",
+              "path": "Practitioner.name.family",
+              "min": 1,
+              "mustSupport": true,
+              "isModifier": false
+            },
+            {
+              "id": "Practitioner.name.given",
+              "path": "Practitioner.name.given",
+              "definition": "Given name. This repeating element order: Given Names appear in the correct order for presenting the name",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Practitioner.telecom",
+              "path": "Practitioner.telecom",
+              "slicing": {
+                "discriminator": [
+                  {
+                    "type": "value",
+                    "path": "system"
+                  }
+                ],
+                "rules": "open"
+              },
+              "definition": "The profile for this data element will use slicing to distinguish the phone number from the email and ensure at least one of each was specified.\r\nA contact detail for the practitioner should be specified e.g. a telephone number and an email address.",
+              "comment": "Person may have multiple ways to be contacted with different uses or applicable periods.  May need to have options for contacting the person urgently, and also to help with identification.\r\rThese typically will have home numbers, or mobile numbers that are not role specific.",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Practitioner.telecom:phoneNumber",
+              "path": "Practitioner.telecom",
+              "sliceName": "phoneNumber",
+              "definition": "A contact detail for the practitioner, e.g. a telephone number ",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Practitioner.telecom:email",
+              "path": "Practitioner.telecom",
+              "sliceName": "email",
+              "definition": "A contact detail for the practitioner, e.g. email address.",
+              "comment": "Person may have multiple ways to be contacted with different uses or applicable periods.  May need to have options for contacting the person urgently, and also to help with identification.\r\rThese typically will have email address that are not role specific.",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Practitioner.address",
+              "path": "Practitioner.address",
+              "mustSupport": true
+            }
+          ]
+        }
+      }

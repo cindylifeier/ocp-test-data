@@ -1,0 +1,281 @@
+{
+        "resourceType": "StructureDefinition",
+        "id": "ocp-task",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-05-04T19:09:29.129+00:00"
+        },
+        "language": "US-en",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> \nThe FHIR STU3 (Release 3) Omnibus Care Plan (OCP) Task profile uses FHIR resources and describes an activity that can be performed and tracks the state of completion of that activity. It is a representation that an activity should be or has been initiated, and eventually, represents the successful or unsuccessful completion of that activity. It identifies which core elements, extensions, and value sets SHALL be present in the resource when using this profile.\nDependencies:\n   Task profile that conform to this specification must include reference to other resources \n<ul><li>Task</li><li>Encounter</li><li>EpisodeOfCare</li><li>Device</li><li>Organization</li><li>RelatedPerson</li><li>Group</li><li>OCP-Patient</li><li>OCP-Practitioner</li></ul></div>"
+        },
+        "url": "http://hl7.org/fhir/StructureDefinition/ocp-task",
+        "version": "1.0",
+        "name": "OCP Task",
+        "title": "OCP Task",
+        "status": "draft",
+        "date": "2018-03-23T19:09:20.153-04:00",
+        "publisher": "SAMHSA",
+        "contact": [
+          {
+            "name": "Neelima Chennamaraja",
+            "telecom": [
+              {
+                "system": "url",
+                "value": "www.eversolve.com",
+                "period": {
+                  "start": "1999-06-15"
+                }
+              },
+              {
+                "system": "email",
+                "value": "neelima@eversolve.com",
+                "use": "work"
+              }
+            ]
+          }
+        ],
+        "description": "This profile tracks the state of a task, enabling systems to ensure that tasks are completed. This information is kept separate from the operational details necessary to complete the task, as those details vary across and even within workflows. That detail is expected to be carried as the subject of the task. Tasks may have named inputs and outputs. Inputs represent information that may or must be present in order for a task to complete. Outputs represent intermediate or final results produced by a task. ",
+        "jurisdiction": [
+          {
+            "coding": [
+              {
+                "code": "US",
+                "display": "US-Realm"
+              }
+            ],
+            "text": "US-Realm OCP Pratient Profile published by SAMHSA"
+          }
+        ],
+        "purpose": "This profile for task resource is created with basic need for OCP (which could change over time) with supported fields. This profile is intended to be implemented by OCP (Omnibus Care Plan) systems.",
+        "copyright": "+Copyright (c) 2017 SAMHSA. All Rights Reserved.",
+        "fhirVersion": "3.0.1",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Task",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Task",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Task",
+              "path": "Task",
+              "definition": "A task to be performed. The Task resource defines several operations to enable rich control over the task execution environment. A server managing task resources may allow unfettered read access to all tasks that it maintains, but restrict write access to the task resources to itself in order to exert control over the task state machine. Instead, it might offer operations on tasks that enable strictly controlled write operations following commonly accepted business rules for task management. ",
+              "comment": "For example, only tasks that are in the \"In Process\" state might be allowed to be \"Completed\" or \"Failed\". Use or support of these operations is not essential in simple workflow environments where task activity needs little management. \r\nTasks in any non-terminal state (Created, Ready, In Progress) can be suspended and resumed. When a task is suspended, it is typically resumed in the state it was in when it was originally suspended. Suspending a task suspends all of its children as well. Resuming a task resumes all of its children.\r\nAn In-progress task can also be stopped, returning it to a Ready state. This may be in preparation for delegation or reassignment (e.g., because it cannot be completed by the current owner), to restart a task due to a temporary failure (e.g., to reattempt completion of the activity), or in preparation to allow others to claim the task."
+            },
+            {
+              "id": "Task.definition[x]",
+              "path": "Task.definition[x]",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Task.basedOn",
+              "path": "Task.basedOn",
+              "definition": "May be used in future to record event/request that resulted in task. BasedOn refers to a higher-level authorization that triggered the creation of the task.  It references a \"request\" resource such as a ProcedureRequest, MedicationRequest, ProcedureRequest, CarePlan, etc. which is distinct from the \"request\" resource the task is seeking to fulfil.  This latter resource is referenced by FocusOn.  For example, based on a ProcedureRequest (= BasedOn), a task is created to fulfil a procedureRequest ( = FocusOn ) to collect a specimen from a patient."
+            },
+            {
+              "id": "Task.partOf",
+              "path": "Task.partOf",
+              "definition": "Task that this particular task is part of. Used for task hierarchy. When a child task is added, it will be linkted to the parent task. Additional rules may be introduced at later time to ensure the state transition between parent and child. ",
+              "max": "1",
+              "mustSupport": true
+            },
+            {
+              "id": "Task.status",
+              "path": "Task.status",
+              "definition": "The current status of the task. Includes all status for now. Will narrow done applicable status and related workflow for specific use cases. ",
+              "mustSupport": true
+            },
+            {
+              "id": "Task.intent",
+              "path": "Task.intent",
+              "mustSupport": true
+            },
+            {
+              "id": "Task.priority",
+              "path": "Task.priority",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Task.description",
+              "path": "Task.description",
+              "definition": "A free-text description of what is to be performed. Generally this will be provided by the user who creates the task while \"comment\" is used by user who is assigned owner for the task. But at this time, application will not put any restrictions. ",
+              "mustSupport": true
+            },
+            {
+              "id": "Task.for",
+              "path": "Task.for",
+              "definition": "The entity who benefits from the performance of the service specified in the task (e.g., the patient). Use this for reference to Patient (Beneficiary).",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Task.context",
+              "path": "Task.context",
+              "definition": "The healthcare event  (e.g. a patient and healthcare provider interaction) during which this task was created. Create and assign EpisodeOfCare when  ActivityDefinition.name = \"Enrollment\". Use the same EpisodeOfcare for subsequent tasks.  Leave it null if any other tasks created before Enrollment occurred. ",
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Encounter"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-episodeofcare"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
+              "id": "Task.executionPeriod",
+              "path": "Task.executionPeriod",
+              "definition": "Identifies the time action was first taken against the task (start) and/or the time final action was taken against the task prior to marking it as completed (end). Start date and end date populated by system on status change (e.g. Start date when status is changed to \"in-progress\" and End date when status is changed to \"Completed\". No need to store and display time portion (i.e. just the date is enough). ",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Task.authoredOn",
+              "path": "Task.authoredOn",
+              "definition": "The date and time this task was created. System populated date/time when task created.  ",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Task.lastModified",
+              "path": "Task.lastModified",
+              "definition": "The date and time of last modification to this task. System populated date/time when task modified. ",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Task.requester",
+              "path": "Task.requester",
+              "definition": "Creator of the task is also treated as requester so use this to store the user who creates the task. ",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Task.requester.agent",
+              "path": "Task.requester.agent",
+              "definition": "The device, practitioner, etc. who initiated the task. Reference to current user related resource. Only limit this to Reference(Practitioner) who may be Care Manager or Care coordinator or other practitioner member of the Care Team. ",
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-practitioner"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-relatedperson"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
+              "id": "Task.requester.onBehalfOf",
+              "path": "Task.requester.onBehalfOf",
+              "definition": "Not used at this time but will be useful to indicate third-party organization that requests the task (e.g. ACO or PCP or State). \r\nThe organization the device or practitioner was acting on behalf of when they initiated the task. "
+            },
+            {
+              "id": "Task.performerType",
+              "path": "Task.performerType",
+              "definition": "The type of participant that can execute the task. Allow user to select from all availale types at this time. The valueset may be updated later on with different types. ",
+              "max": "1",
+              "mustSupport": true
+            },
+            {
+              "id": "Task.owner",
+              "path": "Task.owner",
+              "definition": "Individual organization or Device currently responsible for task execution. Assigned individual for this task.  Limit it to Reference(Practitioner) at this time. ",
+              "min": 1,
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-practitioner"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-relatedperson"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
+              "id": "Task.reason",
+              "path": "Task.reason",
+              "definition": "A description or code indicating why this task needs to be performed. We will probably add this later to use some standard terminology codes such as SNOMED-CT  findings. "
+            },
+            {
+              "id": "Task.note",
+              "path": "Task.note",
+              "definition": "Free-text information captured about the task as it progresses. Comments about task. Generally entered by the user who is assigned to complete the task (as opposed to Description data element above that is used by person who create the task). But no restrictions to be implemented at this time.  ",
+              "max": "1",
+              "mustSupport": true
+            },
+            {
+              "id": "Task.relevantHistory",
+              "path": "Task.relevantHistory",
+              "definition": "Provenance is not to be used here but we need to separate discussion how to use it in reference to Task and other resources in general across OCP. \r\nLinks to Provenance records for past versions of this Task that identify key state transitions or updates that are likely to be relevant to a user looking at the current version of the task. "
+            },
+            {
+              "id": "Task.restriction.recipient",
+              "path": "Task.restriction.recipient",
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Group"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-practitioner"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-relatedperson"
+                }
+              ]
+            },
+            {
+              "id": "Task.input",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name",
+                  "valueString": "Parameter"
+                }
+              ],
+              "path": "Task.input",
+              "definition": "This may be used for reference to any information sources.  May be used at later time for specific requirement. \r\nAdditional information that may be needed in the execution of the task."
+            },
+            {
+              "id": "Task.output",
+              "path": "Task.output",
+              "definition": "Outputs produced by the Task. This may be used for reference to any information generated from the task. May be used at later time for specific requirement. "
+            }
+          ]
+        }
+      }

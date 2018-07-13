@@ -1,0 +1,253 @@
+{
+        "resourceType": "StructureDefinition",
+        "id": "ocp-appointment",
+        "meta": {
+          "versionId": "4",
+          "lastUpdated": "2018-05-04T18:57:11.947+00:00"
+        },
+        "language": "US-en",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\nThe FHIR STU3 (Release 3) Omnibus Care Plan (OCP) Appointment profile uses FHIR resources and describes minimum expectations with supported data elements and changes to the cardinality of booking a healthcare event among patient(s), practitioner(s), and related person(s) for a specific date/time. This may result in one or more Encounter(s). It identifies which core elements, extensions, and value sets SHALL be present in the resource when using this profile. \nDependencies:\n   Appointment profile that conforms to this specification must include reference to other resources \n<ul><li>OCP-Patient</li><li>Location</li><li>ReferralRequest</li><li>Procedure</li><li>Condition</li><li>OCP-Practitioner</li><li>OCP-RelatedPerson</li><li>OCP-HealthcareService</li></ul></div>"
+        },
+        "url": "http://hl7.org/fhir/StructureDefinition/ocp-appointment",
+        "version": "1.0",
+        "name": "OCP Appointment",
+        "title": "OCP Appointment",
+        "status": "draft",
+        "date": "2018-03-26T18:05:29.774-04:00",
+        "publisher": "SAMHSA",
+        "contact": [
+          {
+            "name": "Neelima Chennamaraja",
+            "telecom": [
+              {
+                "system": "url",
+                "value": "www.eversolve.com",
+                "period": {
+                  "start": "1999-06-15"
+                }
+              },
+              {
+                "system": "email",
+                "value": "neelima@eversolve.com",
+                "use": "work"
+              }
+            ]
+          }
+        ],
+        "description": "The Omnibus Care Plan (OCP) Appointment profile is used to provide information about a planned meeting that may be in the future or past. The resource only describes a single meeting, a series of repeating visits would require multiple appointment resources to be created for each instance. The visit scheduled by an appointment may be in person or remote (by phone, video conference, etc.) All that matters is that the time and usage of one or more individuals, locations and/or pieces of equipment is being fully or partially reserved for a designated period of time.",
+        "jurisdiction": [
+          {
+            "coding": [
+              {
+                "code": "US",
+                "display": "US-Realm"
+              }
+            ],
+            "text": "US-Realm OCP Appointment Profile published by SAMHSA"
+          }
+        ],
+        "purpose": "The Appointment profile includes all the elements related to basic need for Omnibus Care Plan (OCP) (which could change over time). This profile is intended to be implemented by OCP systems. ",
+        "copyright": "+Copyright (c) 2017 SAMHSA. All Rights Reserved.",
+        "fhirVersion": "3.0.1",
+        "kind": "resource",
+        "abstract": false,
+        "type": "Appointment",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Appointment",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Appointment.status",
+              "path": "Appointment.status",
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.appointmentType",
+              "path": "Appointment.appointmentType",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.description",
+              "path": "Appointment.description",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.start",
+              "path": "Appointment.start",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.end",
+              "path": "Appointment.end",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.slot",
+              "path": "Appointment.slot",
+              "definition": "The slots from the participants' schedules that will be filled by the appointment. To be used with Schedule/Slot.  Most likely populated by the system.",
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.created",
+              "path": "Appointment.created",
+              "definition": "System generated when appointment was initially created. This could be different to the meta.lastModified value on the initial entry, as this could have been before the resource was created on the FHIR server, and should remain unchanged over the lifespan of the appointment.",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.incomingReferral",
+              "path": "Appointment.incomingReferral",
+              "definition": "The referral request this appointment is allocated to assess (incoming referral). Will be used at later time when integrated with MDIX Referral (or other referral mechanism). ",
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.participant",
+              "path": "Appointment.participant",
+              "definition": "List of participants involved in the appointment. Use participant for all references except Device for now. ",
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.participant.type",
+              "path": "Appointment.participant.type",
+              "definition": "Role of participant in the appointment. Will use this to identify creator and other invitee. \r\nFHIR examples mostly address Practitioner specific participant type. Care team role (care manager, care coordinator, etc.) should be sufficient and do not need to be appointment specific. ",
+              "min": 1,
+              "max": "1",
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.participant.actor",
+              "path": "Appointment.participant.actor",
+              "slicing": {
+                "discriminator": [
+                  {
+                    "type": "value",
+                    "path": "reference"
+                  }
+                ],
+                "rules": "open"
+              },
+              "short": "Person, Location/HealthcareService ",
+              "definition": "A Person, Location/HealthcareService that is participating in the appointment. The participation in the appointment can be of any one of the two types: 1. AUT (Author participation) 2. PART (Generic Participation). ",
+              "min": 1,
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Location"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-practitioner"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-relatedperson"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-healthcareservice"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.participant.actor:authorActor",
+              "path": "Appointment.participant.actor",
+              "sliceName": "authorActor",
+              "label": "Author",
+              "code": [
+                {
+                  "code": "AUT",
+                  "display": "Author Actor"
+                }
+              ],
+              "short": "Person, Location/HealthcareService",
+              "definition": "The author of the appointment a Person, Location/HealthcareService that is participating in the appointment. \r\n",
+              "min": 1,
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Location"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-practitioner"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-relatedperson"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-healthcareservice"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.participant.actor:participationActor",
+              "path": "Appointment.participant.actor",
+              "sliceName": "participationActor",
+              "label": "Participation Actor",
+              "code": [
+                {
+                  "code": "PART",
+                  "display": "Participation Actor"
+                }
+              ],
+              "short": "Person, Location/HealthcareService ",
+              "definition": "The generic participation of the appointment of the Person, Location/HealthcareService that is participating in the appointment. \r\nHoping to use generic participation (for everyone other than author/organizer) at this time.",
+              "min": 1,
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Location"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-practitioner"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-relatedperson"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-healthcareservice"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.participant.required",
+              "path": "Appointment.participant.required",
+              "definition": "Is this participant required to be present at the meeting. This covers a use-case where 2 doctors need to meet to discuss the results for a specific patient, and the patient is not required to be present. \r\nSet to Required by default for Pracitioner,  Patient and RelatedPerson references. Use information-only for HealthcareService and Location. User can change any of those. ",
+              "min": 1,
+              "mustSupport": true
+            },
+            {
+              "id": "Appointment.participant.status",
+              "path": "Appointment.participant.status",
+              "definition": "Participation status of the actor. Read-only. System to populate to Accepted for the Practitioner who creates the appointment. System to populate to Needs-action for all other participants. Later workflow mechanism needs to be created to accept/decline the appointment as in Outlook. ",
+              "mustSupport": true
+            }
+          ]
+        }
+      }

@@ -1,0 +1,874 @@
+{
+        "resourceType": "StructureDefinition",
+        "id": "ocp-coverage",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2018-07-02T21:44:55.216+00:00"
+        },
+        "language": "US-en",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\nThe FHIR STU3 (Release 3) Omnibus Care Plan (OCP) Coverage profile is intended to provide the high level identifiers and potentially descriptors of an insurance plan which may be used to pay for, in part or in whole, the provision of health care products and services. This profile may also be used to register 'SelfPay' where an individual or organization other than an insurer is taking responsibility for payment for a portion of the health care costs.\nIt identifies which core elements, extensions, vocabularies and value sets SHALL be present in the resource when using this profile.\nThe supported data elements to the OCP Coverage profile are listed below:\nstatus, type, subscriber, subscriberId, beneficiary, relationship, and period.\nDependencies:\n   Coverage profile that conforms to this specification must include reference to other resources \n<ul><li>OCP-Patient</li><li>OCP-RelatedPerson</li><li>Organization (custodian, custodians, information recipients )</li><li>Contract</li></ul></div>"
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm",
+            "valueInteger": 2
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+            "valueCode": "fm"
+          }
+        ],
+        "url": "http://hl7.org/fhir/StructureDefinition/ocp-coverage",
+        "version": "1.0",
+        "name": "OCP Coverage",
+        "title": "OCP Coverage",
+        "status": "draft",
+        "date": "2017-04-19T07:44:43+10:00",
+        "publisher": "SAMHSA",
+        "contact": [
+          {
+            "name": "Neelima Chennamaraja, Ioana Singureanu",
+            "telecom": [
+              {
+                "system": "url",
+                "value": "www.eversolve.com",
+                "period": {
+                  "start": "1999-06-15"
+                }
+              },
+              {
+                "system": "email",
+                "value": "neelima@eversolve.com",
+                "use": "work"
+              },
+              {
+                "system": "email",
+                "value": "ioana@eversolve.com",
+                "use": "work"
+              }
+            ]
+          }
+        ],
+        "description": "This profile describes minimum expectations for the Coverage resource to record, search and fetch basic reimbursements or payment for health care products and services about an individual Omnibus Care Plan (OCP) patient. It identifies which core elements, extensions, vocabularies and value sets SHALL be present in the resource when using this profile.\r\nBase StructureDefinition for Coverage Resource.\r\n",
+        "jurisdiction": [
+          {
+            "coding": [
+              {
+                "code": "US",
+                "display": "US-Realm "
+              }
+            ],
+            "text": "US-Realm OCP Coverage Profile published by SAMHSA"
+          }
+        ],
+        "purpose": "This profile is intended to be implemented by OCP (Omnibus Care Plan) systems for Health care programs and insurers are significant payors of health service costs.",
+        "copyright": "+Copyright (c) 2017 SAMHSA. All Rights Reserved.",
+        "fhirVersion": "3.0.1",
+        "mapping": [
+          {
+            "identity": "workflow",
+            "uri": "http://hl7.org/fhir/workflow",
+            "name": "Workflow Mapping"
+          },
+          {
+            "identity": "rim",
+            "uri": "http://hl7.org/v3",
+            "name": "RIM Mapping"
+          },
+          {
+            "identity": "w5",
+            "uri": "http://hl7.org/fhir/w5",
+            "name": "W5 Mapping"
+          },
+          {
+            "identity": "cdanetv4",
+            "uri": "http://www.cda-adc.ca/en/services/cdanet/",
+            "name": "Canadian Dental Association eclaims standard"
+          },
+          {
+            "identity": "v2",
+            "uri": "http://hl7.org/v2",
+            "name": "HL7 v2 Mapping"
+          },
+          {
+            "identity": "cpha3pharm",
+            "uri": "http://www.pharmacists.ca/",
+            "name": "Canadian Pharmacy Associaiton eclaims standard"
+          }
+        ],
+        "kind": "resource",
+        "abstract": false,
+        "type": "Coverage",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+        "derivation": "specialization",
+        "differential": {
+          "element": [
+            {
+              "id": "Coverage",
+              "path": "Coverage",
+              "short": "Insurance or medical plan or a payment agreement",
+              "definition": "Financial instrument which may be used to reimburse or pay for health care products and services.",
+              "mapping": [
+                {
+                  "identity": "workflow",
+                  "map": "Event"
+                },
+                {
+                  "identity": "rim",
+                  "map": "Coverage"
+                },
+                {
+                  "identity": "w5",
+                  "map": "financial.support"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.Identifier",
+              "path": "Coverage.identifier",
+              "short": "The primary coverage ID",
+              "definition": "The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Certificate number, Personal Health Number or Case ID. May be constructed as the concatination of the Coverage.SubscriberID and the Coverage.dependant.",
+              "requirements": "This value may uniquely identify the coverage or it may be used in conjunction with the additional identifiers below.",
+              "type": [
+                {
+                  "code": "Identifier"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "workflow",
+                  "map": "Event.identifier"
+                },
+                {
+                  "identity": "cdanetv4",
+                  "map": "C02"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-2"
+                },
+                {
+                  "identity": "cpha3pharm",
+                  "map": "C.32, C.33, C.39"
+                },
+                {
+                  "identity": "w5",
+                  "map": "id"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.code",
+              "path": "Coverage.status",
+              "short": "active | cancelled | draft | entered-in-error",
+              "definition": "The status of the resource instance. User selected status.",
+              "comment": "This element is labeled as a modifier because the status contains the code entered-in-error that marks the coverage as not currently valid.",
+              "min": 1,
+              "max": "1",
+              "type": [
+                {
+                  "code": "code"
+                }
+              ],
+              "mustSupport": true,
+              "binding": {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+                    "valueString": "CoverageStatus"
+                  }
+                ],
+                "strength": "required",
+                "description": "A code specifying the state of the resource instance.",
+                "valueSetReference": {
+                  "reference": "http://hl7.org/fhir/ValueSet/fm-status"
+                }
+              },
+              "mapping": [
+                {
+                  "identity": "workflow",
+                  "map": "Event.status"
+                },
+                {
+                  "identity": "w5",
+                  "map": "status"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.CodeableConcept",
+              "path": "Coverage.type",
+              "short": "Type of coverage such as medical or accident",
+              "definition": "The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization. For now will use the list from FHIR. However, this is very long list and not very intuitive. We may consider using a smaller subset after following up with SMEs.",
+              "requirements": "The order of application of coverages is dependent on the types of coverage.",
+              "min": 1,
+              "max": "1",
+              "type": [
+                {
+                  "code": "CodeableConcept"
+                }
+              ],
+              "mustSupport": true,
+              "binding": {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+                    "valueString": "CoverageType"
+                  }
+                ],
+                "strength": "preferred",
+                "description": "The type of insurance: public health, worker compensation; private accident, auto, private health, etc.) or a direct payment by an individual or organization.",
+                "valueSetReference": {
+                  "reference": "http://hl7.org/fhir/ValueSet/coverage-type"
+                }
+              },
+              "mapping": [
+                {
+                  "identity": "v2",
+                  "map": "IN1-15"
+                },
+                {
+                  "identity": "w5",
+                  "map": "class"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.Reference",
+              "path": "Coverage.Reference",
+              "short": "Owner of the policy",
+              "definition": "The party who 'owns' the insurance policy,  may be an individual, corporation or the subscriber's employer.This may be needed for insurance through employer but otherwise it will be same as subscriber so we can consider this at later time.   It will be questionable how  all employer organizations are added in OCP to make it work. ",
+              "max": "1",
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-relatedperson"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "D01 through D09"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-16, 18,  19-name of insured, address, date of birth"
+                },
+                {
+                  "identity": "cpha3pharm",
+                  "map": "C.35"
+                },
+                {
+                  "identity": "w5",
+                  "map": "who.focus"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.Reference",
+              "path": "Coverage.subscriber",
+              "short": "Subscriber to the policy",
+              "definition": "The party who has signed-up for or 'owns' the contractual relationship to the policy or to whom the benefit of the policy for services rendered to them or their family is due. Default to Patient but user can choose related person who is the subscriber or primary insured person. ",
+              "min": 1,
+              "max": "1",
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-relatedperson"
+                }
+              ],
+              "mustSupport": true,
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "D01 through D09"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-16, 18,  19-name of insured, address, date of birth"
+                },
+                {
+                  "identity": "cpha3pharm",
+                  "map": "C.35"
+                },
+                {
+                  "identity": "w5",
+                  "map": "who.focus"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.string",
+              "path": "Coverage.subscriberId",
+              "short": "ID assigned to the Subscriber",
+              "definition": "The insurer assigned ID for the Subscriber. Subscriber identifier (e.g. insurance policy, Medicaid #, Medicare #, group policy number etc.)",
+              "min": 1,
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mustSupport": true,
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "D01 through D09"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-16, 18,  19-name of insured, address, date of birth"
+                },
+                {
+                  "identity": "cpha3pharm",
+                  "map": "C.35"
+                },
+                {
+                  "identity": "w5",
+                  "map": "who.focus"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.Reference",
+              "path": "Coverage.beneficiary",
+              "short": "Plan Beneficiary",
+              "definition": "The party who benefits from the insurance coverage., the patient when services are provided.",
+              "min": 1,
+              "max": "1",
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                }
+              ],
+              "mustSupport": true,
+              "mapping": [
+                {
+                  "identity": "workflow",
+                  "map": "Event.subject"
+                },
+                {
+                  "identity": "cdanetv4",
+                  "map": "D01 through D09"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-16, 18,  19-name of insured, address, date of birth"
+                },
+                {
+                  "identity": "cpha3pharm",
+                  "map": "C.35"
+                },
+                {
+                  "identity": "w5",
+                  "map": "who.focus"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.CodeableConcept",
+              "path": "Coverage.relationship",
+              "short": "Beneficiary relationship to the Subscriber",
+              "definition": "The relationship of beneficiary (patient) to the subscriber. Use the list from FHIR but default to \"Self\".",
+              "requirements": "To determine relationship between the patient and the subscriber.",
+              "min": 1,
+              "max": "1",
+              "type": [
+                {
+                  "code": "CodeableConcept"
+                }
+              ],
+              "mustSupport": true,
+              "binding": {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+                    "valueString": "Relationship"
+                  }
+                ],
+                "strength": "example",
+                "description": "The relationship between the Policyholder and the Beneficiary (insured/covered party/patient).",
+                "valueSetReference": {
+                  "reference": "http://hl7.org/fhir/ValueSet/policyholder-relationship"
+                }
+              },
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "C03"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.Period",
+              "path": "Coverage.period",
+              "short": "Coverage start and end dates",
+              "definition": "Time period during which the coverage is in force. A missing start date indicates the start date isn't known, a missing end date means the coverage is continuing to be in force.",
+              "min": 1,
+              "max": "1",
+              "type": [
+                {
+                  "code": "Period"
+                }
+              ],
+              "mustSupport": true,
+              "mapping": [
+                {
+                  "identity": "workflow",
+                  "map": "Event.occurrence"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-12 / IN1-13"
+                },
+                {
+                  "identity": "w5",
+                  "map": "when.done"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.Period.start",
+              "path": "Coverage.period.start",
+              "definition": "The start of the period. The boundary is inclusive. Period.start is required.",
+              "min": 1
+            },
+            {
+              "id": "Coverage.Reference",
+              "path": "Coverage.payor",
+              "short": "Identifier for the plan or agreement issuer",
+              "definition": "The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements. May provide multiple identifiers such as insurance company identifier or business identifier (BIN number). This will be needed for billing but can consider this at later time. It will be questionable how  all possible payor organizations are to be added in OCP to make it work. ",
+              "requirements": "Need to identify the issuer to target for processing and for coordination of benefit processing.",
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-patient"
+                },
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/ocp-relatedperson"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "A05"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-3"
+                },
+                {
+                  "identity": "cpha3pharm",
+                  "map": "C.30"
+                },
+                {
+                  "identity": "w5",
+                  "map": "who.author"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.BackboneElement",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name",
+                  "valueString": "Group"
+                }
+              ],
+              "path": "Coverage.grouping",
+              "short": "Additional coverage classifications",
+              "definition": "A suite of underwrite specific classifiers, for example may be used to identify a class of coverage or employer group, Policy, Plan.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "BackboneElement"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.BackboneElement.string",
+              "path": "Coverage.grouping.group",
+              "short": "An identifier for the group",
+              "definition": "Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify an employer group. May also be referred to as a Policy or Group ID.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "C11 (Division,Section)"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-8"
+                },
+                {
+                  "identity": "cpha3pharm",
+                  "map": "C.31"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.BackboneElement.string",
+              "path": "Coverage.grouping.groupDisplay",
+              "short": "Display text for an identifier for the group",
+              "definition": "A short description for the group.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "C11 (Division,Section)"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-8"
+                },
+                {
+                  "identity": "cpha3pharm",
+                  "map": "C.31"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.BackboneElement.string",
+              "path": "Coverage.grouping.subGroup",
+              "short": "An identifier for the subsection of the group",
+              "definition": "Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a subset of an employer group.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "v2",
+                  "map": "IN1-8"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.BackboneElement.string",
+              "path": "Coverage.grouping.subGroupDisplay",
+              "short": "Display text for the subsection of the group",
+              "definition": "A short description for the subgroup.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "v2",
+                  "map": "IN1-8"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.BackboneElement.string",
+              "path": "Coverage.grouping.plan",
+              "short": "An identifier for the plan",
+              "definition": "Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a collection of benefits provided to employees. May be referred to as a Section or Division ID.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "C01"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-35"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.BackboneElement.string",
+              "path": "Coverage.grouping.planDisplay",
+              "short": "Display text for the plan",
+              "definition": "A short description for the plan.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "C01"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-35"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.BackboneElement.string",
+              "path": "Coverage.grouping.subPlan",
+              "short": "An identifier for the subsection of the plan",
+              "definition": "Identifies a sub-style or sub-collective of coverage issued by the underwriter, for example may be used to identify a subset of a collection of benefits provided to employees.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "v2",
+                  "map": "IN1-10"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.BackboneElement.string",
+              "path": "Coverage.grouping.subPlanDisplay",
+              "short": "Display text for the subsection of the plan",
+              "definition": "A short description for the subplan.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "v2",
+                  "map": "IN1-10"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.BackboneElement.string",
+              "path": "Coverage.grouping.class",
+              "short": "An identifier for the class",
+              "definition": "Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage such as a level of deductables or co-payment.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "C01"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-35"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.BackboneElement.string",
+              "path": "Coverage.grouping.classDisplay",
+              "short": "Display text for the class",
+              "definition": "A short description for the class.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "C01"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-35"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.BackboneElement.string",
+              "path": "Coverage.grouping.subClass",
+              "short": "An identifier for the subsection of the class",
+              "definition": "Identifies a sub-style or sub-collective of coverage issues by the underwriter, for example may be used to identify a subclass of coverage such as a sub-level of deductables or co-payment.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "C01"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-35"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.BackboneElement.string",
+              "path": "Coverage.grouping.subClassDisplay",
+              "short": "Display text for the subsection of the subclass",
+              "definition": "A short description for the subclass.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "C01"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-35"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.string",
+              "path": "Coverage.dependent",
+              "short": "Dependent number",
+              "definition": "A unique identifier for a dependent under the coverage.",
+              "requirements": "For some coverage a single identifier is issued to the Subscriber and a dependent number issued to each beneficiary.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "C17"
+                },
+                {
+                  "identity": "v2",
+                  "map": "- No exact HL7 v2 equivalent concept seems to exist;"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.string",
+              "path": "Coverage.sequence",
+              "short": "The plan instance or sequence counter",
+              "definition": "An optional counter for a particular instance of the identified coverage which increments upon each renewal.",
+              "requirements": "Some coverage, for example social plans, may be offered in short time increments, for example for a week or a month at a time, so while the rest of the plan details and identifiers may remain constant over time, the instance is incremented with each renewal and provided to the covered party on their 'card'.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "D11"
+                },
+                {
+                  "identity": "v2",
+                  "map": "No HL7 v2 equivalent concept seems to exist"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.positiveInt",
+              "path": "Coverage.order",
+              "short": "Relative order of the coverage",
+              "definition": "The order of applicability of this coverage relative to other coverages which are currently inforce. Note, there may be gaps in the numbering and this does not imply primary, secondard etc. as the specific positioning of coverages depends upon the episode of care.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "positiveInt"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "v2",
+                  "map": "- No exact HL7 v2 equivalent concept seems to exist;"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.string",
+              "path": "Coverage.network",
+              "short": "Insurer network",
+              "definition": "The insurer-specific identifier for the insurer-defined network of providers to which the beneficiary may seek treatment which will be covered at the 'in-network' rate, otherwise 'out of network' terms and conditions apply.",
+              "max": "1",
+              "type": [
+                {
+                  "code": "string"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "D10"
+                }
+              ]
+            },
+            {
+              "id": "Coverage.Reference",
+              "path": "Coverage.contract",
+              "short": "Contract details",
+              "definition": "The policy(s) which constitute this insurance coverage.",
+              "type": [
+                {
+                  "code": "Reference",
+                  "targetProfile": "http://hl7.org/fhir/StructureDefinition/Contract"
+                }
+              ],
+              "mapping": [
+                {
+                  "identity": "cdanetv4",
+                  "map": "D01 through D09"
+                },
+                {
+                  "identity": "v2",
+                  "map": "IN1-16, 18,  19"
+                },
+                {
+                  "identity": "cpha3pharm",
+                  "map": "C.35"
+                }
+              ]
+            }
+          ]
+        }
+      }
