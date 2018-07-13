@@ -8,5 +8,6 @@ public class DataConstants {
     public static String scriptsDir;
     public static boolean runFhirOnly;
     public static boolean runUAAOnly;
+    public static String structureDefDir;
 }
 
