@@ -34,12 +34,24 @@ public class OcpDataLoadApplication {
         readPropertiesFile();
         log.info("Read properties file");
 
-        populateFhirResources();
-        log.info("Populated fhir resources");
+        if(DataConstants.runFhirOnly && !DataConstants.runUAAOnly) {
+            populateFhirResources();
+            log.info("Populated fhir resources");
 
-        log.info("Populating UAA resources");
-        populateUAA();
-        log.info("Populated UAA resources");
+        }
+
+        if(!DataConstants.runFhirOnly && DataConstants.runUAAOnly) {
+            populateUAA();
+            log.info("Populated UAA resources");
+        }
+
+        if(DataConstants.runFhirOnly && DataConstants.runUAAOnly) {
+            populateFhirResources();
+            log.info("Populated fhir resources");
+
+            populateUAA();
+            log.info("Populated UAA resources");
+        }
 
         log.info("Completed the job!!!");
     }
@@ -54,11 +66,15 @@ public class OcpDataLoadApplication {
             DataConstants.valueSetDir = prop.getProperty("valuesetsdir");
             DataConstants.scriptsDir = prop.getProperty("scriptsdir");
             DataConstants.serverUrl = prop.getProperty("fisUrl");
+            DataConstants.runFhirOnly = Boolean.parseBoolean(prop.getProperty("runFhirOnly"));
+            DataConstants.runUAAOnly = Boolean.parseBoolean(prop.getProperty("runUAAOnly"));
 
             log.info("xlsx file :" + DataConstants.xlsxFile);
             log.info("valuesets location : " + DataConstants.valueSetDir);
             log.info("scripts location : " + DataConstants.scriptsDir);
             log.info("fis server : " + DataConstants.serverUrl);
+            log.info("run fhir only : " + DataConstants.runFhirOnly);
+            log.info("run UAA only : " + DataConstants.runUAAOnly);
 
         } catch (IOException e) {
             log.error("Please provide a file data.properties at the root directory");

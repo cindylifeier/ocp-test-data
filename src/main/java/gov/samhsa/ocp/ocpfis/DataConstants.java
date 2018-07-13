@@ -6,5 +6,7 @@ public class DataConstants {
     public static String valueSetDir;
     public static String xlsxFile;
     public static String scriptsDir;
+    public static boolean runFhirOnly;
+    public static boolean runUAAOnly;
 }
 
