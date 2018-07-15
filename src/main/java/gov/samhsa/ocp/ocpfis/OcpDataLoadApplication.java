@@ -13,6 +13,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
@@ -31,7 +32,7 @@ import java.util.Properties;
 @Slf4j
 public class OcpDataLoadApplication {
 
-    public static void main(String[] args) throws IOException, InvalidFormatException {
+    public static void main(String[] args) throws IOException, InvalidFormatException, JSONException {
         readPropertiesFile();
         log.info("Read properties file");
 
@@ -110,14 +111,18 @@ public class OcpDataLoadApplication {
             DataConstants.runFhirOnly = Boolean.parseBoolean(prop.getProperty("runFhirOnly"));
             DataConstants.runUAAOnly = Boolean.parseBoolean(prop.getProperty("runUAAOnly"));
             DataConstants.uaaUrl = prop.getProperty("uaaUrl");
+            DataConstants.fhirUrl = prop.getProperty("fhirUrl");
+            DataConstants.structureDefDir = prop.getProperty("structureDefDir");
 
             log.info("xlsx file :" + DataConstants.xlsxFile);
             log.info("valuesets location : " + DataConstants.valueSetDir);
+            log.info("structureDefDir dir : " + DataConstants.structureDefDir);
             log.info("scripts location : " + DataConstants.scriptsDir);
             log.info("fis server : " + DataConstants.serverUrl);
+            log.info("UAA server : " + DataConstants.uaaUrl);
+            log.info("Fhir server : " + DataConstants.fhirUrl);
             log.info("run fhir only : " + DataConstants.runFhirOnly);
             log.info("run UAA only : " + DataConstants.runUAAOnly);
-            log.info("UAA server : " + DataConstants.uaaUrl);
 
         } catch (IOException e) {
             log.error("Please provide a file data.properties at the root directory");
@@ -178,13 +183,16 @@ public class OcpDataLoadApplication {
 
     }
 
-    private static void populateFhirResources() throws IOException, InvalidFormatException {
+    private static void populateFhirResources() throws IOException, InvalidFormatException, JSONException {
 
         //for intercepting the requests and debugging
         setFiddler();
 
         //ValueSets
         ValueSetHelper.process();
+
+        //StructureDefinitions
+        StructureDefinitionHelper.process();
 
         //Create a workbook form excel file
         Workbook workbook = WorkbookFactory.create(new File(DataConstants.xlsxFile));

@@ -10,5 +10,6 @@ public class DataConstants {
     public static boolean runUAAOnly;
     public static String structureDefDir;
     public static String uaaUrl;
+    public static String fhirUrl;
 }
 

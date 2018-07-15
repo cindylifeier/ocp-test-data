@@ -1,69 +1,67 @@
 package gov.samhsa.ocp.ocpfis;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
-import gov.samhsa.ocp.ocpfis.service.dto.ValueSetDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 public class StructureDefinitionHelper {
 
-    public static void process(){
-        Gson gson=new Gson();
+    public static void process() throws JSONException, IOException {
+        File[] files = listFiles(new File(DataConstants.structureDefDir));
 
-        File[] files=listFiles(new File(DataConstants.structureDefDir));
+        Map<String, String> map = new HashMap<>();
 
-        RestTemplate rt=new RestTemplate();
+        for (File file : files) {
+            FileInputStream fis = new FileInputStream(file);
+            byte[] data = new byte[(int) file.length()];
+            fis.read(data);
+            fis.close();
 
-        for(File file:files){
-            String fileName=file.getAbsolutePath();
-            log.info("file "+fileName);
-
-            try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
-                JsonParser parser = new JsonParser();
-                parser.parse(br);
-
-            } catch (JsonSyntaxException | IOException e) {
-                e.printStackTrace();
-
-            }
-
-            log.info("Finished checking json validity ...");
-
-            try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))){
-                ValueSetDto valueSetDto=gson.fromJson(br,ValueSetDto.class);
-
-                log.info("Value retrieved and set in the object.");
-
-                HttpEntity<ValueSetDto> request=new HttpEntity<>(valueSetDto);
-                ResponseEntity<ValueSetDto> response=rt.exchange(getUrl(), HttpMethod.PUT, request, ValueSetDto.class);
-
-                log.info("response : "+response.getStatusCode());
-            } catch (IOException | JsonSyntaxException e){
-                e.printStackTrace();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
+            String str = new String(data, "UTF-8");
+            map.put(file.getName().replace(".json", ""), str);
         }
+
+        RestTemplate rt = new RestTemplate();
+
+        map.forEach((key, value) -> {
+            try {
+                HttpHeaders headers = new HttpHeaders();
+
+                MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<String, String>();
+                multiValueMap.add("serverId", "home");
+                multiValueMap.add("pretty", "true");
+                multiValueMap.add("resource", "StructureDefinition");
+                multiValueMap.add("resource-create-id", key);
+                multiValueMap.add("resource-create-body", value);
+
+                HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(multiValueMap, headers);
+
+                ResponseEntity<String> response = rt.postForEntity(DataConstants.fhirUrl + "fhir/update", request, String.class);
+
+                log.info("Response status code : " + response.getStatusCode());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
-    private static File[] listFiles(final File folder){
+    private static File[] listFiles(final File folder) {
         return folder.listFiles();
     }
 
-    private static String getUrl(){
-        return DataConstants.serverUrl +"/structure-definitions";
-    }
 }
 
