@@ -8,7 +8,6 @@ import gov.samhsa.ocp.ocpfis.model.practitioner.PractitionerRole;
 import gov.samhsa.ocp.ocpfis.model.practitioner.WrapperPractitionerDto;
 import gov.samhsa.ocp.ocpfis.service.dto.PatientDto;
 import gov.samhsa.ocp.ocpfis.service.dto.PractitionerDto;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -17,10 +16,12 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +34,9 @@ public class OcpDataLoadApplication {
     public static void main(String[] args) throws IOException, InvalidFormatException {
         readPropertiesFile();
         log.info("Read properties file");
+
+        //setUAAUrlInScripts(DataConstants.uaaUrl);
+        //log.info("Finished running dos2unix and sed commands for shell scripts");
 
         if(DataConstants.runFhirOnly && !DataConstants.runUAAOnly) {
             populateFhirResources();
@@ -56,6 +60,43 @@ public class OcpDataLoadApplication {
         log.info("Completed the job!!!");
     }
 
+    private static void setUAAUrlInScripts(String uaaUrl) {
+        //TODO: Not working. Not used in the application yet.
+        try {
+            //change file format to unix
+            log.info("Running dos2unix *.sh");
+            execCommand("dos2unix external-scripts/*.sh");
+
+            //file 1
+            log.info("Running sed for ./create-user-with-attributes.sh");
+            execCommand("sed -i 's*http://localhost:8080/*" + uaaUrl + "*g' external-scripts/create-user-with-attributes.sh");
+
+            //file 2
+            log.info("Running sed for ./create-role-with-scope.sh");
+            execCommand("sed -i 's*http://localhost:8080/*" + uaaUrl + "*g' external-scripts/create-role-with-scope.sh");
+
+            //file 3
+            log.info("Running sed for ./create-smart-admin-role-with-scope.sh");
+            execCommand("sed -i 's*http://localhost:8080/*" + uaaUrl + "*g' external-scripts/create-smart-admin-role-with-scope.sh");
+
+            //file 4
+            log.info("Running sed for ./create-smart-role-with-scope.sh");
+            execCommand("sed -i 's*http://localhost:8080/*" + uaaUrl + "*g' external-scripts/create-smart-role-with-scope.sh");
+
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void execCommand(String command) throws InterruptedException, IOException {
+        log.info("Command : " + command);
+        Process p = Runtime.getRuntime().exec(command);
+        p.waitFor();
+        System.out.println("exit: " + p.exitValue());
+        p.destroy();
+    }
+
     private static void readPropertiesFile() {
         Properties prop = new Properties();
         String[] values = new String[4];
@@ -68,6 +109,7 @@ public class OcpDataLoadApplication {
             DataConstants.serverUrl = prop.getProperty("fisUrl");
             DataConstants.runFhirOnly = Boolean.parseBoolean(prop.getProperty("runFhirOnly"));
             DataConstants.runUAAOnly = Boolean.parseBoolean(prop.getProperty("runUAAOnly"));
+            DataConstants.uaaUrl = prop.getProperty("uaaUrl");
 
             log.info("xlsx file :" + DataConstants.xlsxFile);
             log.info("valuesets location : " + DataConstants.valueSetDir);
@@ -75,6 +117,7 @@ public class OcpDataLoadApplication {
             log.info("fis server : " + DataConstants.serverUrl);
             log.info("run fhir only : " + DataConstants.runFhirOnly);
             log.info("run UAA only : " + DataConstants.runUAAOnly);
+            log.info("UAA server : " + DataConstants.uaaUrl);
 
         } catch (IOException e) {
             log.error("Please provide a file data.properties at the root directory");
@@ -128,6 +171,10 @@ public class OcpDataLoadApplication {
         PatientUAAHelper.createPatients(patientsMap, organizationsMap, patientsSheet);
         log.info("Finished creating patients in UAA");
         log.info("------------------------------------------");
+
+        //5. Populate Smart on Fhir roles
+        log.info("Start SmartOnFhir roles");
+        SmartOnFhirUAAHelper.runScript();
 
     }
 
