@@ -19,7 +19,7 @@ import java.util.Optional;
 @Slf4j
 public class CareTeamsHelper {
 
-    public static void process(Sheet careTeams, Map<String, String> mapOfPractitioners, Map<String, String> mapOfPatients) {
+    public static void process(Sheet careTeams, Map<String, String> mapOfPractitioners, Map<String, String> mapOfPatients, Map<String, String> mapOrganizations) {
         log.info("last row number : " + careTeams.getLastRowNum());
 
         int rowNum = 0;
@@ -28,7 +28,7 @@ public class CareTeamsHelper {
         Map<String, String> careTeamReasonCodes = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/care-team-reasons");
         Map<String, String> participantRoles = CommonHelper.getLookup(DataConstants.serverUrl + "lookups/participant-roles");
 
-        List<CareTeamDto> careTeamDtos = retrieveSheet(careTeams, mapOfPractitioners, mapOfPatients, rowNum, careTeamsCategories, careTeamReasonCodes, participantRoles);
+        List<CareTeamDto> careTeamDtos = retrieveSheet(careTeams, mapOfPractitioners, mapOfPatients, rowNum, careTeamsCategories, careTeamReasonCodes, participantRoles, mapOrganizations);
 
         RestTemplate rt = new RestTemplate();
 
@@ -50,7 +50,8 @@ public class CareTeamsHelper {
 
     }
 
-    private static List<CareTeamDto> retrieveSheet(Sheet careTeams, Map<String, String> mapOfPractitioners, Map<String, String> mapOfPatients, int rowNum, Map<String, String> careTeamsCategories, Map<String, String> careTeamReasonCodes, Map<String, String> participantRoles) {
+    private static List<CareTeamDto> retrieveSheet(Sheet careTeams, Map<String, String> mapOfPractitioners, Map<String, String> mapOfPatients, int rowNum, Map<String, String> careTeamsCategories, Map<String, String> careTeamReasonCodes,
+                                                   Map<String, String> participantRoles, Map<String, String> mapOfOrganizations) {
         List<CareTeamDto> careTeamDtos = new ArrayList<>();
 
         for (Row row : careTeams) {
@@ -59,7 +60,7 @@ public class CareTeamsHelper {
                 CareTeamDto dto = new CareTeamDto();
                 ParticipantDto participantDto = new ParticipantDto();
                 try {
-                    processRow(mapOfPractitioners, mapOfPatients, careTeamsCategories, careTeamReasonCodes, participantRoles, row, j, dto, participantDto);
+                    processRow(mapOfPractitioners, mapOfPatients, careTeamsCategories, careTeamReasonCodes, participantRoles, row, j, dto, participantDto, mapOfOrganizations);
                     careTeamDtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error processing a row for careTeams");
@@ -72,7 +73,9 @@ public class CareTeamsHelper {
         return careTeamDtos;
     }
 
-    private static void processRow(Map<String, String> mapOfPractitioners, Map<String, String> mapOfPatients, Map<String, String> careTeamsCategories, Map<String, String> careTeamReasonCodes, Map<String, String> participantRoles, Row row, int j, CareTeamDto dto, ParticipantDto participantDto) {
+    private static void processRow(Map<String, String> mapOfPractitioners, Map<String, String> mapOfPatients, Map<String, String> careTeamsCategories, Map<String, String> careTeamReasonCodes, Map<String, String> participantRoles, Row row, int j,
+                                   CareTeamDto dto, ParticipantDto participantDto, Map<String, String> mapOfOrganizations) {
+        List<ParticipantDto> participantDtos = new ArrayList<>();
         for (Cell cell : row) {
             String cellValue = new DataFormatter().formatCellValue(cell);
 
@@ -122,20 +125,46 @@ public class CareTeamsHelper {
             } else if (j == 7) {
                 //participant
 
-                participantDto.setMemberId(mapOfPractitioners.get(cellValue));
-                participantDto.setMemberLastName(Optional.of(cellValue));
-                participantDto.setMemberFirstName(Optional.of(""));
+                String[] names = cellValue.split(",");
+                for (int i = 0; i < names.length; i++) {
+                    ParticipantDto participant = new ParticipantDto();
+                    participant.setMemberId(mapOfPractitioners.get(names[i]));
+                    participant.setMemberLastName(Optional.of(names[i].split(" ")[0]));
+                    participant.setMemberFirstName(Optional.of(names[i].split(" ")[1]));
+                    participantDtos.add(participant);
+                }
 
             } else if (j == 8) {
                 //participant role
+                List<ParticipantDto> parts = new ArrayList<>();
+                String[] roles = cellValue.split(",");
+                int i = 0;
+                for (ParticipantDto p : participantDtos) {
+                    p.setRoleCode(participantRoles.get(roles[i]));
+                    p.setMemberType(participantRoles.get(roles[i]));
+                    p.setRoleDisplay(roles[i]);
+                    p.setStartDate("01/01/2018");
+                    p.setEndDate("01/01/2020");
+                    parts.add(p);
+                    i++;
+                }
 
-                participantDto.setRoleCode(participantRoles.get(cellValue));
-                participantDto.setMemberType(participantRoles.get(cellValue));
-                participantDto.setRoleDisplay(cellValue);
-                participantDto.setStartDate("01/01/2018");
-                participantDto.setEndDate("01/01/2020");
+                dto.setParticipants(parts);
+            } else if (j == 9) {
+                //Participant type
+                List<ParticipantDto> parts = new ArrayList<>();
+                String[] types = cellValue.split(",");
+                int i = 0;
+                for (ParticipantDto p : participantDtos) {
+                    p.setMemberType(participantRoles.get(types[i]));
+                    parts.add(p);
+                    i++;
+                }
 
-                dto.setParticipants(Arrays.asList(participantDto));
+                dto.setParticipants(parts);
+            } else if (j == 10) {
+                //Organization
+                dto.setManagingOrganization(mapOfOrganizations.get(cellValue.trim()));
             }
 
             j++;

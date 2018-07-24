@@ -15,10 +15,13 @@ public class UAAHelper {
         final String[] name = key.split("\\s+");
         String firstName = "";
         String lastName = "";
+        String userName = "";
 
-        if (name.length == 2) {
+        if (name.length == 3) {
             firstName = name[0];
             lastName = name[1];
+            // first last -- first.last
+            userName = name[2];
         }
 
         try {
@@ -45,8 +48,8 @@ public class UAAHelper {
                     pw.flush();
 
                 } else if (line.contains("Please enter username")) {
-                    pw.println(firstName);
-                    log.info("Entered username : " + firstName);
+                    pw.println(userName);
+                    log.info("Entered username : " + userName);
                     pw.flush();
 
                 } else if (line.contains("Please enter password")) {
