@@ -70,6 +70,7 @@ public class PatientsHelper {
                     patientDtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error processing a row of patient");
+                    e.printStackTrace();
                 }
 
             }
@@ -125,20 +126,25 @@ public class PatientsHelper {
                 TelecomDto emailDto = new TelecomDto();
                 emailDto.setSystem(Optional.of(ContactPointSystem.EMAIL.toCode()));
                 emailDto.setUse(Optional.of(ContactPointUse.WORK.toCode()));
-                emailDto.setValue(Optional.of(dto.getName().stream().findFirst().get().getFirstName().toLowerCase() + "." + dto.getName().stream().findFirst().get().getLastName().toLowerCase() + "@ocpmail.com"));
+                emailDto.setValue(Optional.of(nameDto.getFirstName() + "." + nameDto.getLastName() + "@ocpmail.com"));
                 telecomDtos.add(emailDto);
                 dto.setTelecoms(telecomDtos);
             } else if (j == 11) {
                 dto.setAddresses(CommonHelper.getAddresses(cellValue));
             } else if (j == 12) {
-                dto.setOrganizationId(Optional.of(mapOfOrganizations.get(cellValue.trim())));
+                //advisory
             } else if (j == 13) {
-                dto.setPractitionerId(Optional.of(mapOfPractitioners.get(cellValue.trim())));
+                dto.setOrganizationId(Optional.of(mapOfOrganizations.get(cellValue.trim())));
+
             } else if (j == 14) {
+                dto.setPractitionerId(Optional.of(mapOfPractitioners.get(cellValue.trim())));
+
+            } else if (j == 15) {
                 nameDto.setUserName(cellValue);
                 dto.setName(Arrays.asList(nameDto));
             }
             j++;
+
         }
     }
 
