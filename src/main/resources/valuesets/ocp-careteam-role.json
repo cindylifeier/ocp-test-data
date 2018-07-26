@@ -3,7 +3,7 @@
   "id": "ocp-careteam-role",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"> <h2> CareTeam roles contains Subset of NUCC Provider Directory Provider Roles (NUCC) and Administrator Role Codes </h2> <div> <p> This value set defines CareTeam roles (subset of provider specialty role codes which are composed of the NUCC Health Care Provider Taxonomy Code Set for providers and Administrator Role Codes).</p> </div> <p> This CareTeam value set includes codes from the following code systems:</p> <ul> <li> Include subset of the NUCC codes defined in \n            http://nucc.org/provider-taxonomy </li> </ul> <h3> This value set defines CareTeam role codes, and roles (a subset of NUCC Provider Taxonomy Codes and Administrator Role Codes), and value sets may be updated later. </h3> <p> Release Date: 2016-11-11</p> <table class=\"grid\"> <tr> <td> <b><code>101Y00000X</code></b></td><td><b><display>Counselor</display></b></td></tr> <tr> <td> <b><code>101YA0400X</code></b></td><td><b><display>Addiction (Substance Use Disorder) Counselor</display></b></td></tr> <tr> <td> <b><code>101YM0800X</code></b></td><td><b><display>Mental Health Counselor</display></b></td></tr> <tr> <td> <b><code>103G00000X</code></b></td><td><b><display>Clinical Neuropsychologist</display></b></td></tr> <tr> <td> <b><code>103GC0700X</code></b></td><td><b><display>Clinical Clinical Neuropsychologist</display></b></td></tr> <tr> <td> <b><code>103K00000X</code></b></td><td><b><display>Behavioral Analyst</display></b></td></tr> <tr> <td> <b><code>103T00000X</code></b></td><td><b><display>Psychologist</display></b></td></tr> <tr> <td> <b><code>103TC1900X</code></b></td><td><b><display>Counseling Psychologist</display></b></td></tr> <tr> <td> <b><code>171M00000X</code></b></td><td><b><display>Case Manager/Care Coordinator</display></b></td></tr> <tr> <td> <b><code>251S00000X</code></b></td><td><b><display>Community/Behavioral Health</display></b></td></tr> <tr> <td> <b><code>103TB0200X</code></b></td><td><b><display>Cognitive &amp; Behavioral Psychologist</display></b></td></tr> <tr> <td> <b><code>2084B0040X</code></b></td><td><b><display>Behavioral Neurology &amp; Neuropsychiatry </display></b></td></tr> <tr> <td> <b><code>251S00000X</code></b></td><td><b><display>Community/Behavioral Health</display></b></td></tr> <tr> <td> <b><code>CAREMNGR</code></b></td><td><b><display>Care Manager</display></b></td></tr> <tr> <td> <b><code>PCP</code></b></td><td><b><display>Primary Care Provider</display></b></td></tr> <tr> <td> <b><code>RELPER</code></b></td><td><b><display>Related Person</display></b></td></tr> </table> </div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2> CareTeam roles contains Subset of NUCC Provider Directory Provider Roles (NUCC) and Administrator Role Codes </h2><div><p> This value set defines CareTeam roles (subset of provider specialty role codes which are composed of the NUCC Health Care Provider Taxonomy Code Set for providers and Administrator Role Codes).</p></div> <p> This CareTeam value set includes codes from the following code systems:</p><ul><li> Include subset of the NUCC codes defined in \n            http://nucc.org/provider-taxonomy </li></ul><h3> This value set defines CareTeam role codes, and roles (a subset of NUCC Provider Taxonomy Codes and Administrator Role Codes), and value sets may be updated later. </h3> <p> Release Date: 2016-11-11</p><table class=\"grid\"><tr><td><b><code>101Y00000X</code></b></td><td><b><display>Counselor</display></b></td></tr><tr><td><b><code>101YA0400X</code></b></td><td><b><display>Addiction (Substance Use Disorder) Counselor</display></b></td></tr><tr><td><b><code>101YM0800X</code></b></td><td><b><display>Mental Health Counselor</display></b></td></tr><tr><td><b><code>103G00000X</code></b></td><td><b><display>Clinical Neuropsychologist</display></b></td></tr><tr><td><b><code>103GC0700X</code></b></td><td><b><display>Clinical Clinical Neuropsychologist</display></b></td></tr><tr><td><b><code>103K00000X</code></b></td><td><b><display>Behavioral Analyst</display></b></td></tr><tr><td><b><code>103T00000X</code></b></td><td><b><display>Psychologist</display></b></td></tr><tr><td><b><code>103TC1900X</code></b></td><td><b><display>Counseling Psychologist</display></b></td></tr><tr><td><b><code>171M00000X</code></b></td><td><b><display>Case Manager/Care Coordinator</display></b></td></tr><tr><td><b><code>251S00000X</code></b></td><td><b><display>Community/Behavioral Health</display></b></td></tr><tr><td><b><code>103TB0200X</code></b></td><td><b><display>Cognitive &amp; Behavioral Psychologist</display></b></td></tr><tr><td><b><code>2084B0040X</code></b></td><td><b><display>Behavioral Neurology &amp; Neuropsychiatry </display></b></td></tr><tr><td><b><code>251S00000X</code></b></td><td><b><display>Community/Behavioral Health</display></b></td></tr><tr><td><b><code>208VP0014X</code></b></td><td><b><display>Interventional Pain Medicine Specialist</display></b></td></tr><tr><td><b><code>2084P0802X</code></b></td><td><b><display>Addiction Psychiatry</display></b></td></tr><tr><td><b><code>1835G0000X</code></b></td><td><b><display>Pharmacist</display></b></td></tr><tr><td><b><code>207PE0004X</code></b></td><td><b><display>Emergency Medicine Physician</display></b></td></tr>	<tr><td><b><code>PROBOFCR</code></b></td><td><b><display>Probation Officer</display></b></td></tr></table></div>"
   },
   "url": "http://www.hl7.org/fhir/us/ocp/ValueSet/ocp-careteam-role",
   "version": "1.1.0",
@@ -91,16 +91,24 @@
             "display": "Community/Behavioral Health"
           },
           {
-            "code": "CAREMNGR",
-            "display": "Care Manager"
+            "code": "208VP0014X",
+            "display": "Interventional Pain Medicine Specialist"
           },
           {
-            "code": "PCP",
-            "display": "Primary Care Provider"
+            "code": "2084P0802X",
+            "display": "Addiction Psychiatry"
           },
           {
-            "code": "RELPER",
-            "display": "Related Person"
+            "code": "1835G0000X",
+            "display": "Pharmacist"
+          },
+          {
+            "code": "207PE0004X",
+            "display": "Emergency Medicine Physician"
+          },
+          {
+            "code": "PROBOFCR",
+            "display": "Probation Officer"
           }
         ]
       }
