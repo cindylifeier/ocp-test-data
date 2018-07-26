@@ -176,6 +176,9 @@ public class PractitionersHelper {
             } else if (j == 13) {
                 //UAA role
                 dto.setUaaRole(cellValue);
+            } else if (j == 14) {
+
+                dto.setUsername(cellValue);
             }
 
             j++;

@@ -343,7 +343,7 @@ public class OcpDataLoadApplication {
                 name.setUserName("Unknown");
             }
 
-            patientsMap.put(name.getFirstName().trim() + " " + name.getLastName().trim()+ " " + name.getUserName().trim(), patientDto.getId());
+            patientsMap.put(name.getFirstName().trim() + " " + name.getLastName().trim(), patientDto.getId());
         }
 
         return patientsMap;

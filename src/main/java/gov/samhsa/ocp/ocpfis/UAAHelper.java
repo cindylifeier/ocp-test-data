@@ -9,19 +9,17 @@ import java.io.PrintWriter;
 @Slf4j
 public class UAAHelper {
 
-    public static void createEntityInUAA(String key, String value, String role, String organizationId, int fhirResourceType) {
+    public static void createEntityInUAA(String key, String value, String role, String organizationId, int fhirResourceType, String userName) {
         log.info("Creating UAA record for entity : " + key + " with id : " + value + " and role : " + role + " and organizationId : " + organizationId);
 
         final String[] name = key.split("\\s+");
         String firstName = "";
         String lastName = "";
-        String userName = "";
 
-        if (name.length == 3) {
+
+        if (name.length == 2) {
             firstName = name[0];
             lastName = name[1];
-            // first last -- first.last
-            userName = name[2];
         }
 
         try {
