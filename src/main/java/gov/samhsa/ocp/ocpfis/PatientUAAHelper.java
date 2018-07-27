@@ -29,7 +29,10 @@ public class PatientUAAHelper {
                 log.info("organization : " + oPatientRow.get().getOrganizationId().get());
                 log.info("practitioner : " + oPatientRow.get().getPractitionerId().get());
 
-                UAAHelper.createEntityInUAA(entry.getKey(), entry.getValue(), "ocp.role.patient", organizationId, 2);
+                String username = oPatientRow.get().getName().stream().findFirst().get().getUserName();
+
+                log.info("Creating patient with name : " + entry.getKey() + " | fhirId : " + entry.getValue() + " | organizationId : " + organizationId + " : " + " | username : " + username);
+                UAAHelper.createEntityInUAA(entry.getKey(), entry.getValue(), "ocp.role.patient", organizationId, 2, username);
             }
         }
 

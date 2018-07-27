@@ -1,16 +1,20 @@
 package gov.samhsa.ocp.ocpfis;
 
+import gov.samhsa.ocp.ocpfis.service.dto.EpisodeOfCareDto;
 import gov.samhsa.ocp.ocpfis.service.dto.IdentifierDto;
 import gov.samhsa.ocp.ocpfis.service.dto.NameDto;
 import gov.samhsa.ocp.ocpfis.service.dto.PatientDto;
 import gov.samhsa.ocp.ocpfis.service.dto.TelecomDto;
+import gov.samhsa.ocp.ocpfis.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.hl7.fhir.dstu3.model.EpisodeOfCare;
 import org.hl7.fhir.dstu3.model.codesystems.ContactPointSystem;
 import org.hl7.fhir.dstu3.model.codesystems.ContactPointUse;
+import org.hl7.fhir.dstu3.model.codesystems.EpisodeofcareType;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,6 +29,8 @@ import java.util.Optional;
 
 @Slf4j
 public class PatientsHelper {
+
+    public static final int EPISODE_OF_CARE_END_PERIOD = 1;
 
     public static void process(Sheet patients, Map<String, String> mapOfPractitioners, Map<String, String> mapOfOrganizations) {
 
@@ -59,9 +65,12 @@ public class PatientsHelper {
                 PatientDto dto = new PatientDto();
                 try {
                     processRow(mapOfPractitioners, mapOfOrganizations, genderCodeLookup, birthSexLookup, raceLookup, ethnicityLookup, languageLookup, identifierTypeLookup, row, j, dto);
+                    // Add default Episode Of Care
+                    createDefaultEpisodeOfCareDto(dto);
                     patientDtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error processing a row of patient");
+                    e.printStackTrace();
                 }
 
             }
@@ -70,7 +79,8 @@ public class PatientsHelper {
         return patientDtos;
     }
 
-    private static void processRow(Map<String, String> mapOfPractitioners, Map<String, String> mapOfOrganizations, Map<String, String> genderCodeLookup, Map<String, String> birthSexLookup, Map<String, String> raceLookup, Map<String, String> ethnicityLookup, Map<String, String> languageLookup, Map<String, String> identifierTypeLookup, Row row, int j, PatientDto dto) {
+    private static void processRow(Map<String, String> mapOfPractitioners, Map<String, String> mapOfOrganizations, Map<String, String> genderCodeLookup, Map<String, String> birthSexLookup, Map<String, String> raceLookup, Map<String, String>
+            ethnicityLookup, Map<String, String> languageLookup, Map<String, String> identifierTypeLookup, Row row, int j, PatientDto dto) {
         NameDto nameDto = new NameDto();
         IdentifierDto tempIdentifiereDto = new IdentifierDto();
         for (Cell cell : row) {
@@ -80,7 +90,6 @@ public class PatientsHelper {
                 nameDto.setFirstName(cellValue);
             } else if (j == 1) {
                 nameDto.setLastName(cellValue);
-                dto.setName(Arrays.asList(nameDto));
             } else if (j == 2) {
                 try {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -117,18 +126,35 @@ public class PatientsHelper {
                 TelecomDto emailDto = new TelecomDto();
                 emailDto.setSystem(Optional.of(ContactPointSystem.EMAIL.toCode()));
                 emailDto.setUse(Optional.of(ContactPointUse.WORK.toCode()));
-                emailDto.setValue(Optional.of(dto.getName().stream().findFirst().get().getFirstName().toLowerCase() + "." + dto.getName().stream().findFirst().get().getLastName().toLowerCase() + "@ocpmail.com"));
+                emailDto.setValue(Optional.of(nameDto.getFirstName() + "." + nameDto.getLastName() + "@ocpmail.com"));
                 telecomDtos.add(emailDto);
                 dto.setTelecoms(telecomDtos);
             } else if (j == 11) {
                 dto.setAddresses(CommonHelper.getAddresses(cellValue));
             } else if (j == 12) {
-                dto.setOrganizationId(Optional.of(mapOfOrganizations.get(cellValue.trim())));
+                //advisory
             } else if (j == 13) {
+                dto.setOrganizationId(Optional.of(mapOfOrganizations.get(cellValue.trim())));
+
+            } else if (j == 14) {
                 dto.setPractitionerId(Optional.of(mapOfPractitioners.get(cellValue.trim())));
+
+            } else if (j == 15) {
+                nameDto.setUserName(cellValue);
+                dto.setName(Arrays.asList(nameDto));
             }
             j++;
+
         }
     }
 
+
+    private static void createDefaultEpisodeOfCareDto(PatientDto patientDto) {
+        EpisodeOfCareDto episodeOfCareDto = new EpisodeOfCareDto();
+        episodeOfCareDto.setStatus(EpisodeOfCare.EpisodeOfCareStatus.ACTIVE.toCode());
+        episodeOfCareDto.setType(EpisodeofcareType.HACC.toCode());
+        episodeOfCareDto.setStartDate(DateUtil.convertLocalDateToString(LocalDate.now()));
+        episodeOfCareDto.setEndDate(DateUtil.convertLocalDateToString(LocalDate.now().plusYears(EPISODE_OF_CARE_END_PERIOD)));
+        patientDto.setEpisodeOfCares(Arrays.asList(episodeOfCareDto));
+    }
 }

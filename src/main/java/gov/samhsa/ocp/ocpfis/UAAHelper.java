@@ -9,12 +9,13 @@ import java.io.PrintWriter;
 @Slf4j
 public class UAAHelper {
 
-    public static void createEntityInUAA(String key, String value, String role, String organizationId, int fhirResourceType) {
+    public static void createEntityInUAA(String key, String value, String role, String organizationId, int fhirResourceType, String userName) {
         log.info("Creating UAA record for entity : " + key + " with id : " + value + " and role : " + role + " and organizationId : " + organizationId);
 
         final String[] name = key.split("\\s+");
         String firstName = "";
         String lastName = "";
+
 
         if (name.length == 2) {
             firstName = name[0];
@@ -45,8 +46,8 @@ public class UAAHelper {
                     pw.flush();
 
                 } else if (line.contains("Please enter username")) {
-                    pw.println(firstName);
-                    log.info("Entered username : " + firstName);
+                    pw.println(userName);
+                    log.info("Entered username : " + userName);
                     pw.flush();
 
                 } else if (line.contains("Please enter password")) {

@@ -237,8 +237,9 @@ public class OcpDataLoadApplication {
         RelatedPersonsHelper.process(relationPersons, mapOfPatients);
         log.info("Populated relationPersons");
 
-        Sheet careTeams = workbook.getSheet("Patient Care Teams");
-        CareTeamsHelper.process(careTeams, mapOfPractitioners, mapOfPatients);
+        // Commenting the upload of below resources as they can be entered from system easily
+/*        Sheet careTeams = workbook.getSheet("Patient Care Teams");
+        CareTeamsHelper.process(careTeams, mapOfPractitioners, mapOfPatients, mapOrganizations);
         log.info("Populated careTeams");
 
         Sheet taskOwners = workbook.getSheet("Tasks");
@@ -255,7 +256,7 @@ public class OcpDataLoadApplication {
 
         Sheet appointments = workbook.getSheet("Appointments");
         AppointmentsHelper.process(appointments, mapOfPatients, mapOfPractitioners);
-        log.info("Populated appointments");
+        log.info("Populated appointments");*/
 
         workbook.close();
         log.info("Workbook closed");
@@ -339,6 +340,7 @@ public class OcpDataLoadApplication {
             } else {
                 name.setFirstName("Unknown");
                 name.setLastName("Unknown");
+                name.setUserName("Unknown");
             }
 
             patientsMap.put(name.getFirstName().trim() + " " + name.getLastName().trim(), patientDto.getId());

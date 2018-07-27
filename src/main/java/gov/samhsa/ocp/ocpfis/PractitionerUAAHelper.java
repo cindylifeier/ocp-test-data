@@ -37,7 +37,8 @@ public class PractitionerUAAHelper {
                 organizationId = roleDto.getOrganization().getReference().replace(ResourceType.Organization + "/", "");
                 log.info("organization : " + organizationId);
 
-                UAAHelper.createEntityInUAA(entry.getKey(), entry.getValue(), uaaRole, organizationId, 1);
+                log.info("Creating practitioner with name : " + entry.getKey() + " | fhirId : " + entry.getValue() + " | organizationId : " + organizationId + " : " + " | username : " + dto.getUsername());
+                UAAHelper.createEntityInUAA(entry.getKey(), entry.getValue(), uaaRole, organizationId, 1, dto.getUsername());
             }
         }
 
