@@ -83,6 +83,9 @@ public class PatientsHelper {
             ethnicityLookup, Map<String, String> languageLookup, Map<String, String> identifierTypeLookup, Row row, int j, PatientDto dto) {
         NameDto nameDto = new NameDto();
         IdentifierDto tempIdentifiereDto = new IdentifierDto();
+
+        List<TelecomDto> telecomDtos = new ArrayList<>();
+
         for (Cell cell : row) {
             String cellValue = new DataFormatter().formatCellValue(cell);
 
@@ -116,19 +119,13 @@ public class PatientsHelper {
                 tempIdentifiereDto.setValue(cellValue);
                 dto.setIdentifier(Arrays.asList(tempIdentifiereDto));
             } else if (j == 10) {
-                List<TelecomDto> telecomDtos = new ArrayList<>();
+
                 TelecomDto telecomDto = new TelecomDto();
                 telecomDto.setSystem(Optional.of(ContactPointSystem.PHONE.toCode()));
                 telecomDto.setUse(Optional.of(ContactPointUse.WORK.toCode()));
                 telecomDto.setValue(Optional.ofNullable(cellValue));
                 telecomDtos.add(telecomDto);
 
-                TelecomDto emailDto = new TelecomDto();
-                emailDto.setSystem(Optional.of(ContactPointSystem.EMAIL.toCode()));
-                emailDto.setUse(Optional.of(ContactPointUse.WORK.toCode()));
-                emailDto.setValue(Optional.of(nameDto.getFirstName() + "." + nameDto.getLastName() + "@ocpmail.com"));
-                telecomDtos.add(emailDto);
-                dto.setTelecoms(telecomDtos);
             } else if (j == 11) {
                 dto.setAddresses(CommonHelper.getAddresses(cellValue));
             } else if (j == 12) {
@@ -142,6 +139,14 @@ public class PatientsHelper {
             } else if (j == 15) {
                 nameDto.setUserName(cellValue);
                 dto.setName(Arrays.asList(nameDto));
+            } else if (j == 16) {
+
+                TelecomDto emailDto = new TelecomDto();
+                emailDto.setSystem(Optional.of(ContactPointSystem.EMAIL.toCode()));
+                emailDto.setUse(Optional.of(ContactPointUse.WORK.toCode()));
+                emailDto.setValue(Optional.ofNullable(cellValue));
+                telecomDtos.add(emailDto);
+                dto.setTelecoms(telecomDtos);
             }
             j++;
 
