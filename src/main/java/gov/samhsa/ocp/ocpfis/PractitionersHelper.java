@@ -80,10 +80,10 @@ public class PractitionersHelper {
 
     private static void processRow(Map<String, String> mapOrganizations, Map<String, String> practitionerRolesLookup, Row row, int j, PractitionerDto dto) {
         String firstName = "";
-        String line="";
-        String city="";
-        String state="";
-        String zip="";
+        String line = "";
+        String city = "";
+        String state = "";
+        String zip = "";
         PractitionerRoleDto roleDto = new PractitionerRoleDto();
         roleDto.setActive(true);
 
@@ -104,7 +104,7 @@ public class PractitionersHelper {
                 referenceDto.setReference(ResourceType.Organization + "/" + mapOrganizations.get(cellValue.trim()));
                 roleDto.setOrganization(referenceDto);
 
-                dto.setPractitionerRoles(Arrays.asList(roleDto));
+                dto.setPractitionerRoles(Collections.singletonList(roleDto));
 
             } else if (j == 1) {
                 //first name
@@ -131,20 +131,20 @@ public class PractitionersHelper {
                     valueSetDto.setCode(practitionerRolesLookup.get(ConstantsUtil.PRACTITIONER_DEFAULT_ROLE_DISPLAY));
                 }
                 valueSetDto.setSystem(ConstantsUtil.PRACTITIONER_ROLE_SYSTEM);
-                roleDto.setCode(Arrays.asList(valueSetDto));
+                roleDto.setCode(Collections.singletonList(valueSetDto));
 
             } else if (j == 5) {
                 //address
-                line=cellValue.trim();
+                line = cellValue.trim();
 
-            } else if(j==6){
-                city=cellValue.trim();
+            } else if (j == 6) {
+                city = cellValue.trim();
 
-            }else if(j==7){
-                state=cellValue.trim();
-            } else if(j==8){
-                zip=cellValue.trim();
-                dto.setAddresses(CommonHelper.getAddresses(line,city,state,zip));
+            } else if (j == 7) {
+                state = cellValue.trim();
+            } else if (j == 8) {
+                zip = cellValue.trim();
+                dto.setAddresses(CommonHelper.getAddresses(line, city, state, zip));
             } else if (j == 9) {
                 //contact
                 TelecomDto telecom = new TelecomDto();
