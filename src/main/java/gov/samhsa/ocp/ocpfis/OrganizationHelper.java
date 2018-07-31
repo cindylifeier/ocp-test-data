@@ -31,8 +31,8 @@ public class OrganizationHelper {
         orgDto.setAddresses(CommonHelper.getAddresses("5600 Fishers Lane", "Rockville", "MD", "20857"));
         orgDto.setIdentifiers(CommonHelper.getIdentifiers(ConstantsUtil.ORG_TAX_ID_URI, "530196960"));
         List<TelecomDto> telecomDtos = new ArrayList<>();
-        telecomDtos.addAll(CommonHelper.getTelecoms("phone", "(240)276-2827"));
-        telecomDtos.addAll(CommonHelper.getTelecoms("email", "Kenneth.Salyards@SAMHSA.hhs.gov"));
+        telecomDtos.addAll(CommonHelper.getTelecoms(ConstantsUtil.PHONE_SYSTEM, "(240)276-2827"));
+        telecomDtos.addAll(CommonHelper.getTelecoms(ConstantsUtil.EMAIL_SYSTEM, "Kenneth.Salyards@SAMHSA.hhs.gov"));
         orgDto.setTelecoms(telecomDtos);
         organizationDtos.add(orgDto);
 
@@ -85,7 +85,7 @@ public class OrganizationHelper {
                 zip = cellValue.trim();
                 dto.setAddresses(CommonHelper.getAddresses(line, city, state, zip));
             } else if (j == 6) {
-                dto.setTelecoms(CommonHelper.getTelecoms("phone", cellValue));
+                dto.setTelecoms(CommonHelper.getTelecoms(ConstantsUtil.PHONE_SYSTEM, cellValue));
             } else if (j == 7) {
                 dto.setIdentifiers(CommonHelper.getIdentifiers(ConstantsUtil.ORG_TAX_ID_URI, cellValue));
             } else if (j == 8) {
