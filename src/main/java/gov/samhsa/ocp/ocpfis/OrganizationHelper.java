@@ -29,7 +29,7 @@ public class OrganizationHelper {
         orgDto.setName("Omnibus Care Plan (SAMSHA)");
 
         orgDto.setAddresses(CommonHelper.getAddresses("5600 Fishers Lane", "Rockville", "MD", "20857"));
-        orgDto.setIdentifiers(CommonHelper.getIdentifiers("urn:oid:2.16.840.1.113883.4.4", "530196960"));
+        orgDto.setIdentifiers(CommonHelper.getIdentifiers(ConstantsUtil.ORG_TAX_ID_URI, "530196960"));
         List<TelecomDto> telecomDtos = new ArrayList<>();
         telecomDtos.addAll(CommonHelper.getTelecoms("phone", "(240)276-2827"));
         telecomDtos.addAll(CommonHelper.getTelecoms("email", "Kenneth.Salyards@SAMHSA.hhs.gov"));
@@ -87,7 +87,7 @@ public class OrganizationHelper {
             } else if (j == 6) {
                 dto.setTelecoms(CommonHelper.getTelecoms("phone", cellValue));
             } else if (j == 7) {
-                dto.setIdentifiers(CommonHelper.getIdentifiers("Organization Tax ID", cellValue));
+                dto.setIdentifiers(CommonHelper.getIdentifiers(ConstantsUtil.ORG_TAX_ID_URI, cellValue));
             } else if (j == 8) {
                 dto.setActive(true);
             }
