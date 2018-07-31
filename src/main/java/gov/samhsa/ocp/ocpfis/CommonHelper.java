@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -31,7 +32,7 @@ public class CommonHelper {
     }
 
     public static List<AddressDto> getAddresses(String line, String city, String state, String zip) {
-        return Arrays.asList(getAddress(line, city, state, zip));
+        return Collections.singletonList(getAddress(line, city, state, zip));
     }
 
     public static AddressDto getAddress(String cellValue) {
@@ -46,7 +47,7 @@ public class CommonHelper {
     }
 
     public static List<AddressDto> getAddresses(String cellValue) {
-        return Arrays.asList(getAddress(cellValue));
+        return Collections.singletonList(getAddress(cellValue));
     }
 
     public static List<TelecomDto> getTelecoms(String system, String cellValue) {
@@ -60,7 +61,7 @@ public class CommonHelper {
         IdentifierDto dto = new IdentifierDto();
         dto.setSystem(system);
         dto.setValue(cellValue);
-        return Arrays.asList(dto);
+        return Collections.singletonList(dto);
     }
 
     public static Map<String, String> identifierTypeDtoValue(String url) {
