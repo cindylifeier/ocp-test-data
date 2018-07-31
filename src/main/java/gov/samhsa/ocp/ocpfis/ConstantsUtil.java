@@ -6,4 +6,6 @@ public class ConstantsUtil {
     public static final String PHONE_SYSTEM = "phone";
     public static final String EMAIL_SYSTEM = "email";
 
+    public static final String ACTIVE_STATUS = "active";
+
 }
