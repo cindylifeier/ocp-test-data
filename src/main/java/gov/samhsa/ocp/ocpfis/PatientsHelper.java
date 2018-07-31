@@ -22,7 +22,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -30,15 +30,13 @@ import java.util.Optional;
 @Slf4j
 public class PatientsHelper {
 
-    public static final int EPISODE_OF_CARE_END_PERIOD = 1;
-
     public static void process(Sheet patients, Map<String, String> mapOfPractitioners, Map<String, String> mapOfOrganizations) {
 
         List<PatientDto> patientDtos = retrieveSheet(patients, mapOfPractitioners, mapOfOrganizations);
 
         RestTemplate rt = new RestTemplate();
 
-        patientDtos.stream().forEach(patientDto -> {
+        patientDtos.forEach(patientDto -> {
             try {
                 HttpEntity<PatientDto> request = new HttpEntity<>(patientDto);
                 rt.postForObject(DataConstants.serverUrl + "patients/", request, PatientDto.class);
@@ -82,7 +80,7 @@ public class PatientsHelper {
     private static void processRow(Map<String, String> mapOfPractitioners, Map<String, String> mapOfOrganizations, Map<String, String> genderCodeLookup, Map<String, String> birthSexLookup, Map<String, String> raceLookup, Map<String, String>
             ethnicityLookup, Map<String, String> languageLookup, Map<String, String> identifierTypeLookup, Row row, int j, PatientDto dto) {
         NameDto nameDto = new NameDto();
-        IdentifierDto tempIdentifiereDto = new IdentifierDto();
+        IdentifierDto tempIdentifierDto = new IdentifierDto();
 
         List<TelecomDto> telecomDtos = new ArrayList<>();
 
@@ -96,8 +94,7 @@ public class PatientsHelper {
             } else if (j == 2) {
                 try {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-                    String date = cellValue;
-                    LocalDate localDate = LocalDate.parse(date, formatter);
+                    LocalDate localDate = LocalDate.parse(cellValue, formatter);
                     dto.setBirthDate(localDate);
                 } catch (Exception e) {
                     //use some default
@@ -110,16 +107,24 @@ public class PatientsHelper {
             } else if (j == 5) {
                 dto.setRace(raceLookup.get(cellValue));
             } else if (j == 6) {
-                dto.setEthnicity(ethnicityLookup.get(cellValue));
+                dto.setEthnicity(ethnicityLookup.get(cellValue)); // TODO: This is not being displayed when edited from UI
             } else if (j == 7) {
                 dto.setLanguage(languageLookup.get(cellValue));
             } else if (j == 8) {
-                tempIdentifiereDto.setSystem(identifierTypeLookup.get(cellValue));
+                if (cellValue.equalsIgnoreCase(ConstantsUtil.SSN_DISPLAY)) {
+                    tempIdentifierDto.setSystem(ConstantsUtil.SSN_URI);
+                    tempIdentifierDto.setDisplay(ConstantsUtil.SSN_DISPLAY);
+                } else if (cellValue.equalsIgnoreCase(ConstantsUtil.MEDICARE_NUMBER_DISPLAY)) {
+                    tempIdentifierDto.setSystem(ConstantsUtil.MEDICARE_NUMBER_URI);
+                    tempIdentifierDto.setDisplay(ConstantsUtil.MEDICARE_NUMBER_DISPLAY);
+                } else if (cellValue.equalsIgnoreCase(ConstantsUtil.IND_TAX_ID_DISPLAY)) {
+                    tempIdentifierDto.setSystem(ConstantsUtil.IND_TAX_ID_URI);
+                    tempIdentifierDto.setDisplay(ConstantsUtil.IND_TAX_ID_DISPLAY);
+                }
             } else if (j == 9) {
-                tempIdentifiereDto.setValue(cellValue);
-                dto.setIdentifier(Arrays.asList(tempIdentifiereDto));
+                tempIdentifierDto.setValue(cellValue);
+                dto.setIdentifier(Collections.singletonList(tempIdentifierDto));
             } else if (j == 10) {
-
                 TelecomDto telecomDto = new TelecomDto();
                 telecomDto.setSystem(Optional.of(ContactPointSystem.PHONE.toCode()));
                 telecomDto.setUse(Optional.of(ContactPointUse.WORK.toCode()));
@@ -129,16 +134,15 @@ public class PatientsHelper {
             } else if (j == 11) {
                 dto.setAddresses(CommonHelper.getAddresses(cellValue));
             } else if (j == 12) {
-                //advisory
+                // Advisory - Do nothing
             } else if (j == 13) {
                 dto.setOrganizationId(Optional.of(mapOfOrganizations.get(cellValue.trim())));
 
             } else if (j == 14) {
                 dto.setPractitionerId(Optional.of(mapOfPractitioners.get(cellValue.trim())));
-
             } else if (j == 15) {
                 nameDto.setUserName(cellValue);
-                dto.setName(Arrays.asList(nameDto));
+                dto.setName(Collections.singletonList(nameDto));
             } else if (j == 16) {
 
                 TelecomDto emailDto = new TelecomDto();
@@ -153,13 +157,12 @@ public class PatientsHelper {
         }
     }
 
-
     private static void createDefaultEpisodeOfCareDto(PatientDto patientDto) {
         EpisodeOfCareDto episodeOfCareDto = new EpisodeOfCareDto();
         episodeOfCareDto.setStatus(EpisodeOfCare.EpisodeOfCareStatus.ACTIVE.toCode());
         episodeOfCareDto.setType(EpisodeofcareType.HACC.toCode());
         episodeOfCareDto.setStartDate(DateUtil.convertLocalDateToString(LocalDate.now()));
-        episodeOfCareDto.setEndDate(DateUtil.convertLocalDateToString(LocalDate.now().plusYears(EPISODE_OF_CARE_END_PERIOD)));
-        patientDto.setEpisodeOfCares(Arrays.asList(episodeOfCareDto));
+        episodeOfCareDto.setEndDate(DateUtil.convertLocalDateToString(LocalDate.now().plusYears(ConstantsUtil.EPISODE_OF_CARE_END_PERIOD)));
+        patientDto.setEpisodeOfCares(Collections.singletonList(episodeOfCareDto));
     }
 }

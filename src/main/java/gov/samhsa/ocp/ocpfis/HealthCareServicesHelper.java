@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -81,7 +82,7 @@ public class HealthCareServicesHelper {
                 dto.setName(cellValue);
             } else if (j == 2) {
                 //program name
-                dto.setProgramName(Arrays.asList(cellValue));
+                dto.setProgramName(Collections.singletonList(cellValue));
             } else if (j == 3) {
                 //category
 
@@ -89,8 +90,9 @@ public class HealthCareServicesHelper {
                 valueSetDto.setCode(categoryLookups.get(cellValue.trim()));
 
                 if (valueSetDto.getCode() == null) {
-                    valueSetDto.setCode(categoryLookups.get("Adoption"));
+                    valueSetDto.setCode(categoryLookups.get(ConstantsUtil.HCS_DEFAULT_CATEGORY_DISPLAY));
                 }
+                valueSetDto.setSystem(ConstantsUtil.HCS_CATEGORY_SYSTEM);
 
                 dto.setCategory(valueSetDto);
             } else if (j == 4) {
@@ -98,24 +100,23 @@ public class HealthCareServicesHelper {
 
                 ValueSetDto valueSetDto = new ValueSetDto();
                 valueSetDto.setCode(typeLookups.get(cellValue.trim()));
-                valueSetDto.setSystem("http://hl7.org/fhir/service-type");
+                valueSetDto.setSystem(ConstantsUtil.HCS_TYPE_SYSTEM);
 
                 if (valueSetDto.getCode() == null) {
-                    valueSetDto.setCode(typeLookups.get("Aged Care Assessment"));
+                    valueSetDto.setCode(typeLookups.get(ConstantsUtil.HCS_DEFAULT_TYPE_DISPLAY));
                 }
-
-                dto.setType(Arrays.asList(valueSetDto));
+                dto.setType(Collections.singletonList(valueSetDto));
             } else if (j == 5) {
                 //speciality
-
                 ValueSetDto valueSetDto = new ValueSetDto();
+                valueSetDto.setCode(specialityLookups.get(cellValue.trim()));
 
                 //if not available, set a default value
                 if (valueSetDto.getCode() == null) {
-                    valueSetDto.setCode(specialityLookups.get("Adult mental illness"));
+                    valueSetDto.setCode(specialityLookups.get(ConstantsUtil.HCS_DEFAULT_SPECIALITY_DISPLAY));
                 }
-
-                dto.setSpecialty(Arrays.asList(valueSetDto));
+                valueSetDto.setSystem(ConstantsUtil.HCS_SPECIALITY_SYSTEM);
+                dto.setSpecialty(Collections.singletonList(valueSetDto));
             } else if (j == 6) {
                 //referral
 
@@ -123,10 +124,10 @@ public class HealthCareServicesHelper {
                 valueSetDto.setCode(referralLookups.get(cellValue.trim()));
 
                 if (valueSetDto.getCode() == null) {
-                    valueSetDto.setCode(referralLookups.get("Phone"));
+                    valueSetDto.setCode(referralLookups.get(ConstantsUtil.HCS_DEFAULT_REFERRAL_DISPLAY));
                 }
-
-                dto.setReferralMethod(Arrays.asList(valueSetDto));
+                valueSetDto.setSystem(ConstantsUtil.HCS_REFERRAL_SYSTEM);
+                dto.setReferralMethod(Collections.singletonList(valueSetDto));
             } else if (j == 7) {
                 //contact
                 log.info(cellValue);

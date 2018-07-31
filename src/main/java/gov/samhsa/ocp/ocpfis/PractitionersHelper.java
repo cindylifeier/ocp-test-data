@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -79,20 +80,20 @@ public class PractitionersHelper {
 
     private static void processRow(Map<String, String> mapOrganizations, Map<String, String> practitionerRolesLookup, Row row, int j, PractitionerDto dto) {
         String firstName = "";
-        String line="";
-        String city="";
-        String state="";
-        String zip="";
+        String line = "";
+        String city = "";
+        String state = "";
+        String zip = "";
         PractitionerRoleDto roleDto = new PractitionerRoleDto();
         roleDto.setActive(true);
 
         ValueSetDto specialtyValueSetDto = new ValueSetDto();
-        specialtyValueSetDto.setCode("103GC0700X");
-        specialtyValueSetDto.setDisplay("Clinical");
-        roleDto.setSpecialty(Arrays.asList(specialtyValueSetDto));
+        specialtyValueSetDto.setCode(ConstantsUtil.PRACTITIONER_DEFAULT_SPECIALITY_CODE);
+        specialtyValueSetDto.setDisplay(ConstantsUtil.PRACTITIONER_DEFAULT_SPECIALITY_DISPLAY);
+        specialtyValueSetDto.setSystem(ConstantsUtil.PRACTITIONER_SPECIALITY_SYSTEM);
+        roleDto.setSpecialty(Collections.singletonList(specialtyValueSetDto));
 
         List<TelecomDto> telecoms = new ArrayList<>();
-        String idType = "";
         for (Cell cell : row) {
             String cellValue = new DataFormatter().formatCellValue(cell);
 
@@ -103,7 +104,7 @@ public class PractitionersHelper {
                 referenceDto.setReference(ResourceType.Organization + "/" + mapOrganizations.get(cellValue.trim()));
                 roleDto.setOrganization(referenceDto);
 
-                dto.setPractitionerRoles(Arrays.asList(roleDto));
+                dto.setPractitionerRoles(Collections.singletonList(roleDto));
 
             } else if (j == 1) {
                 //first name
@@ -127,34 +128,34 @@ public class PractitionersHelper {
 
                 //put a default if not available
                 if (valueSetDto.getCode() == null) {
-                    valueSetDto.setCode(practitionerRolesLookup.get("Counselor"));
+                    valueSetDto.setCode(practitionerRolesLookup.get(ConstantsUtil.PRACTITIONER_DEFAULT_ROLE_DISPLAY));
                 }
-
-                roleDto.setCode(Arrays.asList(valueSetDto));
+                valueSetDto.setSystem(ConstantsUtil.PRACTITIONER_ROLE_SYSTEM);
+                roleDto.setCode(Collections.singletonList(valueSetDto));
 
             } else if (j == 5) {
                 //address
-                line=cellValue.trim();
+                line = cellValue.trim();
 
-            } else if(j==6){
-                city=cellValue.trim();
+            } else if (j == 6) {
+                city = cellValue.trim();
 
-            }else if(j==7){
-                state=cellValue.trim();
-            } else if(j==8){
-                zip=cellValue.trim();
-                dto.setAddresses(CommonHelper.getAddresses(line,city,state,zip));
+            } else if (j == 7) {
+                state = cellValue.trim();
+            } else if (j == 8) {
+                zip = cellValue.trim();
+                dto.setAddresses(CommonHelper.getAddresses(line, city, state, zip));
             } else if (j == 9) {
                 //contact
                 TelecomDto telecom = new TelecomDto();
-                telecom.setSystem(Optional.of("phone"));
+                telecom.setSystem(Optional.of(ConstantsUtil.PHONE_SYSTEM));
                 telecom.setValue(Optional.of(cellValue));
                 telecoms.add(telecom);
 
             } else if (j == 10) {
                 //email
                 TelecomDto telecom = new TelecomDto();
-                telecom.setSystem(Optional.of("email"));
+                telecom.setSystem(Optional.of(ConstantsUtil.EMAIL_SYSTEM));
                 telecom.setValue(Optional.of(cellValue));
                 telecoms.add(telecom);
 
@@ -162,13 +163,12 @@ public class PractitionersHelper {
 
             } else if (j == 11) {
                 //ID type
-
-                idType = cellValue;
+                // Is always NPI
 
             } else if (j == 12) {
                 //ID
                 IdentifierDto identifierDto = new IdentifierDto();
-                identifierDto.setSystem("http://hl7.org/fhir/sid/us-npi");
+                identifierDto.setSystem(ConstantsUtil.NPI_URI);
                 identifierDto.setValue(cellValue);
 
                 dto.setIdentifiers(Arrays.asList(identifierDto));

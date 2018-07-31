@@ -19,7 +19,7 @@ import java.util.Map;
 public class LocationsHelper {
 
     public static void process(Sheet locations, Map<String, String> mapOrganizations) {
-        log.info("last row number : " + locations.getLastRowNum());
+        log.info("Last row number : " + locations.getLastRowNum());
 
         int rowNum = 0;
 
@@ -49,7 +49,7 @@ public class LocationsHelper {
                 log.info("locationDto being posted : " + locationDto);
 
                 ResponseEntity<TempLocationDto> response = rt.exchange(DataConstants.serverUrl + "organizations/" + locationDto.getManagingOrganization() + "/locations", HttpMethod.POST, request, TempLocationDto.class);
-                log.info("response code : " + response.getStatusCode());
+                log.info("Response code : " + response.getStatusCode());
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -91,13 +91,13 @@ public class LocationsHelper {
             dto.setAddress(CommonHelper.getAddress(street,city,state,zip));
         }
         else if (j == 6) {
-            dto.setTelecoms(CommonHelper.getTelecoms("phone", cellValue));
+            dto.setTelecoms(CommonHelper.getTelecoms(ConstantsUtil.PHONE_SYSTEM, cellValue));
 
         } else if (j == 8) {
-            dto.setIdentifiers(CommonHelper.getIdentifiers("Organization Tax ID", cellValue));
+            dto.setIdentifiers(CommonHelper.getIdentifiers(ConstantsUtil.ORG_TAX_ID_URI, cellValue));
 
         } else if (j == 9) {
-            dto.setStatus("active");
+            dto.setStatus(ConstantsUtil.ACTIVE_STATUS);
         }
     }
 
