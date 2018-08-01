@@ -17,7 +17,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -83,8 +82,9 @@ public class PractitionersHelper {
         String line = "";
         String city = "";
         String state = "";
-        String zip = "";
+        String zip;
         PractitionerRoleDto roleDto = new PractitionerRoleDto();
+        IdentifierDto identifierDto = new IdentifierDto();
         roleDto.setActive(true);
 
         ValueSetDto specialtyValueSetDto = new ValueSetDto();
@@ -117,7 +117,7 @@ public class PractitionersHelper {
                 nameDto.setFirstName(firstName);
                 nameDto.setLastName(cellValue);
 
-                dto.setName(Arrays.asList(nameDto));
+                dto.setName(Collections.singletonList(nameDto));
 
             } else if (j == 4) {
                 //role
@@ -162,16 +162,16 @@ public class PractitionersHelper {
                 dto.setTelecoms(telecoms);
 
             } else if (j == 11) {
-                //ID type
-                // Is always NPI
+                // ID System
+                if (cellValue!= null && !cellValue.trim().isEmpty() && cellValue.trim().equalsIgnoreCase(ConstantsUtil.NPI_DISPLAY)) {
+                    identifierDto.setSystem(ConstantsUtil.NPI_URI);
+                    identifierDto.setDisplay(ConstantsUtil.NPI_DISPLAY);
+                }
 
             } else if (j == 12) {
-                //ID
-                IdentifierDto identifierDto = new IdentifierDto();
-                identifierDto.setSystem(ConstantsUtil.NPI_URI);
+                // ID Value
                 identifierDto.setValue(cellValue);
-
-                dto.setIdentifiers(Arrays.asList(identifierDto));
+                dto.setIdentifiers(Collections.singletonList(identifierDto));
 
             } else if (j == 13) {
                 //UAA role
