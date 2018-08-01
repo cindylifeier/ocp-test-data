@@ -20,7 +20,7 @@ import java.util.Map;
 public class ActivityDefinitionsHelper {
 
     public static void process(Sheet activityDefinitions, Map<String, String> mapOrganizations) {
-        log.info("last row number :" + activityDefinitions.getLastRowNum());
+        log.info("Last row number :" + activityDefinitions.getLastRowNum());
 
         int rowNum = 0;
 
