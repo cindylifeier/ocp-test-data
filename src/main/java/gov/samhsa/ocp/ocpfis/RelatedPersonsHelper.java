@@ -14,7 +14,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +22,7 @@ import java.util.Map;
 public class RelatedPersonsHelper {
 
     public static void process(Sheet relatedPersons, Map<String, String> mapOfPatients) {
-        log.info("last row number :" + relatedPersons.getLastRowNum());
+        log.info("Last row number :" + relatedPersons.getLastRowNum());
         int rowNum = 0;
 
         List<TempRelatedPersonDto> relatedPersonDtos = retrieveSheet(relatedPersons, mapOfPatients, rowNum);
@@ -102,7 +102,7 @@ public class RelatedPersonsHelper {
             } else if (j == 7) {
                 dto.setIdentifierValue(cellValue);
             } else if (j == 8) {
-                boolean isActive = (cellValue.equalsIgnoreCase("active")) ? true : false;
+                boolean isActive = cellValue.equalsIgnoreCase("active");
                 dto.setActive(isActive);
             } else if(j==9){
                 line=cellValue.trim();
@@ -117,8 +117,8 @@ public class RelatedPersonsHelper {
                 TelecomDto telecomDto = new TelecomDto();
                 telecomDto.setSystem(java.util.Optional.of(ContactPointSystem.PHONE.toCode()));
                 telecomDto.setUse(java.util.Optional.of(ContactPointUse.WORK.toCode()));
-                telecomDto.setValue(java.util.Optional.ofNullable(cellValue));
-                dto.setTelecoms(Arrays.asList(telecomDto));
+                telecomDto.setValue(java.util.Optional.of(cellValue));
+                dto.setTelecoms(Collections.singletonList(telecomDto));
             }
             j++;
         }
