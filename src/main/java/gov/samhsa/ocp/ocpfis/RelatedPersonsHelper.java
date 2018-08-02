@@ -14,9 +14,9 @@ import org.springframework.http.HttpEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 public class RelatedPersonsHelper {
@@ -77,9 +77,12 @@ public class RelatedPersonsHelper {
 
     private static void processRow(Map<String, String> mapOfPatients, Map<String, String> identifierTypeLookup, Map<String, String> genderLookup, Map<String, String> relationLookup, Row row, int j, TempRelatedPersonDto dto) {
         String line = "";
-        String city="";
-        String state="";
-        String zip="";
+        String city = "";
+        String state = "";
+        String zip;
+
+        List<TelecomDto> telecomDtos = new ArrayList<>();
+
         for (Cell cell : row) {
             String cellValue = new DataFormatter().formatCellValue(cell).trim();
 
@@ -98,27 +101,40 @@ public class RelatedPersonsHelper {
                 dto.setGenderCode(genderLookup.get(cellValue));
                 dto.setGenderValue(cellValue);
             } else if (j == 6) {
-                dto.setIdentifierType(identifierTypeLookup.get(cellValue));
+                if (cellValue != null && !cellValue.trim().isEmpty() && cellValue.trim().equalsIgnoreCase(ConstantsUtil.SSN_DISPLAY)) {
+                    dto.setIdentifierType(ConstantsUtil.SSN_URI);
+                } else if (cellValue != null && !cellValue.trim().isEmpty() && cellValue.trim().equalsIgnoreCase(ConstantsUtil.MEDICARE_NUMBER_DISPLAY)) {
+                    dto.setIdentifierType(ConstantsUtil.MEDICARE_NUMBER_URI);
+                } else if (cellValue != null && !cellValue.trim().isEmpty() && cellValue.trim().equalsIgnoreCase(ConstantsUtil.IND_TAX_ID_DISPLAY)) {
+                    dto.setIdentifierType(ConstantsUtil.IND_TAX_ID_URI);
+                }
             } else if (j == 7) {
                 dto.setIdentifierValue(cellValue);
             } else if (j == 8) {
                 boolean isActive = cellValue.equalsIgnoreCase("active");
                 dto.setActive(isActive);
-            } else if(j==9){
-                line=cellValue.trim();
-            }else if(j==10){
-                city=cellValue.trim();
-            }else if(j==11){
-                state=cellValue.trim();
+            } else if (j == 9) {
+                line = cellValue.trim();
+            } else if (j == 10) {
+                city = cellValue.trim();
+            } else if (j == 11) {
+                state = cellValue.trim();
             } else if (j == 12) {
-                zip=cellValue.trim();
-                dto.setAddresses(CommonHelper.getAddresses(line,city,state,zip));
+                zip = cellValue.trim();
+                dto.setAddresses(CommonHelper.getAddresses(line, city, state, zip));
             } else if (j == 13) {
                 TelecomDto telecomDto = new TelecomDto();
                 telecomDto.setSystem(java.util.Optional.of(ContactPointSystem.PHONE.toCode()));
                 telecomDto.setUse(java.util.Optional.of(ContactPointUse.WORK.toCode()));
                 telecomDto.setValue(java.util.Optional.of(cellValue));
-                dto.setTelecoms(Collections.singletonList(telecomDto));
+                telecomDtos.add(telecomDto);
+            } else if (j == 14) {
+                TelecomDto emailDto = new TelecomDto();
+                emailDto.setSystem(Optional.of(ContactPointSystem.EMAIL.toCode()));
+                emailDto.setUse(Optional.of(ContactPointUse.WORK.toCode()));
+                emailDto.setValue(Optional.of(cellValue));
+                telecomDtos.add(emailDto);
+                dto.setTelecoms(telecomDtos);
             }
             j++;
         }
