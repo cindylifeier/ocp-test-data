@@ -264,7 +264,7 @@ public class OcpDataLoadApplication {
     }
 
     private static Map<String, String> retrieveOrganizations() {
-        String orgsUrl = DataConstants.serverUrl + "organizations/search";
+        String orgsUrl = DataConstants.serverUrl + "organizations/search?showAll=true";
         RestTemplate rt = new RestTemplate();
         ResponseEntity<TempOrganizationDto> foo = rt.getForEntity(orgsUrl, TempOrganizationDto.class);
 
