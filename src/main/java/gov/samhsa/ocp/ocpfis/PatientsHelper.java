@@ -133,7 +133,6 @@ public class PatientsHelper {
                 telecomDto.setUse(Optional.of(ContactPointUse.WORK.toCode()));
                 telecomDto.setValue(Optional.ofNullable(cellValue));
                 telecomDtos.add(telecomDto);
-
             } else if (j == 11) {
                 dto.setAddresses(CommonHelper.getAddresses(cellValue));
             } else if (j == 12) {
@@ -147,7 +146,6 @@ public class PatientsHelper {
                 nameDto.setUserName(cellValue);
                 dto.setName(Collections.singletonList(nameDto));
             } else if (j == 16) {
-
                 TelecomDto emailDto = new TelecomDto();
                 emailDto.setSystem(Optional.of(ContactPointSystem.EMAIL.toCode()));
                 emailDto.setUse(Optional.of(ContactPointUse.WORK.toCode()));
