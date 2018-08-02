@@ -38,8 +38,11 @@ public class PatientsHelper {
 
         patientDtos.forEach(patientDto -> {
             try {
-                HttpEntity<PatientDto> request = new HttpEntity<>(patientDto);
-                rt.postForObject(DataConstants.serverUrl + "patients/", request, PatientDto.class);
+                //genderCode is a required field
+                if(patientDto.getGenderCode() != null) {
+                    HttpEntity<PatientDto> request = new HttpEntity<>(patientDto);
+                    rt.postForObject(DataConstants.serverUrl + "patients/", request, PatientDto.class);
+                }
             } catch (Exception e) {
                 log.info("This patient could not be posted : " + patientDto);
                 e.printStackTrace();
