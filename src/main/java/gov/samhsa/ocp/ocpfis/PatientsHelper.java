@@ -113,12 +113,15 @@ public class PatientsHelper {
             } else if (j == 8) {
                 if (cellValue!= null && !cellValue.trim().isEmpty() && cellValue.trim().equalsIgnoreCase(ConstantsUtil.SSN_DISPLAY)) {
                     tempIdentifierDto.setSystem(ConstantsUtil.SSN_URI);
+                    tempIdentifierDto.setOid(ConstantsUtil.SSN_URI);
                     tempIdentifierDto.setDisplay(ConstantsUtil.SSN_DISPLAY);
                 } else if (cellValue!= null && !cellValue.trim().isEmpty() && cellValue.trim().equalsIgnoreCase(ConstantsUtil.MEDICARE_NUMBER_DISPLAY)) {
                     tempIdentifierDto.setSystem(ConstantsUtil.MEDICARE_NUMBER_URI);
+                    tempIdentifierDto.setOid(ConstantsUtil.MEDICARE_NUMBER_URI);
                     tempIdentifierDto.setDisplay(ConstantsUtil.MEDICARE_NUMBER_DISPLAY);
                 } else if (cellValue!= null && !cellValue.trim().isEmpty() && cellValue.trim().equalsIgnoreCase(ConstantsUtil.IND_TAX_ID_DISPLAY)) {
                     tempIdentifierDto.setSystem(ConstantsUtil.IND_TAX_ID_URI);
+                    tempIdentifierDto.setOid(ConstantsUtil.IND_TAX_ID_URI);
                     tempIdentifierDto.setDisplay(ConstantsUtil.IND_TAX_ID_DISPLAY);
                 }
             } else if (j == 9) {
