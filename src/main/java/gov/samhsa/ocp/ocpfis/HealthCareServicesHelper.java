@@ -132,6 +132,7 @@ public class HealthCareServicesHelper {
                 //contact
                 log.info(cellValue);
                 TelecomDto telecomDto = new TelecomDto();
+                telecomDto.setSystem(Optional.of("phone"));
                 telecomDto.setValue(Optional.of(cellValue));
                 dto.setTelecom(Arrays.asList(telecomDto));
             }
