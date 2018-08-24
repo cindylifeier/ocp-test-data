@@ -27,7 +27,7 @@ public class CommonHelper {
         dto.setCity(city);
         dto.setStateCode(state);
         dto.setPostalCode(zip);
-        dto.setCountryCode("US");
+        dto.setCountryCode("United States");
         return dto;
     }
 
@@ -42,7 +42,7 @@ public class CommonHelper {
         dto.setCity(faker.address().city());
         dto.setStateCode(faker.address().state());
         dto.setPostalCode(faker.address().zipCode());
-        dto.setCountryCode("US");
+        dto.setCountryCode("United States");
         return dto;
     }
 
